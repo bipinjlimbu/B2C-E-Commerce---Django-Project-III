@@ -843,6 +843,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 5rem;
 }
 
+.w-11 {
+  width: 2.75rem;
+}
+
 .min-w-\[320px\] {
   min-width: 320px;
 }
@@ -1999,9 +2003,19 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 1rem;
 }
 
+.after\:h-5::after {
+  content: var(--tw-content);
+  height: 1.25rem;
+}
+
 .after\:w-4::after {
   content: var(--tw-content);
   width: 1rem;
+}
+
+.after\:w-5::after {
+  content: var(--tw-content);
+  width: 1.25rem;
 }
 
 .after\:rounded-full::after {
