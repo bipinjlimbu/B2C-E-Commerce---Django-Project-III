@@ -153,27 +153,31 @@
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {% for i in '1234' %}
+                {% for product in products %}
                 <div class="bg-[#2b1810] border border-amber-900/30 rounded-2xl overflow-hidden shadow-xl hover:border-[#800020] transition-all flex flex-col group relative">
                     
-                    <a href="/products/1/" class="flex flex-col flex-grow">
+                    <a href="/products/{{ product.id }}/" class="flex flex-col flex-grow">
                         <div class="aspect-square w-full bg-[#1c0f0a] flex items-center justify-center p-4 relative overflow-hidden border-b border-amber-900/30">
                             <div class="w-full h-full flex flex-col items-center justify-center bg-[#2b1810]/40 rounded-xl border border-amber-900/20">
-                                <i data-lucide="music" class="w-12 h-12 text-amber-500/40 group-hover:scale-110 group-hover:text-amber-400 transition-all duration-300"></i>
-                                <span class="text-[9px] uppercase tracking-widest text-amber-200/50 font-bold mt-2">BajaGaja Collection</span>
+                                {% if product.product_image %}
+                                    <img src="{{ product.product_image.url }}" alt="{{ product.name }}" class="w-full h-full object-cover rounded-xl">
+                                {% else %}
+                                    <i data-lucide="music" class="w-12 h-12 text-amber-500/40 group-hover:scale-110 group-hover:text-amber-400 transition-all duration-300"></i>
+                                    <span class="text-[9px] uppercase tracking-widest text-amber-200/50 font-bold mt-2">BajaGaja Collection</span>
+                                {% endif %}
                             </div>
                             <span class="absolute top-3 left-3 bg-[#1c0f0a]/90 border border-amber-900/50 backdrop-blur-md text-[9px] font-black uppercase tracking-widest text-amber-400 px-2.5 py-1 rounded-md">
-                                Guitars & Basses
+                                {{ product.get_category_display|default:"Uncategorized" }}
                             </span>
                         </div>
 
                         <div class="p-5 flex-grow space-y-4">
                             <div class="space-y-1.5">
                                 <h3 class="font-bold text-amber-100 text-sm tracking-tight group-hover:text-amber-400 transition-colors line-clamp-1">
-                                    Acoustic Mahogany Dreadnought
+                                    {{ product.name| truncatechars:30 |default:"Unnamed Instrument" }}
                                 </h3>
                                 <p class="text-[11px] text-amber-200/60 font-medium leading-relaxed">
-                                    Solid mahogany top with rich warm acoustic sound projection and reinforced neck setup.
+                                    {{ product.description|truncatechars:70|default:"No description available." }}
                                 </p>
                             </div>
                         </div>
@@ -183,11 +187,11 @@
                         <div class="flex items-center justify-between pt-3 border-t border-amber-900/30">
                             <div class="flex flex-col">
                                 <span class="text-[9px] uppercase font-bold tracking-wider text-amber-200/50">Price</span>
-                                <span class="text-base font-mono font-black text-amber-100">Rs. 24,500.00</span>
+                                <span class="text-base font-mono font-black text-amber-100">Rs. {{ product.price|floatformat:2 }}</span>
                             </div>
 
                             {% if user.is_authenticated and not user.is_staff %}
-                                <a href="/cart/add/1/" class="bg-[#1c0f0a] hover:bg-[#800020] text-amber-200 hover:text-white w-9 h-9 rounded-xl transition-all border border-amber-900/50 hover:border-amber-500/50 flex items-center justify-center shadow-lg z-10">
+                                <a href="/cart/add/{{ product.id }}/" class="bg-[#1c0f0a] hover:bg-[#800020] text-amber-200 hover:text-white w-9 h-9 rounded-xl transition-all border border-amber-900/50 hover:border-amber-500/50 flex items-center justify-center shadow-lg z-10">
                                     <i data-lucide="shopping-bag" class="w-4 h-4"></i>
                                 </a>
                             {% elif user.is_staff %}
