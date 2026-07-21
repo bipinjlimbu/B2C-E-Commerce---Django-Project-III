@@ -20,3 +20,11 @@ def add_to_cart_view(request, product_id):
 
     messages.success(request, f"{product.name} has been added to your cart.")
     return redirect('products')
+
+@login_required
+def cart_view(request):
+    cart, created = Cart.objects.get_or_create(customer=request.user)
+    cart_items = cart.items.all()
+    total_price = sum(item.total_price for item in cart_items)
+    
+    return render(request, 'main/cart_page.html', {'cart_items': cart_items, 'total_price': total_price})
