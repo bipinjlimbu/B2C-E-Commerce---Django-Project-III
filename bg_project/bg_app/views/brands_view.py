@@ -63,3 +63,14 @@ def edit_brand_view(request, brand_id):
         return redirect('/dashboard/admin/?section=brand-management')
     
     return render(request, 'main/edit_brand_page.html', {'brand': brand})
+
+@login_required
+def delete_brand_view(request, brand_id):
+    if not request.user.is_staff:
+        messages.error(request, "You are not authorized to access this page.")
+        return redirect('/')
+    
+    brand = Brand.objects.get(id=brand_id)
+    brand.delete()
+    messages.success(request, 'Brand deleted successfully.')
+    return redirect('/dashboard/admin/?section=brand-management')
