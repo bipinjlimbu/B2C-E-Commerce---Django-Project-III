@@ -1,0 +1,92 @@
+<div class="space-y-6">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+            <h2 class="text-xs font-bold uppercase tracking-widest text-amber-900/60 mb-1">Catalog Architecture</h2>
+            <h1 class="text-2xl font-black text-amber-950 tracking-tight">Product Master</h1>
+        </div>
+        <div class="flex items-center gap-3">
+            <a href="/products/add/" class="bg-[#800020] hover:bg-[#5c0017] text-white text-xs font-bold uppercase tracking-wider px-4 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-sm active:scale-95">
+                <i data-lucide="plus" class="w-4 h-4"></i>
+                Deploy New Product
+            </a>
+        </div>
+    </div>
+
+    <div class="bg-white border border-amber-200/80 rounded-2xl shadow-sm overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                {% if products %}
+                    <thead>
+                        <tr class="border-b border-amber-200/80 text-[10px] font-bold uppercase tracking-widest text-amber-900/60 bg-amber-50/50">
+                            <th class="p-4 pl-6">Hardware Profile</th>
+                            <th class="p-4">SKU / Model</th>
+                            <th class="p-4">Brand Asset</th>
+                            <th class="p-4">Valuation (Price)</th>
+                            <th class="p-4">Stock Metrics</th>
+                            <th class="p-4">Status</th>
+                            <th class="p-4 pr-6 text-right">System Actions</th>
+                        </tr>
+                    </thead>
+                {% endif %}
+                <tbody class="divide-y divide-amber-200/60 text-sm font-semibold text-amber-950">
+                    {% for product in products %}
+                        <tr class="hover:bg-amber-50/40 transition-colors">
+                            <td class="p-4 pl-6 flex items-center gap-3">
+                                <div class="w-12 h-12 rounded-xl bg-amber-50 border border-amber-200/80 overflow-hidden flex items-center justify-center text-amber-800/60 shrink-0">
+                                    {% if product.product_image %}
+                                        <img src="{{ product.product_image.url }}" alt="{{ product.name }}" class="w-full h-full object-cover">
+                                    {% else %}
+                                        <i data-lucide="camera" class="w-5 h-5 text-amber-800/60"></i>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    <span class="text-amber-950 block font-bold">{{ product.name }}</span>
+                                    <span class="text-[11px] font-mono text-[#800020] block">{{ product.get_condition_display }}</span>
+                                </div>
+                            </td>
+                            <td class="p-4 font-mono text-xs text-amber-900/70">{{ product.sku|default:"--" }}</td>
+                            <td class="p-4">
+                                <span class="bg-amber-100/60 text-amber-950 border border-amber-200/80 text-[10px] font-black uppercase px-2 py-1 rounded-lg">
+                                    {{ product.brand.name|default:"Generic" }}
+                                </span>
+                            </td>
+                            <td class="p-4 font-mono text-sm text-amber-950">Rs.{{ product.price|floatformat:2 }}</td>
+                            <td class="p-4">
+                                <div class="space-y-1">
+                                    <div class="flex items-center gap-1.5 text-xs font-bold text-amber-950">
+                                        <span class="w-1.5 h-1.5 rounded-full {% if product.stock > 0 %}bg-emerald-600{% else %}bg-red-600{% endif %}"></span>
+                                        {{ product.stock }} Units Available
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-4">
+                                <label class="relative inline-flex items-center cursor-pointer select-none">
+                                    <input type="checkbox" name="is_active" {% if product.is_active %}checked{% endif %} class="sr-only peer" onchange="window.location.href='/products/toggle-status/{{ product.id }}/'">
+                                    <div class="w-9 h-5 bg-amber-200/80 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-amber-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#800020]"></div>
+                                </label>
+                            </td>
+                            <td class="p-4 pr-6 text-right">
+                                <div class="flex items-center justify-end gap-2">
+                                    <a href="/products/edit/{{ product.id }}/" class="p-2 bg-amber-50 hover:bg-amber-100 text-amber-900/70 hover:text-amber-950 rounded-xl border border-amber-200/80 transition-all">
+                                        <i data-lucide="edit-3" class="w-4 h-4"></i>
+                                    </a>
+                                    <a href="/products/delete/{{ product.id }}/" class="p-2 bg-amber-50 hover:bg-red-50 text-amber-800/60 hover:text-red-700 rounded-xl border border-amber-200/80 hover:border-red-200 transition-all">
+                                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr class="bg-amber-50/30">
+                            <td colspan="7" class="p-8 text-center text-amber-900/60">
+                                <i data-lucide="box" class="w-8 h-8 mx-auto text-amber-800/40 mb-2"></i>
+                                <p class="text-sm font-semibold">No products found in the catalog.</p>
+                                <p class="text-xs text-amber-900/50 mt-1">Click the "Deploy New Product" button to add products to the catalog.</p>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from ..models import User, Brand
+from ..models import User, Brand, Product
 
 @login_required
 def admin_dashboard_view(request):
@@ -19,10 +19,10 @@ def admin_dashboard_view(request):
         context['customers'] = User.objects.filter(is_staff=False)
         
     if section == 'brand-management':
-        context['brands'] = Brand.objects.all().order_by('-created_at')
+        context['brands'] = Brand.objects.all().order_by('name')
         
     if section == 'product-management':
-        context['products'] = None
+        context['products'] = Product.objects.all().order_by('-created_at')
         
     if section == 'order-fulfillment':
         context['orders'] = None
