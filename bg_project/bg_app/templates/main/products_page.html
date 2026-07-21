@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products | BajaGaja</title>
+    {% load static %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #2b1810;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #800020;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #500014;
+        }
+    </style>
+</head>
+<body class="bg-amber-50/30 font-sans min-h-screen flex flex-col text-stone-900">
+
+    {% include 'components/_navbar.html' %}
+
+    {% include 'components/_messages.html' %}
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 space-y-8">
+        <div>
+            <h1 class="text-xs font-bold uppercase tracking-widest text-[#800020] mb-1">Traditional & Modern Instruments</h1>
+            <p class="text-2xl lg:text-3xl font-black tracking-tight text-stone-900 uppercase">Baja Gaja Hardware Catalog</p>
+        </div>
+
+        <form method="GET" action="/products/" class="bg-[#2b1810] border border-amber-900/40 rounded-2xl p-5 shadow-xl">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 items-end">
+                <div class="space-y-1.5">
+                    <label class="text-[10px] font-bold uppercase tracking-wider text-amber-400 block">Instrument Category</label>
+                    <select name="category" onchange="this.form.submit()" class="w-full bg-[#1c0f0a] border border-amber-900/50 rounded-xl p-3 text-xs font-mono text-amber-100 focus:outline-none focus:border-[#800020]">
+                        <option value="">All Categories</option>
+                        <option value="guitars" {% if request.GET.category == 'guitars' %}selected{% endif %}>Guitars & Basses</option>
+                        <option value="keyboards" {% if request.GET.category == 'keyboards' %}selected{% endif %}>Keyboards & Pianos</option>
+                        <option value="drums" {% if request.GET.category == 'drums' %}selected{% endif %}>Drums & Percussion</option>
+                        <option value="traditional" {% if request.GET.category == 'traditional' %}selected{% endif %}>Traditional & Folk</option>
+                        <option value="wind" {% if request.GET.category == 'wind' %}selected{% endif %}>Wind & Brass</option>
+                        <option value="studio" {% if request.GET.category == 'studio' %}selected{% endif %}>Studio & Recording</option>
+                        <option value="accessories" {% if request.GET.category == 'accessories' %}selected{% endif %}>Accessories & Cables</option>
+                    </select>
+                </div>
+
+                <div class="space-y-1.5">
+                    <label class="text-[10px] font-bold uppercase tracking-wider text-amber-400 block">Artisan / Maker</label>
+                    <select name="brand" onchange="this.form.submit()" class="w-full bg-[#1c0f0a] border border-amber-900/50 rounded-xl p-3 text-xs font-mono text-amber-100 focus:outline-none focus:border-[#800020]">
+                        <option value="all">All Brands</option>
+                        {% for brand in brands %}
+                            <option value="{{ brand.id }}" {% if request.GET.brand == brand.id|stringformat:"i" %}selected{% endif %}>{{ brand.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="space-y-1.5">
+                    <label class="text-[10px] font-bold uppercase tracking-wider text-amber-400 block">Craft Quality Spec</label>
+                    <select name="condition" onchange="this.form.submit()" class="w-full bg-[#1c0f0a] border border-amber-900/50 rounded-xl p-3 text-xs font-mono text-amber-100 focus:outline-none focus:border-[#800020]">
+                        <option value="all">Any Condition</option>
+                        <option value="new" {% if request.GET.condition == 'new' %}selected{% endif %}>Master Crafted (New)</option>
+                        <option value="refurbished" {% if request.GET.condition == 'refurbished' %}selected{% endif %}>Restored Vintage</option>
+                        <option value="used" {% if request.GET.condition == 'used' %}selected{% endif %}>Pre Owned</option>
+                    </select>
+                </div>
+
+                <div class="space-y-1.5">
+                    <label class="text-[10px] font-bold uppercase tracking-wider text-amber-400 block">Price Scale</label>
+                    <select name="price_range" onchange="this.form.submit()" class="w-full bg-[#1c0f0a] border border-amber-900/50 rounded-xl p-3 text-xs font-mono text-amber-100 focus:outline-none focus:border-[#800020]">
+                        <option value="all">Any Price</option>
+                        <option value="0-999" {% if request.GET.price_range == '0-999' %}selected{% endif %}>Rs.0 - Rs.999</option>
+                        <option value="1000-4999" {% if request.GET.price_range == '1000-4999' %}selected{% endif %}>Rs.1,000 - Rs.4,999</option>
+                        <option value="5000-9999" {% if request.GET.price_range == '5000-9999' %}selected{% endif %}>Rs.5,000 - Rs.9,999</option>
+                        <option value="10000-49999" {% if request.GET.price_range == '10000-49999' %}selected{% endif %}>Rs.10,000 - Rs.49,999</option>
+                        <option value="50000+" {% if request.GET.price_range == '50000+' %}selected{% endif %}>Rs.50,000+</option>
+                    </select>
+                </div>
+
+                <div class="space-y-1.5">
+                    <label class="text-[10px] font-bold uppercase tracking-wider text-amber-400 block">Sort Order</label>
+                    <select name="sort" onchange="this.form.submit()" class="w-full bg-[#1c0f0a] border border-amber-900/50 rounded-xl p-3 text-xs font-mono text-amber-100 focus:outline-none focus:border-[#800020]">
+                        <option value="latest" {% if request.GET.sort == 'latest' %}selected{% endif %}>Latest Arrivals</option>
+                        <option value="price_asc" {% if request.GET.sort == 'price_asc' %}selected{% endif %}>Price: Low to High</option>
+                        <option value="price_desc" {% if request.GET.sort == 'price_desc' %}selected{% endif %}>Price: High to Low</option>
+                        <option value="stock_asc" {% if request.GET.sort == 'stock_asc' %}selected{% endif %}>Stock: Low to High</option>
+                        <option value="stock_desc" {% if request.GET.sort == 'stock_desc' %}selected{% endif %}>Stock: High to Low</option>
+                    </select>
+                </div>
+
+                <div>
+                    <a href="/products/" class="bg-[#1c0f0a] hover:bg-[#800020] text-amber-200 hover:text-white font-mono text-[10px] uppercase tracking-widest border border-amber-900/50 h-[46px] rounded-xl transition-all flex items-center justify-center w-full">
+                        Reset Filters
+                    </a>
+                </div>
+            </div>
+        </form>
+
+        <div class="w-full">
+            {% if products %}
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    {% for product in products %}
+                        <div class="bg-[#2b1810] border border-amber-900/30 rounded-2xl overflow-hidden shadow-xl hover:border-[#800020] transition-all flex flex-col group relative">
+                            
+                            <a href="/products/{{ product.id }}/" class="flex flex-col flex-grow">
+                                <div class="aspect-square w-full bg-[#1c0f0a] flex items-center justify-center p-4 relative overflow-hidden border-b border-amber-900/30">
+                                    <div class="w-full h-full flex flex-col items-center justify-center bg-[#2b1810]/40 rounded-xl border border-amber-900/20 overflow-hidden">
+                                        {% if product.product_image %}
+                                            <img src="{{ product.product_image.url }}" alt="{{ product.name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                        {% else %}
+                                            <i data-lucide="music" class="w-12 h-12 text-amber-500/40 group-hover:scale-110 group-hover:text-amber-400 transition-all duration-300"></i>
+                                            <span class="text-[9px] uppercase tracking-widest text-amber-200/50 font-bold mt-2">BajaGaja Collection</span>
+                                        {% endif %}
+                                    </div>
+                                    <span class="absolute top-3 left-3 bg-[#1c0f0a]/90 border border-amber-900/50 backdrop-blur-md text-[9px] font-black uppercase tracking-widest text-amber-400 px-2.5 py-1 rounded-md">
+                                        {{ product.get_category_display|default:"Uncategorized" }}
+                                    </span>
+                                </div>
+
+                                <div class="p-5 flex-grow space-y-4">
+                                    <div class="space-y-1.5">
+                                        <h3 class="font-bold text-amber-100 text-sm tracking-tight group-hover:text-amber-400 transition-colors line-clamp-1">
+                                            {{ product.name|truncatechars:30|default:"Unnamed Instrument" }}
+                                        </h3>
+                                        <p class="text-[11px] text-amber-200/60 font-medium leading-relaxed">
+                                            {{ product.description|truncatechars:70|default:"No description available." }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <div class="p-5 pt-0 border-t border-amber-900/0">
+                                <div class="flex items-center justify-between pt-3 border-t border-amber-900/30">
+                                    <div class="flex flex-col">
+                                        <span class="text-[9px] uppercase font-bold tracking-wider text-amber-200/50">Price</span>
+                                        <span class="text-base font-mono font-black text-amber-100">Rs. {{ product.price|floatformat:2 }}</span>
+                                    </div>
+
+                                    {% if user.is_authenticated and not user.is_staff %}
+                                        {% if product.stock > 0 %}
+                                            <a href="/cart/add/{{ product.id }}/" class="bg-[#1c0f0a] hover:bg-[#800020] text-amber-200 hover:text-white w-9 h-9 rounded-xl transition-all border border-amber-900/50 hover:border-amber-500/50 flex items-center justify-center shadow-lg z-10">
+                                                <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                                            </a>
+                                        {% else %}
+                                            <p class="text-xs font-bold text-red-400 uppercase tracking-wider">Out of Stock</p>
+                                        {% endif %}
+                                    {% elif user.is_staff %}
+                                        <a href="/dashboard/admin/?section=product-management" class="bg-[#1c0f0a] hover:bg-[#800020] text-amber-200 hover:text-white w-9 h-9 rounded-xl transition-all border border-amber-900/50 hover:border-amber-500/50 flex items-center justify-center shadow-lg z-10">
+                                            <i data-lucide="settings" class="w-4 h-4"></i>
+                                        </a>
+                                    {% else %}
+                                        <a href="/login/" class="bg-[#1c0f0a] hover:bg-[#800020] text-amber-200 hover:text-white w-9 h-9 rounded-xl transition-all border border-amber-900/50 hover:border-amber-500/50 flex items-center justify-center shadow-lg z-10">
+                                            <i data-lucide="log-in" class="w-4 h-4"></i>
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="flex flex-col items-center justify-center text-center py-20 border border-dashed border-amber-900/40 rounded-3xl bg-[#2b1810]">
+                    <div class="w-16 h-16 bg-[#1c0f0a] rounded-2xl flex items-center justify-center border border-amber-900/50 mb-4">
+                        <i data-lucide="package-open" class="w-8 h-8 text-amber-400"></i>
+                    </div>
+                    <h3 class="text-amber-100 font-bold text-base tracking-tight">No Products Found</h3>
+                    <p class="text-xs text-amber-200/60 mt-1 max-w-xs leading-relaxed mb-6">We couldn't find any instruments matching the selected filter criteria.</p>
+                    <a href="/products/" class="bg-[#1c0f0a] hover:bg-[#800020] text-amber-200 hover:text-white border border-amber-900/50 font-bold px-6 py-3 rounded-xl text-xs uppercase tracking-widest transition-all">
+                        Reset Filters
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </main>
+
+    {% include 'components/_footer.html' %}
+
+    <script src="{% static 'js/lucide.min.js' %}"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

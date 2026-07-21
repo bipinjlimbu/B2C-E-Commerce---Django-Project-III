@@ -4,6 +4,12 @@ from django.contrib import messages
 from ..models import User, Brand, Product
 
 @login_required
+def products_view(request):
+    products = Product.objects.all().order_by('-created_at')
+    brands = Brand.objects.all().order_by('name')
+    return render(request, 'main/products_page.html', {'products': products, 'brands': brands})
+
+@login_required
 def add_product_view(request):
     if not request.user.is_staff:
         messages.error(request, "You are not authorized to access this page.")
