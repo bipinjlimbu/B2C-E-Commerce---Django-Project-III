@@ -68,3 +68,16 @@ def decrease_quantity_view(request, product_id):
     cart_item.quantity -= 1
     cart_item.save()
     return redirect('cart')
+
+@login_required
+def remove_from_cart_view(request, product_id):
+    product = Product.objects.get(id=product_id)
+    
+    if not CartItem.objects.filter(cart__customer=request.user, product=product).exists():
+        messages.error(request, f"{product.name} is not in your cart.")
+        return redirect('cart')
+    
+    cart_item = CartItem.objects.get(cart__customer=request.user, product=product)
+    cart_item.delete()
+    messages.success(request, f"{product.name} has been removed from your cart.")
+    return redirect('cart')
