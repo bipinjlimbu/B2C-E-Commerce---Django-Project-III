@@ -4,7 +4,7 @@ from .views.auth_view import register_view, login_view, logout_view
 from .views.profile_view import profile_view, edit_profile_view, delete_profile_view
 from .views.brands_view import add_brand_view, edit_brand_view, delete_brand_view
 from .views.products_view import products_view, add_product_view, is_active_toggle_view, edit_product_view, delete_product_view, single_product_view
-from .views.cart_view import add_to_cart_view, cart_view
+from .views.cart_view import add_to_cart_view, cart_view, increase_quantity_view
 from .views.dashboard import admin_dashboard_view
 
 urlpatterns = [
@@ -26,5 +26,6 @@ urlpatterns = [
     path('products/<int:product_id>/', single_product_view, name='single_product'),
     path('cart/add/<int:product_id>/', add_to_cart_view, name='add_to_cart'),
     path('cart/', cart_view, name='cart'),
+    path('cart/increase/<int:product_id>/', increase_quantity_view, name='increase_quantity'),
     path('dashboard/admin/', admin_dashboard_view, name='admin_dashboard'),
 ]
