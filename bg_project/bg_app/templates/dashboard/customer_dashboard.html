@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musician Terminal | BajaGaja</title>
+    {% load static %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #2b1810;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #800020;
+        }
+    </style>
+</head>
+
+<body class="bg-amber-50/30 flex min-h-screen overflow-hidden text-stone-900 font-sans">
+
+    {% include 'components/_messages.html' %}
+
+    <!-- Sidebar Navigation -->
+    <aside class="w-80 bg-[#1c0f0a] text-amber-100 flex flex-col shadow-2xl relative z-30 border-r border-amber-900/40">
+        <div class="p-8 border-b border-amber-900/40">
+            <div class="flex items-center gap-3">
+                <div class="h-10 w-10 bg-[#800020] rounded-2xl flex items-center justify-center shadow-lg shadow-[#800020]/30 border border-amber-500/20">
+                    <i data-lucide="music" class="w-6 h-6 text-amber-300"></i>
+                </div>
+                <h1 class="text-2xl font-black italic tracking-tighter uppercase text-amber-100">
+                    Baja<span class="text-amber-400">Gaja</span>
+                </h1>
+            </div>
+            <p class="text-[10px] text-amber-200/50 font-black uppercase tracking-[0.3em] mt-4 italic">Musician Console</p>
+        </div>
+
+        <nav class="flex-grow p-6 space-y-6 overflow-y-auto custom-scrollbar">
+            
+            <div class="space-y-2">
+                <h3 class="px-4 text-[10px] font-black text-amber-200/40 uppercase tracking-widest mb-4 italic">Orders & History</h3>
+                <a href="?section=pending-orders" class="flex items-center gap-4 px-4 py-4 rounded-2xl {% if section == 'pending-orders' or not section %}bg-[#800020] text-amber-50 shadow-lg border border-amber-500/20{% else %}text-amber-200/60 hover:bg-[#2b1810] hover:text-amber-100{% endif %} font-black italic uppercase text-xs tracking-widest transition-all group">
+                    <i data-lucide="clock" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+                    Pending Orders
+                </a>
+
+                <a href="?section=my-orders" class="flex items-center gap-4 px-4 py-4 rounded-2xl {% if section == 'my-orders' %}bg-[#800020] text-amber-50 shadow-lg border border-amber-500/20{% else %}text-amber-200/60 hover:bg-[#2b1810] hover:text-amber-100{% endif %} font-black italic uppercase text-xs tracking-widest transition-all group">
+                    <i data-lucide="shopping-bag" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+                    Purchase History
+                </a>
+            </div>
+
+            <div class="space-y-2">
+                <h3 class="px-4 text-[10px] font-black text-amber-200/40 uppercase tracking-widest mb-4 italic">Financial Metrics</h3>
+                <a href="?section=total-spent" class="flex items-center gap-4 px-4 py-4 rounded-2xl {% if section == 'total-spent' %}bg-[#800020] text-amber-50 shadow-lg border border-amber-500/20{% else %}text-amber-200/60 hover:bg-[#2b1810] hover:text-amber-100{% endif %} font-black italic uppercase text-xs tracking-widest transition-all group">
+                    <i data-lucide="wallet" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+                    Total Investment
+                </a>
+            </div>
+
+            <div class="space-y-2">
+                <h3 class="px-4 text-[10px] font-black text-amber-200/40 uppercase tracking-widest mb-4 italic">Feedback Matrix</h3>
+                <a href="?section=my-reviews" class="flex items-center gap-4 px-4 py-4 rounded-2xl {% if section == 'my-reviews' %}bg-[#800020] text-amber-50 shadow-lg border border-amber-500/20{% else %}text-amber-200/60 hover:bg-[#2b1810] hover:text-amber-100{% endif %} font-black italic uppercase text-xs tracking-widest transition-all group">
+                    <i data-lucide="star" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+                    My Instrument Reviews
+                </a>
+            </div>
+        </nav>
+
+        <div class="p-6 border-t border-amber-900/40 bg-[#140b07] flex flex-col gap-2">
+            <a href="/profile/" 
+               class="flex items-center justify-center gap-3 w-full bg-[#800020] text-amber-50 px-6 py-4 rounded-2xl font-black italic uppercase text-[10px] tracking-widest hover:bg-[#500014] transition-all shadow-lg hover:shadow-[#800020]/40 border border-amber-500/20 active:scale-95">
+                <i data-lucide="user" class="w-4 h-4"></i>
+                My Profile
+            </a>
+
+            <a href="/" target="_blank" 
+               class="flex items-center justify-center gap-3 w-full bg-[#2b1810] border border-amber-900/50 text-amber-200/80 px-6 py-4 rounded-2xl font-black italic uppercase text-[10px] tracking-widest hover:bg-[#1c0f0a] hover:text-amber-100 transition-all active:scale-95">
+                <i data-lucide="external-link" class="w-4 h-4"></i>
+                Live Website
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content Terminal Area -->
+    <main class="flex-grow flex flex-col h-screen overflow-y-auto bg-amber-50/30 p-6 sm:p-8">
+        
+        {% if section == 'pending-orders' or not section %}
+            {% include 'dashboard/customer/_pending_orders.html' %}
+
+        {% elif section == 'my-orders' %}
+            {% include 'dashboard/customer/_my_orders.html' %}
+
+        {% elif section == 'total-spent' %}
+            {% include 'dashboard/customer/_total_spent.html' %}
+
+        {% elif section == 'my-reviews' %}
+            {% include 'dashboard/customer/_my_reviews.html' %}
+
+        {% endif %}
+
+    </main>
+
+    <script src="{% static 'js/lucide.min.js' %}"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

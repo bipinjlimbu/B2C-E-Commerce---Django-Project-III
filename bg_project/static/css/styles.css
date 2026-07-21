@@ -1462,6 +1462,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(128 0 32 / 0.3);
 }
 
+.bg-\[\#140b07\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(20 11 7 / var(--tw-bg-opacity));
+}
+
 .bg-gradient-to-b {
   background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
 }
@@ -1833,6 +1838,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   text-transform: uppercase;
 }
 
+.italic {
+  font-style: italic;
+}
+
 .leading-relaxed {
   line-height: 1.625;
 }
@@ -2158,6 +2167,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .shadow-rose-700\/30 {
   --tw-shadow-color: rgb(190 18 60 / 0.3);
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.shadow-\[\#800020\]\/30 {
+  --tw-shadow-color: rgb(128 0 32 / 0.3);
   --tw-shadow: var(--tw-shadow-colored);
 }
 
