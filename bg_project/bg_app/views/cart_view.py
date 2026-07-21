@@ -50,3 +50,21 @@ def increase_quantity_view(request, product_id):
     cart_item.quantity += 1
     cart_item.save()
     return redirect('cart')
+
+@login_required
+def decrease_quantity_view(request, product_id):
+    product = Product.objects.get(id=product_id)
+    
+    if not CartItem.objects.filter(cart__customer=request.user, product=product).exists():
+        messages.error(request, f"{product.name} is not in your cart.")
+        return redirect('cart')
+    
+    cart_item = CartItem.objects.get(cart__customer=request.user, product=product)
+    
+    if cart_item.quantity <= 1:
+        messages.info(request, f"You cannot decrease the quantity of {product.name} below 1. If you want to remove it, please delete it from your cart.")
+        return redirect('cart')
+    
+    cart_item.quantity -= 1
+    cart_item.save()
+    return redirect('cart')
