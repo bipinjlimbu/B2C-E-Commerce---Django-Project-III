@@ -416,7 +416,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: none;
 }
 
-.translate-x-\[120\%\], .translate-x-1, .-translate-y-1, .rotate-6, .transform, .hover\:-translate-y-0\.5, .hover\:-translate-y-0, .hover\:file\:scale-105::file-selector-button, .active\:translate-y-0, .active\:file\:scale-95::file-selector-button, .group-hover\:scale-110 {
+.translate-x-\[120\%\], .translate-x-1, .-translate-y-1, .rotate-6, .transform, .hover\:-translate-y-0\.5, .hover\:-translate-y-0, .hover\:file\:scale-105::file-selector-button, .active\:translate-y-0, .active\:scale-95, .active\:file\:scale-95::file-selector-button, .group-hover\:scale-110 {
   --tw-translate-x: 0;
   --tw-translate-y: 0;
   --tw-rotate: 0;
@@ -431,7 +431,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-scroll-snap-strictness: proximity;
 }
 
-.border, .border-t, .border-b, .file\:border-0::file-selector-button, .lg\:border-b-0, .lg\:border-r {
+.border, .border-t, .border-b, .border-r, .file\:border-0::file-selector-button, .lg\:border-b-0, .lg\:border-r {
   --tw-border-opacity: 1;
   border-color: rgb(229 231 235 / var(--tw-border-opacity));
 }
@@ -551,6 +551,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   z-index: 10;
 }
 
+.z-30 {
+  z-index: 30;
+}
+
 .col-span-full {
   grid-column: 1 / -1;
 }
@@ -629,6 +633,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .mt-0 {
   margin-top: 0px;
+}
+
+.ml-auto {
+  margin-left: auto;
 }
 
 .block {
@@ -723,6 +731,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 6rem;
 }
 
+.h-screen {
+  height: 100vh;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
@@ -781,6 +793,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-24 {
   width: 6rem;
+}
+
+.w-80 {
+  width: 20rem;
 }
 
 .min-w-\[320px\] {
@@ -1011,6 +1027,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   overflow-x: auto;
 }
 
+.overflow-y-auto {
+  overflow-y: auto;
+}
+
 .truncate {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1055,6 +1075,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .border-b {
   border-bottom-width: 1px;
+}
+
+.border-r {
+  border-right-width: 1px;
 }
 
 .border-dashed {
@@ -1348,6 +1372,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 1.25rem;
 }
 
+.py-3\.5 {
+  padding-top: 0.875rem;
+  padding-bottom: 0.875rem;
+}
+
 .pl-4 {
   padding-left: 1rem;
 }
@@ -1489,6 +1518,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .tracking-widest {
   letter-spacing: 0.1em;
+}
+
+.tracking-tighter {
+  letter-spacing: -0.05em;
+}
+
+.tracking-\[0\.3em\] {
+  letter-spacing: 0.3em;
 }
 
 .text-amber-900\/70 {
@@ -1692,6 +1729,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   transition-duration: 150ms;
 }
 
+.transition-transform {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
 .duration-500 {
   transition-duration: 500ms;
 }
@@ -1865,6 +1908,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(254 242 242 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-amber-100\/60:hover {
+  background-color: rgb(254 243 199 / 0.6);
+}
+
 .hover\:text-\[\#800020\]:hover {
   --tw-text-opacity: 1;
   color: rgb(128 0 32 / var(--tw-text-opacity));
@@ -1940,6 +1987,12 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .active\:translate-y-0:active {
   --tw-translate-y: 0px;
+  transform: var(--tw-transform);
+}
+
+.active\:scale-95:active {
+  --tw-scale-x: .95;
+  --tw-scale-y: .95;
   transform: var(--tw-transform);
 }
 

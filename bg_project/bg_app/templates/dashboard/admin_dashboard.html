@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Terminal | BajaGaja</title>
+    {% load static %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #fde68a;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #800020;
+        }
+    </style>
+</head>
+
+<body class="bg-amber-50/30 flex min-h-screen overflow-hidden text-amber-950">
+
+    {% include 'components/_messages.html' %}
+
+    <aside class="w-80 bg-white text-amber-950 flex flex-col shadow-sm relative z-30 border-r border-amber-200/80">
+        
+        <div class="p-8 border-b border-amber-200/80">
+            <div class="flex items-center gap-3">
+                <div class="h-10 w-10 bg-[#800020] rounded-2xl flex items-center justify-center shadow-md">
+                    <i data-lucide="shield-check" class="w-6 h-6 text-white"></i>
+                </div>
+                <h1 class="text-2xl font-black tracking-tighter uppercase text-amber-950">
+                    Baja<span class="text-[#800020]">Gaja</span>
+                </h1>
+            </div>
+            <p class="text-[10px] text-amber-900/60 font-black uppercase tracking-[0.3em] mt-4">Management Console</p>
+        </div>
+
+        <nav class="flex-grow p-6 space-y-6 overflow-y-auto custom-scrollbar">
+            
+            <div class="space-y-2">
+                <h3 class="px-4 text-[10px] font-black text-amber-900/60 uppercase tracking-widest mb-4">Identity Control</h3>
+                
+                <a href="?section=customer-management" class="flex items-center gap-4 px-4 py-3.5 rounded-xl {% if section == 'customer-management' or not section %}bg-[#800020] text-white shadow-sm{% else %}text-amber-900/80 hover:bg-amber-100/60 hover:text-amber-950{% endif %} font-bold uppercase text-xs tracking-wider transition-all group">
+                    <i data-lucide="users" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+                    Customer Directory
+                </a>
+            </div>
+
+            <div class="space-y-2">
+                <h3 class="px-4 text-[10px] font-black text-amber-900/60 uppercase tracking-widest mb-4">Catalog Architecture</h3>
+                
+                <a href="?section=product-management" class="flex items-center gap-4 px-4 py-3.5 rounded-xl {% if section == 'product-management' %}bg-[#800020] text-white shadow-sm{% else %}text-amber-900/80 hover:bg-amber-100/60 hover:text-amber-950{% endif %} font-bold uppercase text-xs tracking-wider transition-all group">
+                    <i data-lucide="aperture" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+                    Product Master
+                </a>
+
+                <a href="?section=brand-management" class="flex items-center gap-4 px-4 py-3.5 rounded-xl {% if section == 'brand-management' %}bg-[#800020] text-white shadow-sm{% else %}text-amber-900/80 hover:bg-amber-100/60 hover:text-amber-950{% endif %} font-bold uppercase text-xs tracking-wider transition-all group">
+                    <i data-lucide="tag" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+                    Brand Control
+                </a>
+            </div>
+
+            <div class="space-y-2">
+                <h3 class="px-4 text-[10px] font-black text-amber-900/60 uppercase tracking-widest mb-4">Orders & Logistics</h3>
+                
+                <a href="?section=order-fulfillment" class="flex items-center gap-4 px-4 py-3.5 rounded-xl {% if section == 'order-fulfillment' %}bg-[#800020] text-white shadow-sm{% else %}text-amber-900/80 hover:bg-amber-100/60 hover:text-amber-950{% endif %} font-bold uppercase text-xs tracking-wider transition-all group">
+                    <i data-lucide="truck" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+                    Order Fulfillment
+                    {% if pending_orders_count > 0 %}
+                        <span class="ml-auto bg-amber-100 text-[#800020] px-2 py-0.5 rounded-lg text-[10px] font-bold"> {{ pending_orders_count }}</span>
+                    {% endif %}
+                </a>
+            </div>
+
+            <div class="space-y-2">
+                <h3 class="px-4 text-[10px] font-black text-amber-900/60 uppercase tracking-widest mb-4">Platform Audit</h3>
+                
+                <a href="?section=product-reviews" class="flex items-center gap-4 px-4 py-3.5 rounded-xl {% if section == 'product-reviews' %}bg-[#800020] text-white shadow-sm{% else %}text-amber-900/80 hover:bg-amber-100/60 hover:text-amber-950{% endif %} font-bold uppercase text-xs tracking-wider transition-all group">
+                    <i data-lucide="package" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+                    Product Reviews
+                </a>
+                
+                <a href="?section=revenue-logs" class="flex items-center gap-4 px-4 py-3.5 rounded-xl {% if section == 'revenue-logs' %}bg-[#800020] text-white shadow-sm{% else %}text-amber-900/80 hover:bg-amber-100/60 hover:text-amber-950{% endif %} font-bold uppercase text-xs tracking-wider transition-all group">
+                    <i data-lucide="bar-chart-3" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+                    Revenue Logs
+                </a>
+            </div>
+        </nav>
+
+        <div class="p-6 border-t border-amber-200/80 bg-amber-50/50 flex flex-col gap-2">
+            <a href="/profile/" 
+               class="flex items-center justify-center gap-3 w-full bg-[#800020] text-white px-6 py-3.5 rounded-xl font-bold uppercase text-[10px] tracking-wider hover:bg-[#5c0017] transition-all shadow-sm active:scale-95">
+                <i data-lucide="user" class="w-4 h-4"></i>
+                Admin Profile
+            </a>
+
+            <a href="/" target="_blank" 
+               class="flex items-center justify-center gap-3 w-full bg-amber-100/60 border border-amber-200/80 text-amber-950 px-6 py-3.5 rounded-xl font-bold uppercase text-[10px] tracking-wider hover:bg-amber-100 transition-all active:scale-95">
+                <i data-lucide="external-link" class="w-4 h-4"></i>
+                Live Website
+            </a>
+        </div>
+    </aside>
+
+    <main class="flex-grow flex flex-col h-screen overflow-y-auto bg-amber-50/30 p-6 sm:p-8">
+        
+        {% if section == 'customer-management' or not section %}
+            {% include 'dashboard/admin/_customer_management.html' %}
+
+        {% elif section == 'product-management' %}
+            {% include 'dashboard/admin/_product_management.html' %}
+
+        {% elif section == 'brand-management' %}
+            {% include 'dashboard/admin/_brand_management.html' %}
+
+        {% elif section == 'order-fulfillment' %}
+            {% include 'dashboard/admin/_order_fulfillment.html' %}
+            
+        {% elif section == 'product-reviews' %}
+            {% include 'dashboard/admin/_product_reviews.html' %}
+
+        {% elif section == 'revenue-logs' %}
+            {% include 'dashboard/admin/_revenue_logs.html' %}
+
+        {% endif %}
+
+    </main>
+
+    <script src="{% static 'js/lucide.min.js' %}"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
