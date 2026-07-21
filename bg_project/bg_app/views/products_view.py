@@ -158,3 +158,19 @@ def edit_product_view(request, product_id):
         return redirect('/dashboard/admin/?section=product-management')
     
     return render(request, 'main/edit_product_page.html', {'product': product, 'brands': brands})
+
+@login_required
+def delete_product_view(request, product_id):
+    if not request.user.is_staff:
+        messages.error(request, "You are not authorized to access this page.")
+        return redirect('/')
+    
+    product = Product.objects.get(id=product_id)
+    
+    if not product:
+        messages.error(request, "Product not found.")
+        return redirect('/dashboard/admin/?section=product-management')
+    
+    product.delete()
+    messages.success(request, 'Product deleted successfully.')
+    return redirect('/dashboard/admin/?section=product-management')

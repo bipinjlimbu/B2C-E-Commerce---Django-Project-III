@@ -3,7 +3,7 @@ from .views.main_view import home_page
 from .views.auth_view import register_view, login_view, logout_view
 from .views.profile_view import profile_view, edit_profile_view, delete_profile_view
 from .views.brands_view import add_brand_view, edit_brand_view, delete_brand_view
-from .views.products_view import add_product_view, is_active_toggle_view, edit_product_view
+from .views.products_view import add_product_view, is_active_toggle_view, edit_product_view, delete_product_view
 from .views.dashboard import admin_dashboard_view
 
 urlpatterns = [
@@ -20,5 +20,6 @@ urlpatterns = [
     path('products/add/', add_product_view, name='add_product'),
     path('products/toggle-status/<int:product_id>/', is_active_toggle_view, name='toggle_product_active'),
     path('products/edit/<int:product_id>/', edit_product_view, name='edit_product'),
+    path('products/delete/<int:product_id>/', delete_product_view, name='delete_product'),
     path('dashboard/admin/', admin_dashboard_view, name='admin_dashboard'),
 ]
