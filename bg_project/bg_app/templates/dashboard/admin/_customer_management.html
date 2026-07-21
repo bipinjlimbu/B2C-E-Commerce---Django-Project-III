@@ -1,0 +1,73 @@
+<div class="space-y-6">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+            <h2 class="text-xs font-bold uppercase tracking-widest text-amber-900/60 mb-1">Identity Infrastructure</h2>
+            <h1 class="text-2xl font-black text-amber-950 tracking-tight">Customer Directory</h1>
+        </div>
+        <div class="flex items-center gap-3">
+            <div class="bg-white text-amber-950 px-4 py-2 rounded-xl border border-amber-200/80 text-xs font-bold font-mono shadow-sm">
+                Total Users: {{ customers|length|default:"0" }}
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white border border-amber-200/80 rounded-2xl shadow-sm overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                {% if customers %}
+                <thead>
+                    <tr class="border-b border-amber-200/80 text-[10px] font-bold uppercase tracking-widest text-amber-900/60 bg-amber-50/50">
+                        <th class="p-4 pl-6">Customer Identity</th>
+                        <th class="p-4">Email Coordinates</th>
+                        <th class="p-4">Phone Link</th>
+                        <th class="p-4">Logistics Drop Terminal</th>
+                        <th class="p-4">Status State</th>
+                        <th class="p-4 pr-6 text-right">System Actions</th>
+                    </tr>
+                </thead>
+                {% endif %}
+                <tbody class="divide-y divide-amber-200/60 text-sm font-semibold text-amber-950">
+                    {% for customer in customers %}
+                        <tr class="hover:bg-amber-50/40 transition-colors">
+                            <td class="p-4 pl-6 flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-amber-50 border border-amber-200/80 overflow-hidden flex items-center justify-center text-amber-800/60 shrink-0">
+                                    {% if customer.profile_picture %}
+                                        <img src="{{ customer.profile_picture.url }}" alt="{{ customer.first_name }}" class="w-full h-full object-cover">
+                                    {% else %}
+                                        <i data-lucide="user" class="w-4 h-4 text-amber-800/60"></i>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    <span class="text-amber-950 block font-bold">{{ customer.first_name }} {{ customer.last_name }}</span>
+                                    <span class="text-[11px] font-mono text-[#800020] block">@{{ customer.username }}</span>
+                                </div>
+                            </td>
+                            <td class="p-4 font-normal text-amber-900/70">{{ customer.email }}</td>
+                            <td class="p-4 font-mono text-xs text-amber-900/80">{{ customer.phone }}</td>
+                            <td class="p-4 text-xs max-w-xs truncate text-amber-900/80">{{ customer.address }}</td>
+                            <td class="p-4">
+                                <span class="inline-flex items-center gap-1 bg-emerald-100/60 text-emerald-800 text-[10px] font-black uppercase px-2 py-0.5 rounded border border-emerald-200 tracking-wider">
+                                    Active
+                                </span>
+                            </td>
+                            <td class="p-4 pr-6 text-right">
+                                <div class="flex items-center justify-end gap-2">
+                                    <a href="/profile/delete/{{ customer.id }}/" class="p-2 bg-amber-50 hover:bg-red-50 text-amber-800/60 hover:text-red-700 rounded-xl border border-amber-200/80 hover:border-red-200 transition-all">
+                                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr class="bg-amber-50/30">
+                            <td colspan="6" class="p-8 text-center text-amber-900/60">
+                                <i data-lucide="user-x" class="w-8 h-8 mx-auto text-amber-800/40 mb-2"></i>
+                                <p class="text-sm font-semibold">No customers found.</p>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
