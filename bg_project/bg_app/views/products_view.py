@@ -1,12 +1,54 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.db.models import Q
 from ..models import User, Brand, Product
 
 @login_required
 def products_view(request):
     products = Product.objects.all().order_by('-created_at')
     brands = Brand.objects.all().order_by('name')
+    
+    category = request.GET.get('category', 'all')
+    brand_id = request.GET.get('brand', 'all')
+    condition = request.GET.get('condition', 'all')
+    price_range = request.GET.get('price_range', 'all')
+    sort = request.GET.get('sort', 'latest')
+    search = request.GET.get('search', '')
+    
+    if search:
+        products = products.filter(
+            Q(name__icontains=search) | Q(sku__icontains=search) | Q(brand__name__icontains=search) | Q(category__icontains=search) | Q(condition__icontains=search)
+        )
+    
+    if category != 'all':
+        products = products.filter(category=category)
+    if brand_id != 'all':
+        products = products.filter(brand__id=brand_id)
+    if condition != 'all':
+        products = products.filter(condition=condition)
+    if price_range != 'all':
+        if price_range == '0-999':
+            products = products.filter(price__gte=0, price__lte=999)
+        elif price_range == '1000-4999':
+            products = products.filter(price__gte=1000, price__lte=4999)
+        elif price_range == '5000-9999':
+            products = products.filter(price__gte=5000, price__lte=9999)
+        elif price_range == '10000-49999':
+            products = products.filter(price__gte=10000, price__lte=49999)
+        elif price_range == '50000+':
+            products = products.filter(price__gte=50000)
+    
+    if sort != 'latest':
+        if sort == 'price_asc':
+            products = products.order_by('price')
+        elif sort == 'price_desc':
+            products = products.order_by('-price')
+        elif sort == 'stock_asc':
+            products = products.order_by('stock')
+        elif sort == 'stock_desc':
+            products = products.order_by('-stock')
+
     return render(request, 'main/products_page.html', {'products': products, 'brands': brands})
 
 @login_required
