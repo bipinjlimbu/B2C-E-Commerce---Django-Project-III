@@ -71,6 +71,26 @@ def add_product_view(request):
     return render(request, 'main/add_product_page.html', {'brands': brands})
 
 @login_required
+def is_active_toggle_view(request, product_id):
+    if not request.user.is_staff:
+        messages.error(request, "You are not authorized to access this page.")
+        return redirect('/')
+    
+    product = Product.objects.get(id=product_id)
+    
+    if not product:
+        messages.error(request, "Product not found.")
+        return redirect('/dashboard/admin/?section=product-management')
+    
+    product.is_active = not product.is_active
+    product.save()
+    
+    status = 'activated' if product.is_active else 'deactivated'
+    
+    messages.success(request, f'Product {status} successfully.')
+    return redirect('/dashboard/admin/?section=product-management')
+
+@login_required
 def edit_product_view(request, product_id):
     product = Product.objects.get(id=product_id)
     brands = Brand.objects.all().order_by('name')
