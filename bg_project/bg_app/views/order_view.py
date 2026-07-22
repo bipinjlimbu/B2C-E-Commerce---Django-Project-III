@@ -67,4 +67,26 @@ def order_completed_view(request, order_id):
     order.save()
     
     messages.success(request, f"Order {order.id} has been marked as completed.")
-    return redirect('/dashboard/?section=pending-orders')
+    return redirect('/dashboard/?section=my-orders')
+
+@login_required
+def order_cancelled_view(request, order_id):
+    if request.user.is_staff:
+        messages.error(request, "You are not authorized to access this page.")
+        return redirect('/')
+    
+    try:
+        order = Order.objects.get(id=order_id, customer=request.user)
+    except Order.DoesNotExist:
+        messages.error(request, "Order not found.")
+        return redirect('/dashboard/?section=pending-orders')
+    
+    if order.status in [Order.Status.COMPLETED, Order.Status.CANCELLED]:
+        messages.error(request, "This order cannot be cancelled.")
+        return redirect('/dashboard/?section=pending-orders')
+    
+    order.status = Order.Status.CANCELLED
+    order.save()
+    
+    messages.success(request, f"Order {order.id} has been cancelled.")
+    return redirect('/dashboard/?section=my-orders')

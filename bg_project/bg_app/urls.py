@@ -6,7 +6,7 @@ from .views.brands_view import add_brand_view, edit_brand_view, delete_brand_vie
 from .views.products_view import products_view, add_product_view, is_active_toggle_view, edit_product_view, delete_product_view, single_product_view
 from .views.cart_view import add_to_cart_view, cart_view, increase_quantity_view, decrease_quantity_view, remove_from_cart_view
 from .views.payment_view import initiate_payment_view, payment_success_view, payment_failed_view
-from .views.order_view import dispatch_order_view, deliver_order_view, order_completed_view
+from .views.order_view import dispatch_order_view, deliver_order_view, order_completed_view, order_cancelled_view
 from .views.dashboard import admin_dashboard_view, customer_dashboard_view
 
 urlpatterns = [
@@ -37,6 +37,7 @@ urlpatterns = [
     path('order/dispatch/<int:order_id>/', dispatch_order_view, name='dispatch_order'),
     path('order/deliver/<int:order_id>/', deliver_order_view, name='deliver_order'),
     path('order/completed/<int:order_id>/', order_completed_view, name='order_completed'),
+    path('order/cancelled/<int:order_id>/', order_cancelled_view, name='order_cancelled'),
     path('dashboard/admin/', admin_dashboard_view, name='admin_dashboard'),
     path('dashboard/', customer_dashboard_view, name='customer_dashboard'),
 ]
