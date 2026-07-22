@@ -15,6 +15,10 @@ def add_review_view(request, product_id):
         messages.error(request, "Product not found.")
         return redirect('/products/')
     
+    if Review.objects.filter(customer=request.user, product=product).exists():
+        messages.error(request, "You have already reviewed this product.")
+        return redirect(f'/products/{product_id}/')
+    
     errors = {}
     if request.method == 'POST':
         rating = request.POST.get('rating')
@@ -75,3 +79,23 @@ def edit_review_view(request, review_id):
         return redirect(f'/dashboard/?section=my-reviews')
     
     return render(request, 'main/edit_review_page.html', {'review': review})
+
+@login_required
+def delete_review_view(request, review_id):
+    review = Review.objects.get(id=review_id)
+    
+    if not review:
+        messages.error(request, "Review not found.")
+        return redirect('/dashboard/')
+    
+    if request.user != review.customer and not request.user.is_staff:
+        messages.error(request, "You are not authorized to delete this review.")
+        return redirect('/dashboard/')
+    
+    review.delete()
+    messages.success(request, 'Review deleted successfully.')
+    
+    if request.user.is_staff:
+        return redirect(f'/dashboard/admin/?section=product-reviews')
+    else:
+        return redirect(f'/dashboard/?section=my-reviews')
