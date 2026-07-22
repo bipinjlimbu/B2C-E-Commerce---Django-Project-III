@@ -5,7 +5,8 @@ from ..models import Wishlist
 
 @login_required
 def wishlist_view(request):
-    return render(request, 'main/wishlist_page.html')
+    wishlist_items = Wishlist.objects.filter(customer=request.user).order_by('-added_at')
+    return render(request, 'main/wishlist_page.html', {'wishlist_items': wishlist_items})
 
 @login_required
 def wishlist_toggle_view(request, product_id):
