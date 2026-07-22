@@ -1014,6 +1014,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   flex: 1 1 0%;
 }
 
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+
 .shrink-0 {
   flex-shrink: 0;
 }
@@ -1660,6 +1664,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-stone-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(250 250 249 / var(--tw-bg-opacity));
+}
+
+.bg-amber-50\/80 {
+  background-color: rgb(255 251 235 / 0.8);
 }
 
 .bg-gradient-to-b {
@@ -2973,6 +2981,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .sm\:flex-nowrap {
     flex-wrap: nowrap;
+  }
+
+  .sm\:items-start {
+    align-items: flex-start;
   }
 
   .sm\:items-end {

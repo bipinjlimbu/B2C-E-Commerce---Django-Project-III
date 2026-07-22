@@ -8,6 +8,7 @@ from .views.cart_view import add_to_cart_view, cart_view, increase_quantity_view
 from .views.payment_view import initiate_payment_view, payment_success_view, payment_failed_view
 from .views.order_view import dispatch_order_view, deliver_order_view, order_completed_view, order_cancelled_view
 from .views.reviews_view import add_review_view, edit_review_view, delete_review_view
+from .views.wishlists_view import wishlist_view
 from .views.dashboard import admin_dashboard_view, customer_dashboard_view
 
 urlpatterns = [
@@ -42,6 +43,7 @@ urlpatterns = [
     path('review/add/<int:product_id>/', add_review_view, name='add_review'),
     path('review/edit/<int:review_id>/', edit_review_view, name='edit_review'),
     path('review/delete/<int:review_id>/', delete_review_view, name='delete_review'),
+    path('wishlist/', wishlist_view, name='wishlist'),
     path('dashboard/admin/', admin_dashboard_view, name='admin_dashboard'),
     path('dashboard/', customer_dashboard_view, name='customer_dashboard'),
 ]
