@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from ..models import User, Brand, Product, Order
+from django.db import models
 
 @login_required
 def admin_dashboard_view(request):
@@ -18,6 +19,7 @@ def admin_dashboard_view(request):
         'delivered_count': Order.objects.filter(status=Order.Status.DELIVERED).count(),
         'completed_count': Order.objects.filter(status=Order.Status.COMPLETED).count(),
         'cancelled_count': Order.objects.filter(status=Order.Status.CANCELLED).count(),
+        'total_gross_revenue': Order.objects.filter(status=Order.Status.COMPLETED).aggregate(total_revenue=models.Sum('total_amount'))['total_revenue'] or 0,
     }
     
     if section == 'customer-management':
@@ -36,7 +38,7 @@ def admin_dashboard_view(request):
         context['product_reviews'] = None
         
     if section == 'revenue-logs':
-        context['revenue_logs'] = None
+        context['revenue_logs'] = Order.objects.filter(status=Order.Status.COMPLETED).order_by('-created_at')
         
     return render(request, 'dashboard/admin_dashboard.html', context)
 
