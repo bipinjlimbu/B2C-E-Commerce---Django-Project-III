@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Gateway | BajaGaja</title>
+    {% load static %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+</head>
+<body class="bg-[#1c0f0a] flex items-center justify-center min-h-screen text-amber-100 font-sans">
+    <div class="text-center px-6">
+        <!-- Spinner Container -->
+        <div class="relative w-24 h-24 mx-auto mb-8">
+            <div class="absolute inset-0 border-4 border-amber-900/30 rounded-full"></div>
+            <div class="absolute inset-0 border-4 border-[#800020] border-t-transparent rounded-full animate-spin"></div>
+            <div class="absolute inset-4 bg-[#800020]/20 rounded-full flex items-center justify-center border border-amber-500/20">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-amber-400 animate-pulse"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+        </div>
+
+        <h2 class="text-amber-100 font-black uppercase italic tracking-[0.3em] text-2xl mb-2">Initiating <span class="text-amber-400">Gateway</span></h2>
+        <p class="text-amber-200/50 text-[10px] font-bold uppercase tracking-widest italic opacity-70">Redirecting to eSewa Payment Portal...</p>
+
+        <!-- eSewa Form -->
+        <form id="esewa_form" action="{{ esewa_url }}" method="POST">
+            <input type="hidden" name="amount" value="{{ amount }}">
+            <input type="hidden" name="tax_amount" value="0">
+            <input type="hidden" name="total_amount" value="{{ amount }}">
+            <input type="hidden" name="transaction_uuid" value="{{ transaction_uuid }}">
+            <input type="hidden" name="product_code" value="{{ product_code }}">
+            <input type="hidden" name="product_service_charge" value="0">
+            <input type="hidden" name="product_delivery_charge" value="0">
+            <input type="hidden" name="success_url" value="{{ success_url }}">
+            <input type="hidden" name="failure_url" value="{{ failure_url }}">
+            <input type="hidden" name="signed_field_names" value="total_amount,transaction_uuid,product_code">
+            <input type="hidden" name="signature" value="{{ signature }}">
+        </form>
+    </div>
+
+    <script>
+        window.onload = function() {
+            setTimeout(function() {
+                document.getElementById('esewa_form').submit();
+            }, 800); 
+        };
+    </script>
+</body>
+</html>
