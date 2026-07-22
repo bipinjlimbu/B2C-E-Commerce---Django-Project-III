@@ -52,6 +52,8 @@ def customer_dashboard_view(request):
     
     context = {
         'section': section,
+        'gross_spent': Order.objects.filter(customer=request.user, status=Order.Status.COMPLETED).aggregate(total_spent=models.Sum('total_amount'))['total_spent'] or 0,
+        'average_spent': Order.objects.filter(customer=request.user, status=Order.Status.COMPLETED).aggregate(average_spent=models.Avg('total_amount'))['average_spent'] or 0,
     }
     
     if section == 'pending-orders':
@@ -61,6 +63,6 @@ def customer_dashboard_view(request):
     if section == 'my-reviews':
         context['my_reviews'] = None
     if section == 'total-spent':
-        context['total_spent'] = None
+        context['total_spent'] = Order.objects.filter(customer=request.user, status=Order.Status.COMPLETED).order_by('-created_at')
     
     return render(request, 'dashboard/customer_dashboard.html', context)
