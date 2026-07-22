@@ -19,3 +19,15 @@ def wishlist_toggle_view(request, product_id):
         messages.success(request, 'Product added to wishlist.')
     
     return redirect(f'/products/{product_id}/')
+
+@login_required
+def wishlist_remove_view(request, product_id):
+    wishlist_item = Wishlist.objects.filter(customer=request.user, product_id=product_id).first()
+    
+    if wishlist_item:
+        wishlist_item.delete()
+        messages.success(request, 'Product removed from wishlist.')
+    else:
+        messages.error(request, 'Product not found in your wishlist.')
+    
+    return redirect('/wishlist/')
