@@ -130,7 +130,7 @@ def payment_success_view(request):
             customer=customer,
             total_amount=float(total_amount.replace(',', '')),
             transaction_id=transaction_uuid,
-            status=Order.Status.PAID,
+            status=Order.Status.CONFIRMED,
             shipping_address=shipping_address,
             payment_method=Order.PaymentMethod.ESEWA
         )
@@ -156,3 +156,7 @@ def payment_success_view(request):
     else:
         messages.error(request, "Verification Failed. Protocol Aborted.")
         return redirect('payment_failed')
+    
+def payment_failed_view(request):
+    messages.error(request, "Payment Failed or Cancelled. Please try again.")
+    return render(request, 'main/payment_failed_page.html')

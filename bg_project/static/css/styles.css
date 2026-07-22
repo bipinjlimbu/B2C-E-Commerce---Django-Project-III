@@ -1389,6 +1389,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(16 185 129 / 0.3);
 }
 
+.border-rose-900\/40 {
+  border-color: rgb(136 19 55 / 0.4);
+}
+
 .border-t-transparent {
   border-top-color: transparent;
 }
@@ -1396,6 +1400,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .border-b-emerald-600 {
   --tw-border-opacity: 1;
   border-bottom-color: rgb(5 150 105 / var(--tw-border-opacity));
+}
+
+.border-b-rose-700 {
+  --tw-border-opacity: 1;
+  border-bottom-color: rgb(190 18 60 / var(--tw-border-opacity));
 }
 
 .bg-amber-50\/50 {
@@ -1605,6 +1614,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .stroke-\[3px\] {
   stroke-width: 3px;
+}
+
+.stroke-\[2px\] {
+  stroke-width: 2px;
 }
 
 .object-contain {
@@ -2154,6 +2167,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-emerald-300 {
   --tw-text-opacity: 1;
   color: rgb(110 231 183 / var(--tw-text-opacity));
+}
+
+.text-rose-500 {
+  --tw-text-opacity: 1;
+  color: rgb(244 63 94 / var(--tw-text-opacity));
 }
 
 .underline {

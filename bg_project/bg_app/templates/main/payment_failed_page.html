@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Failed | BajaGaja</title>
+    {% load static %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+</head>
+
+<body class="bg-amber-50/30 text-stone-900 font-sans flex flex-col min-h-screen">
+    {% include 'components/_navbar.html' %}
+
+    {% include 'components/_messages.html' %}
+
+    <main class="flex-grow flex items-center justify-center py-12 px-4">
+        <div class="max-w-md w-full bg-[#2b1810] p-10 rounded-3xl shadow-2xl border border-amber-900/40 border-b-[10px] border-b-rose-700 text-center">
+            
+            <div class="flex justify-center mb-6">
+                <div class="bg-[#1c0f0a] p-5 rounded-full border border-rose-900/40 animate-pulse shadow-inner">
+                    <i data-lucide="alert-triangle" class="w-16 h-16 text-rose-500 stroke-[2px]"></i>
+                </div>
+            </div>
+            
+            <h2 class="text-3xl font-black text-amber-100 tracking-tight uppercase mb-2">
+                Transaction <span class="text-rose-500">Failed</span>
+            </h2>
+            
+            <p class="text-amber-200/60 mb-8 font-medium leading-relaxed text-sm">
+                {% if messages %}
+                    {% for message in messages %}{{ message }}{% endfor %}
+                {% else %}
+                    The checkout window timed out or your payment authorization was declined.
+                {% endif %}
+            </p>
+
+            <div class="space-y-4">
+                <a href="/cart/" class="w-full bg-[#800020] hover:bg-[#500014] text-amber-50 font-bold py-4 rounded-2xl shadow-lg border border-amber-500/20 flex items-center justify-center gap-3 transition-all active:scale-95 uppercase tracking-wider text-xs">
+                    <i data-lucide="shopping-bag" class="w-4 h-4 text-amber-400"></i>
+                    Review Your Cart
+                </a>
+                
+                <a href="/" class="block text-amber-200/50 font-bold hover:text-amber-100 transition-colors uppercase text-xs tracking-[0.15em]">
+                    Return to Shop
+                </a>
+            </div>
+        </div>
+    </main>
+
+    {% include 'components/_footer.html' %}
+
+    <script src="{% static 'js/lucide.min.js' %}"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
