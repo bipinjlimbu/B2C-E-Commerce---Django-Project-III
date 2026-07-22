@@ -2250,6 +2250,15 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(253 164 175 / var(--tw-text-opacity));
 }
 
+.text-amber-300\/60 {
+  color: rgb(252 211 77 / 0.6);
+}
+
+.text-\[\#2b1810\] {
+  --tw-text-opacity: 1;
+  color: rgb(43 24 16 / var(--tw-text-opacity));
+}
+
 .underline {
   text-decoration: underline;
 }

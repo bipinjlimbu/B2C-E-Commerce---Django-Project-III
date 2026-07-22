@@ -1,0 +1,73 @@
+<div class="space-y-6">
+    <div>
+        <h2 class="text-xs font-bold uppercase tracking-widest text-[#800020] mb-1">Logistics Trace</h2>
+        <p class="text-2xl font-black tracking-tight text-[#2b1810] uppercase">Purchase History Matrix</p>
+    </div>
+
+    <div class="space-y-4">
+        {% for order in orders %}
+            <div class="bg-[#2b1810] border border-amber-900/40 rounded-2xl p-6 min-h-[140px] flex flex-col lg:flex-row lg:items-center justify-between gap-6 hover:border-[#800020] transition-all shadow-xl group">
+                
+                <div class="space-y-4 flex-grow w-full">
+                    
+                    <div class="flex flex-wrap items-center gap-3">
+                        <span class="font-mono font-black text-base text-amber-100">#ORDER-{{ order.id }}</span>
+                        <span class="text-xs text-amber-200/50 font-mono">| Registered: {{ order.created_at }}</span>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-4xl">
+                        
+                        {% for item in order.items.all %}
+                            <div class="flex items-center gap-3 bg-[#1c0f0a] border border-amber-900/30 p-2 rounded-xl">
+                                <div class="w-10 h-10 bg-[#2b1810] border border-amber-900/50 rounded-lg overflow-hidden flex items-center justify-center p-1 shrink-0">
+                                    {% if item.product.product_image %}
+                                        <img src="{{ item.product.product_image.url }}" alt="{{ item.product.name }}" class="w-full h-full object-cover rounded">
+                                    {% else %}
+                                        <i data-lucide="music" class="w-5 h-5 text-amber-500/40"></i>
+                                    {% endif %}
+                                </div>
+                                <span class="text-amber-100 text-xs font-black tracking-tight truncate">
+                                    {{ item.product.name }} <span class="text-amber-300/60 font-medium ml-1">× {{ item.quantity }}</span>
+                                </span>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap sm:flex-nowrap items-center justify-between lg:justify-end gap-6 border-t lg:border-t-0 border-amber-900/30 pt-4 lg:pt-0 shrink-0 w-full lg:w-auto">
+                    
+                    <div class="flex flex-col lg:text-right">
+                        <span class="text-[9px] uppercase font-bold tracking-wider text-amber-200/50">Allocation Total</span>
+                        <div class="flex items-baseline gap-0.5">
+                            <span class="text-xs font-mono font-bold text-amber-200/70">Rs.</span>
+                            <span class="text-base font-mono font-black text-amber-100">{{ order.total_amount }}</span>
+                        </div>
+                    </div>
+
+                    <div class="shrink-0">
+                        {% if order.status == 'completed' %}
+                            <div class="bg-emerald-950/80 border border-emerald-800 text-emerald-300 font-black h-10 px-5 rounded-xl flex items-center justify-center text-[10px] uppercase tracking-widest shadow-md select-none min-w-[110px]">
+                                Completed
+                            </div>
+                        {% else %}
+                            <div class="bg-rose-950/80 border border-rose-800 text-rose-300 font-black h-10 px-5 rounded-xl flex items-center justify-center text-[10px] uppercase tracking-widest shadow-md select-none min-w-[110px]">
+                                Cancelled
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                </div>
+
+            </div>
+        {% empty %}
+            <div class="flex flex-col items-center justify-center text-center p-12 bg-[#2b1810] border border-dashed border-amber-900/40 rounded-2xl min-h-[220px]">
+                <div class="w-12 h-12 rounded-xl bg-[#1c0f0a] border border-amber-900/50 flex items-center justify-center mb-4 shadow-inner text-amber-400">
+                    <i data-lucide="history" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-sm font-black text-amber-100 uppercase tracking-wider mb-1">Archive Empty</h3>
+                <p class="text-xs text-amber-200/60 max-w-xs font-medium">No archived transactions or logged runs were detected in your log profile history.</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
