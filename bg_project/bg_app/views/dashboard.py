@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from ..models import User, Brand, Product, Order
+from ..models import User, Brand, Product, Order, Review
 from django.db import models
 
 @login_required
@@ -61,7 +61,7 @@ def customer_dashboard_view(request):
     if section == 'my-orders':
         context['orders'] = Order.objects.filter(customer=request.user, status__in=[Order.Status.COMPLETED, Order.Status.CANCELLED]).order_by('-created_at')
     if section == 'my-reviews':
-        context['my_reviews'] = None
+        context['my_reviews'] = Review.objects.filter(customer=request.user).order_by('-created_at')
     if section == 'total-spent':
         context['total_spent'] = Order.objects.filter(customer=request.user, status=Order.Status.COMPLETED).order_by('-created_at')
     
