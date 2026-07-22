@@ -1,0 +1,131 @@
+<div class="space-y-6">
+    <div class="flex flex-col xl:flex-row xl:items-center justify-between gap-6">
+        <div>
+            <h2 class="text-xs font-bold uppercase tracking-widest text-[#800020] mb-1">Orders & Logistics</h2>
+            <h1 class="text-2xl font-black text-stone-900 tracking-tight uppercase">Order Fulfillment</h1>
+        </div>
+        
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 w-full xl:w-auto">
+            <div class="bg-[#2b1810] border border-amber-900/40 rounded-xl p-3 flex flex-col justify-center min-w-[140px] shadow-md">
+                <span class="text-[9px] uppercase font-black tracking-wider text-amber-200/50 block mb-0.5">Awaiting Dispatch</span>
+                <span class="text-sm font-bold font-mono text-amber-300">{{ awaiting_dispatch_count }}</span>
+            </div>
+            <div class="bg-[#2b1810] border border-amber-900/40 rounded-xl p-3 flex flex-col justify-center min-w-[140px] shadow-md">
+                <span class="text-[9px] uppercase font-black tracking-wider text-amber-200/50 block mb-0.5">Awaiting Delivery</span>
+                <span class="text-sm font-bold font-mono text-sky-400">{{ awaiting_delivery_count }}</span>
+            </div>
+            <div class="bg-[#2b1810] border border-amber-900/40 rounded-xl p-3 flex flex-col justify-center min-w-[140px] shadow-md">
+                <span class="text-[9px] uppercase font-black tracking-wider text-amber-200/50 block mb-0.5">Delivered Units</span>
+                <span class="text-sm font-bold font-mono text-indigo-400">{{ delivered_count }}</span>
+            </div>
+            <div class="bg-[#2b1810] border border-amber-900/40 rounded-xl p-3 flex flex-col justify-center min-w-[140px] shadow-md">
+                <span class="text-[9px] uppercase font-black tracking-wider text-amber-200/50 block mb-0.5">Completed Units</span>
+                <span class="text-sm font-bold font-mono text-emerald-400">{{ completed_count }}</span>
+            </div>
+            <div class="bg-[#2b1810] border border-amber-900/40 rounded-xl p-3 flex flex-col justify-center min-w-[140px] shadow-md">
+                <span class="text-[9px] uppercase font-black tracking-wider text-amber-200/50 block mb-0.5">Cancelled Runs</span>
+                <span class="text-sm font-bold font-mono text-rose-400">{{ cancelled_count }}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="space-y-4">
+        {% for order in orders %}
+            <div class="bg-[#2b1810] border border-amber-900/40 rounded-2xl p-6 min-h-[140px] flex flex-col lg:flex-row lg:items-center justify-between gap-6 hover:border-[#800020] transition-all shadow-xl group">
+                
+                <div class="space-y-4 flex-grow w-full">
+                    
+                    <div class="flex flex-wrap items-center gap-3">
+                        <span class="font-mono font-black text-base text-amber-100">#ORDER-{{ order.id }}</span>
+                        
+                        <span class="text-xs text-amber-900/60 font-mono">|</span>
+
+                        <span class="text-[10px] font-black uppercase tracking-widest 
+                            {% if order.status == 'confirmed' %} text-amber-400
+                            {% elif order.status == 'shipping' %} text-sky-400
+                            {% elif order.status == 'delivered' %} text-indigo-300
+                            {% elif order.status == 'cancelled' %} text-rose-400
+                            {% else %} text-emerald-400 {% endif %}">
+                            {{ order.get_status_display }}
+                        </span>
+
+                        <span class="text-xs text-amber-900/60 font-mono">|</span>
+                        <span class="text-xs text-amber-200/50 font-mono">{{ order.created_at|date:"M d, Y" }}</span>
+                        <span class="text-xs text-amber-200/70 font-medium">| Customer: <strong class="text-amber-100">{{ order.customer.get_full_name }}</strong></span>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-4xl">
+                        
+                        {% for item in order.items.all %}
+                            <div class="flex items-center gap-3 bg-[#1c0f0a] border border-amber-900/30 p-2 rounded-xl">
+                                <div class="w-10 h-10 bg-[#2b1810] border border-amber-900/50 rounded-lg overflow-hidden flex items-center justify-center p-1 shrink-0">
+                                    {% if item.product.product_image %}
+                                        <img src="{{ item.product.product_image.url }}" alt="{{ item.product.name }}" class="w-full h-full object-cover rounded">
+                                    {% else %}
+                                        <i data-lucide="music" class="w-5 h-5 text-amber-500/40"></i>
+                                    {% endif %}
+                                </div>
+                                <span class="text-amber-100 text-xs font-bold tracking-tight truncate flex-grow">
+                                    {{ item.product.name }}
+                                    <span class="text-amber-300 bg-[#800020]/40 px-1.5 py-0.5 rounded border border-[#800020]/60 text-[10px] font-mono font-bold ml-1">x{{ item.quantity }}</span>
+                                </span>
+                            </div>
+                        {% endfor %}
+
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap sm:flex-nowrap items-center justify-between lg:justify-end gap-6 border-t lg:border-t-0 border-amber-900/30 pt-4 lg:pt-0 shrink-0 w-full lg:w-auto">
+                    
+                    <div class="flex flex-col lg:text-right">
+                        <span class="text-[9px] uppercase font-bold tracking-wider text-amber-200/50">Total Price</span>
+                        <div class="flex items-baseline gap-0.5">
+                            <span class="text-xs font-mono font-bold text-amber-200/70">Rs.</span>
+                            <span class="text-base font-mono font-black text-amber-100">{{ order.total_amount }}</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+                        
+                        {% if order.status == 'confirmed' %}
+                        <a href="/order/dispatch/{{ order.id }}" class="bg-[#800020] hover:bg-[#500014] border border-amber-500/20 text-amber-50 font-black h-11 px-5 rounded-xl transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-widest active:scale-95 whitespace-nowrap shadow-md">
+                            <i data-lucide="package-check" class="w-4 h-4 text-amber-400"></i>
+                            <span>Dispatch Cargo</span>
+                        </a>
+                        {% elif order.status == 'shipping' %}
+                        <a href="/order/deliver/{{ order.id }}" class="bg-[#1c0f0a] hover:bg-[#2b1810] border border-amber-900/50 text-amber-100 font-black h-11 px-5 rounded-xl transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-widest active:scale-95 whitespace-nowrap shadow-md">
+                            <i data-lucide="truck" class="w-4 h-4 text-sky-400"></i>
+                            <span>Mark as Delivered</span>
+                        </a>
+                        {% elif order.status == 'delivered' %}
+                        <div class="bg-[#1c0f0a] border border-amber-900/50 text-amber-200/70 font-black h-11 px-5 rounded-xl flex items-center justify-center gap-2 text-xs uppercase tracking-widest select-none min-w-[110px]">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-indigo-400"></i>
+                            <span>Awaiting Confirmation</span>
+                        </div>
+                        {% elif order.status == 'cancelled' %}
+                        <div class="bg-rose-950/80 border border-rose-800 text-rose-300 font-black h-11 px-5 rounded-xl flex items-center justify-center gap-2 text-xs uppercase tracking-widest shadow-md select-none min-w-[110px]">
+                            <i data-lucide="x-circle" class="w-4 h-4 text-rose-400"></i>
+                            <span>Order Cancelled</span>
+                        </div>
+                        {% else %}
+                        <div class="bg-emerald-950/80 border border-emerald-800 text-emerald-300 font-black h-11 px-5 rounded-xl flex items-center justify-center gap-2 text-xs uppercase tracking-widest shadow-md select-none min-w-[110px]">
+                            <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+                            <span>Order Completed</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                </div>
+
+            </div>
+        {% empty %}
+            <div class="flex flex-col items-center justify-center text-center p-12 bg-[#2b1810] border border-dashed border-amber-900/40 rounded-2xl min-h-[220px]">
+                <div class="w-12 h-12 rounded-xl bg-[#1c0f0a] border border-amber-900/50 flex items-center justify-center mb-4 shadow-inner text-amber-400">
+                    <i data-lucide="inbox" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-sm font-black text-amber-100 uppercase tracking-wider mb-1">No Orders Found</h3>
+                <p class="text-xs text-amber-200/60 max-w-xs font-medium">There are currently no orders in the logistics pipeline.</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>

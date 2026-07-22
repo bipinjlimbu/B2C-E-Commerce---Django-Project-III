@@ -13,6 +13,11 @@ def admin_dashboard_view(request):
     
     context = {
         'section': section,
+        'awaiting_dispatch_count': Order.objects.filter(status=Order.Status.CONFIRMED).count(),
+        'awaiting_delivery_count': Order.objects.filter(status=Order.Status.SHIPPING).count(),
+        'delivered_count': Order.objects.filter(status=Order.Status.DELIVERED).count(),
+        'completed_count': Order.objects.filter(status=Order.Status.COMPLETED).count(),
+        'cancelled_count': Order.objects.filter(status=Order.Status.CANCELLED).count(),
     }
     
     if section == 'customer-management':
@@ -25,7 +30,7 @@ def admin_dashboard_view(request):
         context['products'] = Product.objects.all().order_by('-created_at')
         
     if section == 'order-fulfillment':
-        context['orders'] = None
+        context['orders'] = Order.objects.all().order_by('-created_at')
         
     if section == 'product-reviews':
         context['product_reviews'] = None
