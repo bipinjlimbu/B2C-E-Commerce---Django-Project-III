@@ -1,0 +1,40 @@
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from ..models import User, Product, Review
+
+@login_required
+def add_review_view(request, product_id):
+    product = Product.objects.get(id=product_id)
+    
+    if request.user.is_staff:
+        messages.error(request, "Staff members cannot add reviews.")
+        return redirect('/products/')
+    
+    if not product:
+        messages.error(request, "Product not found.")
+        return redirect('/products/')
+    
+    errors = {}
+    if request.method == 'POST':
+        rating = request.POST.get('rating')
+        comment = request.POST.get('comment')
+
+        if not rating:
+            errors['rating'] = 'Rating is required.'
+        elif not (1 <= int(rating) <= 5):
+            errors['rating'] = 'Rating must be between 1 and 5.'
+
+        if not comment:
+            errors['comment'] = 'Comment is required.'
+
+        if errors:
+            return render(request, 'main/add_review_page.html', {'errors': errors, 'data': request.POST, 'product': product})
+
+        review = Review(customer=request.user, product=product, rating=rating, comment=comment)
+        review.save()
+        
+        messages.success(request, 'Review added successfully.')
+        return redirect(f'/products/{product_id}/')
+    
+    return render(request, 'main/add_review_page.html', {'product': product})

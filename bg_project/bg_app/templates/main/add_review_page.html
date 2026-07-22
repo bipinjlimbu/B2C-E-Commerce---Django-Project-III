@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Review | BajaGaja</title>
+    {% load static %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+</head>
+<body class="bg-amber-50/30 text-stone-900 font-sans min-h-screen flex flex-col">
+
+    {% include 'components/_navbar.html' %}
+
+    {% include 'components/_messages.html' %}
+
+    <main class="flex-grow flex items-center justify-center p-4 sm:p-6 lg:p-8">
+        <form method="POST" class="w-full max-w-2xl bg-white border border-amber-900/15 rounded-3xl overflow-hidden shadow-xl p-8 lg:p-12 space-y-8">
+            {% csrf_token %}
+            
+            <div>
+                <h2 class="text-xs font-bold uppercase tracking-widest text-[#800020] mb-1">Product Feedback</h2>
+                <p class="text-2xl font-black text-stone-900 tracking-tight">Write a Review</p>
+                <p class="text-xs text-stone-600 mt-1 font-medium">Share your experience regarding <span class="text-[#800020] font-bold">{{ product.name }}</span></p>
+            </div>
+
+            <div class="space-y-6">
+                <div class="bg-amber-50/50 border border-amber-900/10 p-5 rounded-2xl">
+                    <label class="text-[10px] font-extrabold uppercase tracking-widest text-stone-500 block mb-3">Select Rating</label>
+                    <div class="flex items-center gap-3 bg-white border border-amber-900/15 p-3 rounded-xl inline-flex shadow-sm">
+                        <input type="hidden" name="rating" id="id_rating" value="5">
+                        <div class="flex items-center gap-1">
+                            <button type="button" data-star="1" class="star-btn text-amber-500 hover:scale-110 transition-transform focus:outline-none">
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            </button>
+                            <button type="button" data-star="2" class="star-btn text-amber-500 hover:scale-110 transition-transform focus:outline-none">
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            </button>
+                            <button type="button" data-star="3" class="star-btn text-amber-500 hover:scale-110 transition-transform focus:outline-none">
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            </button>
+                            <button type="button" data-star="4" class="star-btn text-amber-500 hover:scale-110 transition-transform focus:outline-none">
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            </button>
+                            <button type="button" data-star="5" class="star-btn text-amber-500 hover:scale-110 transition-transform focus:outline-none">
+                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            </button>
+                        </div>
+                        <span id="rating_display" class="text-xs font-mono font-bold text-stone-700 ml-2">5 / 5</span>
+                    </div>
+                    {% if errors.rating %}
+                        <p class="text-red-600 text-xs mt-2 font-semibold">{{ errors.rating }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="bg-amber-50/50 border border-amber-900/10 p-5 rounded-2xl focus-within:border-[#800020] focus-within:bg-white transition-all">
+                    <label class="text-[10px] font-extrabold uppercase tracking-widest text-stone-500 block mb-2">Your Review</label>
+                    <textarea id="id_comment" name="comment" rows="5" placeholder="What did you like or dislike about this product? Your experience helps other buyers." class="w-full bg-transparent text-sm font-medium text-stone-800 focus:outline-none placeholder-stone-400 resize-none leading-relaxed">{{ data.comment|default:'' }}</textarea>
+                    {% if errors.comment %}
+                        <p class="text-red-600 text-xs mt-2 font-semibold">{{ errors.comment }}</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3 pt-4 border-t border-amber-900/10">
+                <button type="submit" class="flex-grow sm:flex-none bg-[#800020] hover:bg-[#600018] text-amber-50 font-bold py-3.5 px-6 rounded-xl transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-wider shadow-md shadow-[#800020]/20">
+                    <i data-lucide="send" class="w-4 h-4"></i>
+                    Submit Review
+                </button>
+                <a href="javascript:history.back()" class="flex-grow sm:flex-none bg-stone-100 hover:bg-stone-200 text-stone-700 font-bold py-3.5 px-6 rounded-xl transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-wider border border-stone-200">
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </main>
+
+    {% include 'components/_footer.html' %}
+
+    <script src="{% static 'js/lucide.min.js' %}"></script>
+    <script>
+        lucide.createIcons();
+
+        document.querySelectorAll('.star-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const selectedRating = parseInt(this.getAttribute('data-star'));
+                document.getElementById('id_rating').value = selectedRating;
+                document.getElementById('rating_display').textContent = `${selectedRating} / 5`;
+                
+                document.querySelectorAll('.star-btn').forEach(btn => {
+                    const btnStarValue = parseInt(btn.getAttribute('data-star'));
+                    const icon = btn.querySelector('[data-lucide="star"]');
+                    if (btnStarValue <= selectedRating) {
+                        icon.classList.add('fill-current', 'text-amber-500');
+                        icon.classList.remove('text-stone-300');
+                    } else {
+                        icon.classList.remove('fill-current', 'text-amber-500');
+                        icon.classList.add('text-stone-300');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
