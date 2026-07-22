@@ -416,7 +416,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: none;
 }
 
-.translate-x-\[120\%\], .translate-x-1, .-translate-y-1, .rotate-180, .transform, .active\:scale-95, .group-hover\:scale-110, .group-hover\:scale-105, .peer-checked\:after\:translate-x-full::after {
+.translate-x-\[120\%\], .translate-x-1, .-translate-y-1, .rotate-180, .transform, .active\:scale-95, .group-hover\:translate-x-1, .group-hover\:scale-110, .group-hover\:scale-105, .peer-checked\:after\:translate-x-full::after {
   --tw-translate-x: 0;
   --tw-translate-y: 0;
   --tw-rotate: 0;
@@ -431,7 +431,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-scroll-snap-strictness: proximity;
 }
 
-.divide-y > *, .border, .border-4, .border-t, .border-b, .border-r, .file\:border-0::file-selector-button, .after\:border::after, .sm\:border-t-0, .lg\:border-t-0 {
+.divide-y > *, .border, .border-4, .border-t, .border-b, .border-r, .border-b-\[10px\], .file\:border-0::file-selector-button, .after\:border::after, .sm\:border-t-0, .lg\:border-t-0 {
   --tw-border-opacity: 1;
   border-color: rgb(229 231 235 / var(--tw-border-opacity));
 }
@@ -688,6 +688,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .ml-1 {
   margin-left: 0.25rem;
+}
+
+.ml-4 {
+  margin-left: 1rem;
 }
 
 .block {
@@ -1272,6 +1276,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-radius: 0.25rem;
 }
 
+.rounded-\[2rem\] {
+  border-radius: 2rem;
+}
+
 .border {
   border-width: 1px;
 }
@@ -1290,6 +1298,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .border-r {
   border-right-width: 1px;
+}
+
+.border-b-\[10px\] {
+  border-bottom-width: 10px;
 }
 
 .border-dashed {
@@ -1379,6 +1391,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .border-t-transparent {
   border-top-color: transparent;
+}
+
+.border-b-emerald-600 {
+  --tw-border-opacity: 1;
+  border-bottom-color: rgb(5 150 105 / var(--tw-border-opacity));
 }
 
 .bg-amber-50\/50 {
@@ -1582,6 +1599,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   stroke-width: 2.5;
 }
 
+.stroke-\[2\.2px\] {
+  stroke-width: 2.2px;
+}
+
+.stroke-\[3px\] {
+  stroke-width: 3px;
+}
+
 .object-contain {
   -o-object-fit: contain;
      object-fit: contain;
@@ -1630,6 +1655,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .p-12 {
   padding: 3rem;
+}
+
+.p-10 {
+  padding: 2.5rem;
 }
 
 .py-8 {
@@ -1940,6 +1969,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .tracking-widest {
   letter-spacing: 0.1em;
+}
+
+.tracking-\[0\.15em\] {
+  letter-spacing: 0.15em;
 }
 
 .text-\[\#800020\] {
@@ -2552,6 +2585,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .active\:scale-95:active {
   --tw-scale-x: .95;
   --tw-scale-y: .95;
+  transform: var(--tw-transform);
+}
+
+.group:hover .group-hover\:translate-x-1 {
+  --tw-translate-x: 0.25rem;
   transform: var(--tw-transform);
 }
 

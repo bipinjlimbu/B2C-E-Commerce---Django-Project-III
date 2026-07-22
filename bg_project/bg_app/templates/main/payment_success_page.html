@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed | BajaGaja</title>
+    {% load static %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+</head>
+
+<body class="bg-amber-50/30 text-stone-900 font-sans flex flex-col min-h-screen">
+    {% include 'components/_navbar.html' %}
+
+    {% include 'components/_messages.html' %}
+
+    <main class="flex-grow flex items-center justify-center py-12 px-4">
+        <div class="success-wrapper bg-[#2b1810] rounded-[2rem] shadow-2xl max-w-md w-full p-10 text-center border border-amber-900/40 border-b-[10px] border-b-emerald-600">
+            
+            <div class="status-img flex justify-center mb-6">
+                <div class="bg-[#1c0f0a] p-5 rounded-full shadow-inner border border-amber-900/50 relative group">
+                    <i data-lucide="music" class="w-16 h-16 text-amber-400 stroke-[2.2px] animate-pulse"></i>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <i data-lucide="check" class="w-7 h-7 text-emerald-400 stroke-[3px]"></i>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="text-3xl font-black text-amber-100 tracking-tight uppercase mb-1">
+                Order <span class="text-emerald-400">Confirmed</span>
+            </h2>
+            <p class="text-amber-200/60 mb-8 text-sm font-medium">Your instrument purchase has been successfully processed.</p>
+
+            <div class="order-info bg-[#1c0f0a] rounded-2xl p-6 mb-8 text-left border border-amber-900/50 divide-y divide-amber-900/30">
+                <p class="flex justify-between items-center py-3">
+                    <strong class="text-amber-200/50 uppercase text-[10px] tracking-[0.15em] font-bold">Order ID</strong> 
+                    <span class="text-amber-100 font-extrabold font-mono">#{{ order.id }}</span>
+                </p>
+                <p class="flex justify-between items-center py-3">
+                    <strong class="text-amber-200/50 uppercase text-[10px] tracking-[0.15em] font-bold">Transaction Ref</strong> 
+                    <span class="text-amber-200/80 font-mono text-xs font-medium truncate ml-4">{{ order.transaction_id }}</span>
+                </p>
+                <p class="flex justify-between items-baseline py-3 pt-4">
+                    <strong class="text-amber-200/50 uppercase text-[10px] tracking-[0.15em] font-bold">Total Settled</strong> 
+                    <span class="text-emerald-400 font-black text-xl font-mono">Rs. {{ order.total_amount }}</span>
+                </p>
+            </div>
+
+            <a href="/" class="btn-main group flex items-center justify-center w-full bg-[#800020] hover:bg-[#500014] text-amber-50 py-4 rounded-2xl font-bold uppercase text-xs tracking-widest transition-all active:scale-95 shadow-lg hover:shadow-[#800020]/40 border border-amber-500/20">
+                Return to Shop
+                <i data-lucide="arrow-right" class="ml-2 w-4 h-4 text-amber-400 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+        </div>
+    </main>
+
+    {% include 'components/_footer.html' %}
+
+    <script src="{% static 'js/lucide.min.js' %}"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
