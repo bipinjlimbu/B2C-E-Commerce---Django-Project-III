@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
-from ..models import User, Brand, Product
+from ..models import User, Brand, Product, Review
 
 @login_required
 def products_view(request):
@@ -226,9 +226,10 @@ def delete_product_view(request, product_id):
 @login_required
 def single_product_view(request, product_id):
     product = Product.objects.get(id=product_id)
+    review = Review.objects.filter(product=product).order_by('-created_at')
     
     if not product:
         messages.error(request, "Product not found.")
         return redirect('/products/')
     
-    return render(request, 'main/single_product_page.html', {'product': product})
+    return render(request, 'main/single_product_page.html', {'product': product, 'reviews': review})
