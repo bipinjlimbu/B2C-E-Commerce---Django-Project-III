@@ -24,3 +24,25 @@ def dispatch_order_view(request, order_id):
     
     messages.success(request, f"Order {order.id} has been marked as dispatched.")
     return redirect('/dashboard/admin/?section=order-fulfillment')
+
+@login_required
+def deliver_order_view(request, order_id):
+    if not request.user.is_staff:
+        messages.error(request, "You are not authorized to access this page.")
+        return redirect('/')
+    
+    try:
+        order = Order.objects.get(id=order_id)
+    except Order.DoesNotExist:
+        messages.error(request, "Order not found.")
+        return redirect('/dashboard/admin/?section=order-fulfillment')
+    
+    if order.status != Order.Status.SHIPPING:
+        messages.error(request, "Only orders that are shipping can be marked as delivered.")
+        return redirect('/dashboard/admin/?section=order-fulfillment')
+    
+    order.status = Order.Status.DELIVERED
+    order.save()
+    
+    messages.success(request, f"Order {order.id} has been marked as delivered.")
+    return redirect('/dashboard/admin/?section=order-fulfillment')
