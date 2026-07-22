@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
-from ..models import User, Brand, Product, Review
+from ..models import Brand, Product, Review, Wishlist
 
 @login_required
 def products_view(request):
@@ -231,5 +231,10 @@ def single_product_view(request, product_id):
     if not product:
         messages.error(request, "Product not found.")
         return redirect('/products/')
+    
+    if Wishlist.objects.filter(customer=request.user, product=product).exists():
+        product.in_wishlist = True
+    else:
+        product.in_wishlist = False
     
     return render(request, 'main/single_product_page.html', {'product': product, 'reviews': review})
