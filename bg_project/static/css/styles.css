@@ -1278,6 +1278,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(253 230 138 / 0.6);
 }
 
+.divide-amber-900\/10 > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgb(120 53 15 / 0.1);
+}
+
 .overflow-hidden {
   overflow: hidden;
 }
@@ -2669,6 +2673,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   transform: var(--tw-transform);
 }
 
+.hover\:text-clip:hover {
+  text-overflow: clip;
+}
+
+.hover\:whitespace-normal:hover {
+  white-space: normal;
+}
+
 .hover\:border-\[\#800020\]:hover {
   --tw-border-opacity: 1;
   border-color: rgb(128 0 32 / var(--tw-border-opacity));
@@ -2762,6 +2774,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hover\:bg-rose-50:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(255 241 242 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-amber-50\/30:hover {
+  background-color: rgb(255 251 235 / 0.3);
 }
 
 .hover\:text-\[\#800020\]:hover {
