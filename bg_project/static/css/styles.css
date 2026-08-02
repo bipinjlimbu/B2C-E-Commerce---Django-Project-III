@@ -416,7 +416,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: none;
 }
 
-.translate-x-\[120\%\], .translate-x-1, .-translate-y-1, .rotate-180, .transform, .hover\:rotate-0, .hover\:scale-110, .active\:scale-95, .group-hover\:translate-x-1, .group-hover\:translate-x-0\.5, .group-hover\:translate-x-0, .group-hover\:scale-110, .group-hover\:scale-105, .peer-checked\:after\:translate-x-full::after, .lg\:rotate-1 {
+.translate-x-\[120\%\], .translate-x-1, .-translate-y-1, .rotate-180, .transform, .hover\:rotate-0, .hover\:scale-110, .hover\:scale-105, .active\:scale-95, .group-hover\:translate-x-1, .group-hover\:translate-x-0\.5, .group-hover\:translate-x-0, .group-hover\:scale-110, .group-hover\:scale-105, .peer-checked\:after\:translate-x-full::after, .lg\:rotate-1 {
   --tw-translate-x: 0;
   --tw-translate-y: 0;
   --tw-rotate: 0;
@@ -1298,6 +1298,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   gap: 1.75rem;
 }
 
+.gap-3\.5 {
+  gap: 0.875rem;
+}
+
 .space-y-4 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
@@ -1368,6 +1372,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-space-y-reverse: 0;
   margin-top: calc(2.5rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(2.5rem * var(--tw-space-y-reverse));
+}
+
+.space-y-3\.5 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.875rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.875rem * var(--tw-space-y-reverse));
 }
 
 .divide-y > :not([hidden]) ~ :not([hidden]) {
@@ -2289,6 +2299,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-right: 6rem;
 }
 
+.pb-12 {
+  padding-bottom: 3rem;
+}
+
+.pr-0 {
+  padding-right: 0px;
+}
+
 .text-left {
   text-align: left;
 }
@@ -3132,6 +3150,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   transform: var(--tw-transform);
 }
 
+.hover\:scale-105:hover {
+  --tw-scale-x: 1.05;
+  --tw-scale-y: 1.05;
+  transform: var(--tw-transform);
+}
+
 .hover\:text-clip:hover {
   text-overflow: clip;
 }
@@ -3860,6 +3884,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     gap: 6rem;
   }
 
+  .lg\:gap-12 {
+    gap: 3rem;
+  }
+
   .lg\:border-t-0 {
     border-top-width: 0px;
   }
@@ -3909,6 +3937,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .lg\:pt-0 {
     padding-top: 0px;
+  }
+
+  .lg\:pr-8 {
+    padding-right: 2rem;
   }
 
   .lg\:text-right {
