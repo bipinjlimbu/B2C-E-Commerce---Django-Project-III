@@ -3,27 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BajaGaja | Traditional & Modern Musical Store</title>
+    <title>BajaGaja | Premium Musical Instruments & Gear</title>
     {% load static %}
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
     <style>
         .custom-scrollbar::-webkit-scrollbar {
-            height: 4px;
+            height: 6px;
+            width: 6px;
         }
         .custom-scrollbar::-webkit-scrollbar-track {
-            background: #2b1810;
-            border-radius: 10px;
+            background: #FAF7F2;
+            border-radius: 9999px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #800020;
-            border-radius: 10px;
+            background: #DDD2C5;
+            border-radius: 9999px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #500014;
+            background: #C89B3C;
         }
     </style>
 </head>
-<body class="bg-amber-50/30 font-sans min-h-screen flex flex-col text-stone-900">
+<body class="bg-[#FAF7F2] font-sans min-h-screen flex flex-col text-[#5F564F] antialiased">
 
     {% include 'components/_navbar.html' %}
 
@@ -31,190 +32,309 @@
 
     <main class="flex-grow">
         
-        <section class="relative bg-gradient-to-b from-[#2b1810] via-[#3a1d14] to-[#2b1810] text-amber-50 overflow-hidden py-20 lg:py-32 border-b border-[#800020]/30">
-            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#d97706_1px,transparent_1px)] [background-size:20px_20px]"></div>
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div class="space-y-6 max-w-xl">
-                        <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-[#800020] text-amber-100 border border-amber-600/30 shadow-md">
-                            <i data-lucide="music" class="w-3.5 h-3.5 text-amber-400"></i> Premium Sound & Heritage
-                        </span>
-                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-none text-amber-100">
-                            RESONATE WITH <br>
-                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-200">PURE HARMONY</span>
-                        </h1>
-                        <p class="text-lg text-amber-200/80 font-normal leading-relaxed">
-                            Discover crafted acoustic instruments, master classical folk gear, and studio-grade sound systems carefully curated for every musician.
-                        </p>
-                        <div class="flex flex-wrap gap-4 pt-2">
-                            <a href="/products/" class="bg-[#800020] hover:bg-[#500014] text-amber-50 font-bold px-6 py-3 rounded-xl transition-all shadow-lg hover:shadow-[#800020]/40 flex items-center gap-2 text-sm border border-amber-500/20">
-                                Explore Store
-                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                            </a>
-                            <a href="#" class="bg-[#1c0f0a] hover:bg-[#2b1810] text-amber-200 font-bold px-6 py-3 rounded-xl transition-all border border-amber-900/50 text-sm">
-                                View Featured
-                            </a>
+        <section class="relative bg-[#7A1F2B] text-[#FAF7F2] overflow-hidden">
+            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#C89B3C_1px,transparent_1px)] [background-size:20px_20px]"></div>
+            <div class="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-[#C89B3C]/10 blur-3xl pointer-events-none"></div>
+            <div class="absolute -left-24 -bottom-24 w-96 h-96 rounded-full bg-[#5E1721] blur-3xl pointer-events-none"></div>
+
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 relative z-10 text-center">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FAF7F2]/10 border border-[#C89B3C]/40 text-[#C89B3C] text-xs font-semibold tracking-wide backdrop-blur-md mb-6">
+                    <i data-lucide="music" class="w-4 h-4 text-[#C89B3C]"></i>
+                    <span>Authentic Instruments & Studio Gear</span>
+                </div>
+
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-[#FAF7F2] tracking-tight leading-[1.15] mb-6">
+                    Play Your Story <br>
+                    <span class="text-[#C89B3C]">With True Harmony</span>
+                </h1>
+
+                <p class="text-base sm:text-lg text-[#FAF7F2]/85 max-w-2xl mx-auto leading-relaxed font-normal mb-8">
+                    Discover handcrafted acoustic guitars, traditional folk instruments, modern keyboards, and pro studio sound systems built to spark your musical journey.
+                </p>
+
+                <div class="flex flex-wrap items-center justify-center gap-4 mb-10">
+                    <a href="/products/" class="bg-[#C89B3C] hover:bg-[#5E1721] text-[#2D1F18] hover:text-[#FFFFFF] font-bold px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-xl flex items-center gap-3 text-sm tracking-wide">
+                        <span>Shop Now</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                    <a href="#categories" class="bg-[#FAF7F2]/10 hover:bg-[#FAF7F2]/20 text-[#FAF7F2] font-semibold px-7 py-4 rounded-xl transition-all border border-[#FAF7F2]/25 text-sm">
+                        Explore Categories
+                    </a>
+                </div>
+
+                <div class="pt-8 border-t border-[#FAF7F2]/15 grid grid-cols-3 gap-6 text-center max-w-lg mx-auto">
+                    <div>
+                        <p class="text-2xl sm:text-3xl font-extrabold text-[#FAF7F2]">100%</p>
+                        <p class="text-xs text-[#FAF7F2]/70 font-medium mt-0.5">Tested Quality</p>
+                    </div>
+                    <div>
+                        <p class="text-2xl sm:text-3xl font-extrabold text-[#C89B3C]">Fast</p>
+                        <p class="text-xs text-[#FAF7F2]/70 font-medium mt-0.5">Safe Delivery</p>
+                    </div>
+                    <div>
+                        <p class="text-2xl sm:text-3xl font-extrabold text-[#FAF7F2]">24/7</p>
+                        <p class="text-xs text-[#FAF7F2]/70 font-medium mt-0.5">Expert Support</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-[#FFFFFF] border-b border-[#DDD2C5] py-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="flex items-center gap-4 p-3">
+                        <div class="w-12 h-12 rounded-2xl bg-[#FAF7F2] border border-[#DDD2C5] flex items-center justify-center text-[#7A1F2B] shrink-0">
+                            <i data-lucide="shield-check" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm text-[#2D1F18]">Verified Quality</h4>
+                            <p class="text-xs text-[#5F564F] mt-0.5">Hand-checked before shipping</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4 p-3">
+                        <div class="w-12 h-12 rounded-2xl bg-[#FAF7F2] border border-[#DDD2C5] flex items-center justify-center text-[#6B4A2B] shrink-0">
+                            <i data-lucide="truck" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm text-[#2D1F18]">Safe Shipping</h4>
+                            <p class="text-xs text-[#5F564F] mt-0.5">Carefully boxed & insured</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4 p-3">
+                        <div class="w-12 h-12 rounded-2xl bg-[#FAF7F2] border border-[#DDD2C5] flex items-center justify-center text-[#C89B3C] shrink-0">
+                            <i data-lucide="rotate-ccw" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm text-[#2D1F18]">Easy Returns</h4>
+                            <p class="text-xs text-[#5F564F] mt-0.5">Simple return policy</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4 p-3">
+                        <div class="w-12 h-12 rounded-2xl bg-[#FAF7F2] border border-[#DDD2C5] flex items-center justify-center text-[#5B8A5A] shrink-0">
+                            <i data-lucide="headphones" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm text-[#2D1F18]">Music Experts</h4>
+                            <p class="text-xs text-[#5F564F] mt-0.5">Helpful guidance anytime</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mb-10">
-                <div>
-                    <h2 class="text-xs font-bold uppercase tracking-widest text-[#800020] mb-1">Instrument Categories</h2>
-                    <p class="text-2xl font-black tracking-tight text-stone-900 uppercase">Browse Musical Gear</p>
-                </div>
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="mb-6">
+                <span class="text-xs font-bold uppercase tracking-widest text-[#7A1F2B]">Top Manufacturers</span>
+                <h2 class="text-2xl sm:text-3xl font-black text-[#2D1F18] tracking-tight mt-0.5">Featured Brands</h2>
             </div>
-            
-            <div class="flex overflow-x-auto gap-6 pb-6 snap-x snap-mandatory custom-scrollbar">
-                <a href="/products/?category=guitars" class="group min-w-[280px] sm:min-w-[320px] snap-start bg-[#2b1810] border border-amber-900/40 p-6 rounded-2xl shadow-xl hover:border-[#800020] transition-all flex items-center justify-between">
-                    <div class="space-y-1">
-                        <h3 class="font-bold text-base text-amber-100 group-hover:text-amber-400 transition-colors">Guitars & Basses</h3>
-                        <p class="text-[11px] text-amber-200/60">Acoustic, Electric & Basses</p>
+
+            <div class="flex items-center gap-4 overflow-x-auto pb-4 custom-scrollbar snap-x snap-mandatory">
+                {% for brand in brands %}
+                <a href="/products/?brand={{ brand.id }}" class="snap-start shrink-0 min-w-[140px] sm:min-w-[170px] bg-[#FFFFFF] border border-[#DDD2C5] hover:border-[#7A1F2B] rounded-2xl p-4 flex flex-col items-center justify-center text-center shadow-sm hover:shadow-md transition-all group">
+                    <div class="w-16 h-16 rounded-xl bg-[#FAF7F2] border border-[#DDD2C5]/60 flex items-center justify-center overflow-hidden mb-3 p-2 group-hover:scale-105 transition-transform">
+                        {% if brand.logo %}
+                            <img src="{{ brand.logo.url }}" alt="{{ brand.name }}" class="w-full h-full object-contain">
+                        {% elif brand.image %}
+                            <img src="{{ brand.image.url }}" alt="{{ brand.name }}" class="w-full h-full object-contain">
+                        {% else %}
+                            <i data-lucide="award" class="w-8 h-8 text-[#6B4A2B] group-hover:text-[#7A1F2B] transition-colors"></i>
+                        {% endif %}
                     </div>
-                    <div class="w-10 h-10 bg-[#1c0f0a] rounded-xl flex items-center justify-center border border-amber-900/50 group-hover:bg-[#800020] group-hover:border-amber-500/50 transition-colors shrink-0 ml-2">
-                        <i data-lucide="guitar" class="w-4 h-4 text-amber-400 group-hover:text-amber-100 transition-colors"></i>
+                    <span class="font-bold text-xs text-[#2D1F18] group-hover:text-[#7A1F2B] transition-colors truncate w-full">
+                        {{ brand.name }}
+                    </span>
+                </a>
+                {% empty %}
+                <div class="w-full bg-[#FFFFFF] border border-dashed border-[#DDD2C5] rounded-2xl p-6 text-center">
+                    <p class="text-xs text-[#5F564F]">No brands available at the moment.</p>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section id="categories" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="mb-6">
+                <span class="text-xs font-bold uppercase tracking-widest text-[#7A1F2B]">Explore By Category</span>
+                <h2 class="text-2xl sm:text-3xl font-black text-[#2D1F18] tracking-tight mt-0.5">Find Your Sound</h2>
+            </div>
+
+            <div class="flex items-center gap-4 overflow-x-auto pb-4 custom-scrollbar snap-x snap-mandatory">
+                
+                <a href="/products/?category=guitars" class="snap-start shrink-0 min-w-[140px] sm:min-w-[160px] group bg-[#FFFFFF] border border-[#DDD2C5] hover:border-[#7A1F2B] p-5 rounded-2xl text-center shadow-sm hover:shadow-md transition-all flex flex-col items-center justify-center space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-[#FAF7F2] border border-[#DDD2C5] group-hover:bg-[#7A1F2B] group-hover:border-[#7A1F2B] flex items-center justify-center transition-colors">
+                        <i data-lucide="guitar" class="w-6 h-6 text-[#6B4A2B] group-hover:text-[#FFFFFF] transition-colors"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-xs text-[#2D1F18] group-hover:text-[#7A1F2B] transition-colors">Guitars</h3>
+                        <p class="text-[10px] text-[#5F564F] mt-0.5">Acoustic & Electric</p>
                     </div>
                 </a>
 
-                <a href="/products/?category=keyboards" class="group min-w-[280px] sm:min-w-[320px] snap-start bg-[#2b1810] border border-amber-900/40 p-6 rounded-2xl shadow-xl hover:border-[#800020] transition-all flex items-center justify-between">
-                    <div class="space-y-1">
-                        <h3 class="font-bold text-base text-amber-100 group-hover:text-amber-400 transition-colors">Keyboards & Pianos</h3>
-                        <p class="text-[11px] text-amber-200/60">Synthesizers & Digital Pianos</p>
+                <a href="/products/?category=keyboards" class="snap-start shrink-0 min-w-[140px] sm:min-w-[160px] group bg-[#FFFFFF] border border-[#DDD2C5] hover:border-[#7A1F2B] p-5 rounded-2xl text-center shadow-sm hover:shadow-md transition-all flex flex-col items-center justify-center space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-[#FAF7F2] border border-[#DDD2C5] group-hover:bg-[#7A1F2B] group-hover:border-[#7A1F2B] flex items-center justify-center transition-colors">
+                        <i data-lucide="piano" class="w-6 h-6 text-[#6B4A2B] group-hover:text-[#FFFFFF] transition-colors"></i>
                     </div>
-                    <div class="w-10 h-10 bg-[#1c0f0a] rounded-xl flex items-center justify-center border border-amber-900/50 group-hover:bg-[#800020] group-hover:border-amber-500/50 transition-colors shrink-0 ml-2">
-                        <i data-lucide="piano" class="w-4 h-4 text-amber-400 group-hover:text-amber-100 transition-colors"></i>
-                    </div>
-                </a>
-
-                <a href="/products/?category=drums" class="group min-w-[280px] sm:min-w-[320px] snap-start bg-[#2b1810] border border-amber-900/40 p-6 rounded-2xl shadow-xl hover:border-[#800020] transition-all flex items-center justify-between">
-                    <div class="space-y-1">
-                        <h3 class="font-bold text-base text-amber-100 group-hover:text-amber-400 transition-colors">Drums & Percussion</h3>
-                        <p class="text-[11px] text-amber-200/60">Acoustic, Electronic & Pads</p>
-                    </div>
-                    <div class="w-10 h-10 bg-[#1c0f0a] rounded-xl flex items-center justify-center border border-amber-900/50 group-hover:bg-[#800020] group-hover:border-amber-500/50 transition-colors shrink-0 ml-2">
-                        <i data-lucide="drum" class="w-4 h-4 text-amber-400 group-hover:text-amber-100 transition-colors"></i>
+                    <div>
+                        <h3 class="font-bold text-xs text-[#2D1F18] group-hover:text-[#7A1F2B] transition-colors">Keyboards</h3>
+                        <p class="text-[10px] text-[#5F564F] mt-0.5">Pianos & Synths</p>
                     </div>
                 </a>
 
-                <a href="/products/?category=traditional" class="group min-w-[280px] sm:min-w-[320px] snap-start bg-[#2b1810] border border-amber-900/40 p-6 rounded-2xl shadow-xl hover:border-[#800020] transition-all flex items-center justify-between">
-                    <div class="space-y-1">
-                        <h3 class="font-bold text-base text-amber-100 group-hover:text-amber-400 transition-colors">Traditional & Folk</h3>
-                        <p class="text-[11px] text-amber-200/60">Madal, Sarangi, Flutes & Tablas</p>
+                <a href="/products/?category=drums" class="snap-start shrink-0 min-w-[140px] sm:min-w-[160px] group bg-[#FFFFFF] border border-[#DDD2C5] hover:border-[#7A1F2B] p-5 rounded-2xl text-center shadow-sm hover:shadow-md transition-all flex flex-col items-center justify-center space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-[#FAF7F2] border border-[#DDD2C5] group-hover:bg-[#7A1F2B] group-hover:border-[#7A1F2B] flex items-center justify-center transition-colors">
+                        <i data-lucide="drum" class="w-6 h-6 text-[#6B4A2B] group-hover:text-[#FFFFFF] transition-colors"></i>
                     </div>
-                    <div class="w-10 h-10 bg-[#1c0f0a] rounded-xl flex items-center justify-center border border-amber-900/50 group-hover:bg-[#800020] group-hover:border-amber-500/50 transition-colors shrink-0 ml-2">
-                        <i data-lucide="music-2" class="w-4 h-4 text-amber-400 group-hover:text-amber-100 transition-colors"></i>
-                    </div>
-                </a>
-
-                <a href="/products/?category=wind" class="group min-w-[280px] sm:min-w-[320px] snap-start bg-[#2b1810] border border-amber-900/40 p-6 rounded-2xl shadow-xl hover:border-[#800020] transition-all flex items-center justify-between">
-                    <div class="space-y-1">
-                        <h3 class="font-bold text-base text-amber-100 group-hover:text-amber-400 transition-colors">Wind & Brass</h3>
-                        <p class="text-[11px] text-amber-200/60">Saxophones, Trumpets & Flutes</p>
-                    </div>
-                    <div class="w-10 h-10 bg-[#1c0f0a] rounded-xl flex items-center justify-center border border-amber-900/50 group-hover:bg-[#800020] group-hover:border-amber-500/50 transition-colors shrink-0 ml-2">
-                        <i data-lucide="wind" class="w-4 h-4 text-amber-400 group-hover:text-amber-100 transition-colors"></i>
+                    <div>
+                        <h3 class="font-bold text-xs text-[#2D1F18] group-hover:text-[#7A1F2B] transition-colors">Drums</h3>
+                        <p class="text-[10px] text-[#5F564F] mt-0.5">Acoustic & Electronic</p>
                     </div>
                 </a>
 
-                <a href="/products/?category=studio" class="group min-w-[280px] sm:min-w-[320px] snap-start bg-[#2b1810] border border-amber-900/40 p-6 rounded-2xl shadow-xl hover:border-[#800020] transition-all flex items-center justify-between">
-                    <div class="space-y-1">
-                        <h3 class="font-bold text-base text-amber-100 group-hover:text-amber-400 transition-colors">Studio & Recording</h3>
-                        <p class="text-[11px] text-amber-200/60">Microphones, Interfaces & Monitors</p>
+                <a href="/products/?category=traditional" class="snap-start shrink-0 min-w-[140px] sm:min-w-[160px] group bg-[#FFFFFF] border border-[#DDD2C5] hover:border-[#7A1F2B] p-5 rounded-2xl text-center shadow-sm hover:shadow-md transition-all flex flex-col items-center justify-center space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-[#FAF7F2] border border-[#DDD2C5] group-hover:bg-[#7A1F2B] group-hover:border-[#7A1F2B] flex items-center justify-center transition-colors">
+                        <i data-lucide="music-2" class="w-6 h-6 text-[#6B4A2B] group-hover:text-[#FFFFFF] transition-colors"></i>
                     </div>
-                    <div class="w-10 h-10 bg-[#1c0f0a] rounded-xl flex items-center justify-center border border-amber-900/50 group-hover:bg-[#800020] group-hover:border-amber-500/50 transition-colors shrink-0 ml-2">
-                        <i data-lucide="mic" class="w-4 h-4 text-amber-400 group-hover:text-amber-100 transition-colors"></i>
+                    <div>
+                        <h3 class="font-bold text-xs text-[#2D1F18] group-hover:text-[#7A1F2B] transition-colors">Traditional</h3>
+                        <p class="text-[10px] text-[#5F564F] mt-0.5">Cultural Folk Gear</p>
                     </div>
                 </a>
 
-                <a href="/products/?category=accessories" class="group min-w-[280px] sm:min-w-[320px] snap-start bg-[#2b1810] border border-amber-900/40 p-6 rounded-2xl shadow-xl hover:border-[#800020] transition-all flex items-center justify-between">
-                    <div class="space-y-1">
-                        <h3 class="font-bold text-base text-amber-100 group-hover:text-amber-400 transition-colors">Accessories & Cables</h3>
-                        <p class="text-[11px] text-amber-200/60">Strings, Cases, Straps & Stands</p>
+                <a href="/products/?category=wind" class="snap-start shrink-0 min-w-[140px] sm:min-w-[160px] group bg-[#FFFFFF] border border-[#DDD2C5] hover:border-[#7A1F2B] p-5 rounded-2xl text-center shadow-sm hover:shadow-md transition-all flex flex-col items-center justify-center space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-[#FAF7F2] border border-[#DDD2C5] group-hover:bg-[#7A1F2B] group-hover:border-[#7A1F2B] flex items-center justify-center transition-colors">
+                        <i data-lucide="wind" class="w-6 h-6 text-[#6B4A2B] group-hover:text-[#FFFFFF] transition-colors"></i>
                     </div>
-                    <div class="w-10 h-10 bg-[#1c0f0a] rounded-xl flex items-center justify-center border border-amber-900/50 group-hover:bg-[#800020] group-hover:border-amber-500/50 transition-colors shrink-0 ml-2">
-                        <i data-lucide="sliders" class="w-4 h-4 text-amber-400 group-hover:text-amber-100 transition-colors"></i>
+                    <div>
+                        <h3 class="font-bold text-xs text-[#2D1F18] group-hover:text-[#7A1F2B] transition-colors">Wind Gear</h3>
+                        <p class="text-[10px] text-[#5F564F] mt-0.5">Flutes & Brass</p>
                     </div>
                 </a>
+
+                <a href="/products/?category=studio" class="snap-start shrink-0 min-w-[140px] sm:min-w-[160px] group bg-[#FFFFFF] border border-[#DDD2C5] hover:border-[#7A1F2B] p-5 rounded-2xl text-center shadow-sm hover:shadow-md transition-all flex flex-col items-center justify-center space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-[#FAF7F2] border border-[#DDD2C5] group-hover:bg-[#7A1F2B] group-hover:border-[#7A1F2B] flex items-center justify-center transition-colors">
+                        <i data-lucide="mic" class="w-6 h-6 text-[#6B4A2B] group-hover:text-[#FFFFFF] transition-colors"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-xs text-[#2D1F18] group-hover:text-[#7A1F2B] transition-colors">Studio Audio</h3>
+                        <p class="text-[10px] text-[#5F564F] mt-0.5">Mics & Speakers</p>
+                    </div>
+                </a>
+
+                <a href="/products/?category=accessories" class="snap-start shrink-0 min-w-[140px] sm:min-w-[160px] group bg-[#FFFFFF] border border-[#DDD2C5] hover:border-[#7A1F2B] p-5 rounded-2xl text-center shadow-sm hover:shadow-md transition-all flex flex-col items-center justify-center space-y-3">
+                    <div class="w-12 h-12 rounded-xl bg-[#FAF7F2] border border-[#DDD2C5] group-hover:bg-[#7A1F2B] group-hover:border-[#7A1F2B] flex items-center justify-center transition-colors">
+                        <i data-lucide="sliders" class="w-6 h-6 text-[#6B4A2B] group-hover:text-[#FFFFFF] transition-colors"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-xs text-[#2D1F18] group-hover:text-[#7A1F2B] transition-colors">Accessories</h3>
+                        <p class="text-[10px] text-[#5F564F] mt-0.5">Strings & Cases</p>
+                    </div>
+                </a>
+
             </div>
         </section>
 
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mb-16">
-            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mb-8">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 pb-4 border-b border-[#DDD2C5]">
                 <div>
-                    <h2 class="text-xs font-bold uppercase tracking-wider text-[#800020]">Handpicked Instruments</h2>
-                    <p class="text-2xl font-black tracking-tight text-stone-900">Featured Acoustic & Electronic Gear</p>
+                    <span class="text-xs font-bold uppercase tracking-widest text-[#7A1F2B]">Handpicked Selection</span>
+                    <h2 class="text-3xl font-black text-[#2D1F18] tracking-tight mt-1">Featured Music Gear</h2>
                 </div>
-                <a href="/products/" class="text-sm font-bold text-stone-900 hover:text-[#800020] transition-colors underline decoration-2 underline-offset-4 flex items-center gap-1">
-                    View Entire Store <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                <a href="/products/" class="inline-flex items-center gap-2 text-sm font-bold text-[#7A1F2B] hover:text-[#5E1721] transition-colors group">
+                    <span>Shop All Products</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
                 </a>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {% for product in products %}
-                <div class="bg-[#2b1810] border border-amber-900/30 rounded-2xl overflow-hidden shadow-xl hover:border-[#800020] transition-all flex flex-col group relative">
+                <div class="bg-[#FFFFFF] border border-[#DDD2C5] rounded-2xl overflow-hidden shadow-sm hover:shadow-lg hover:border-[#7A1F2B] transition-all duration-300 flex flex-col group relative">
                     
                     <a href="/products/{{ product.id }}/" class="flex flex-col flex-grow">
-                        <div class="aspect-square w-full bg-[#1c0f0a] flex items-center justify-center p-4 relative overflow-hidden border-b border-amber-900/30">
-                            <div class="w-full h-full flex flex-col items-center justify-center bg-[#2b1810]/40 rounded-xl border border-amber-900/20">
-                                {% if product.product_image %}
-                                    <img src="{{ product.product_image.url }}" alt="{{ product.name }}" class="w-full h-full object-cover rounded-xl">
-                                {% else %}
-                                    <i data-lucide="music" class="w-12 h-12 text-amber-500/40 group-hover:scale-110 group-hover:text-amber-400 transition-all duration-300"></i>
-                                    <span class="text-[9px] uppercase tracking-widest text-amber-200/50 font-bold mt-2">BajaGaja Collection</span>
-                                {% endif %}
-                            </div>
-                            <span class="absolute top-3 left-3 bg-[#1c0f0a]/90 border border-amber-900/50 backdrop-blur-md text-[9px] font-black uppercase tracking-widest text-amber-400 px-2.5 py-1 rounded-md">
+                        <div class="aspect-square w-full relative overflow-hidden bg-[#FAF7F2] border-b border-[#DDD2C5]/80">
+                            {% if product.product_image %}
+                                <img src="{{ product.product_image.url }}" alt="{{ product.name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            {% else %}
+                                <div class="w-full h-full flex flex-col items-center justify-center p-4 text-center">
+                                    <i data-lucide="music" class="w-12 h-12 text-[#6B4A2B]/40 group-hover:scale-110 group-hover:text-[#7A1F2B] transition-all"></i>
+                                    <span class="text-[10px] uppercase font-bold tracking-widest text-[#5F564F] mt-3">BajaGaja Collection</span>
+                                </div>
+                            {% endif %}
+
+                            <span class="absolute top-4 left-4 bg-[#2D1F18] text-[#FAF7F2] text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md shadow-sm z-10">
                                 {{ product.get_condition_display|default:"Unknown Condition" }}
                             </span>
                         </div>
 
-                        <div class="p-5 flex-grow space-y-4">
+                        <div class="p-5 flex-grow flex flex-col justify-between space-y-3">
                             <div class="space-y-1.5">
-                                <h3 class="font-bold text-amber-100 text-sm tracking-tight group-hover:text-amber-400 transition-colors line-clamp-1">
-                                    {{ product.name| truncatechars:30 |default:"Unnamed Instrument" }}
+                                <h3 class="font-bold text-[#2D1F18] text-base group-hover:text-[#7A1F2B] transition-colors line-clamp-1">
+                                    {{ product.name|truncatechars:30|default:"Unnamed Instrument" }}
                                 </h3>
-                                <p class="text-[11px] text-amber-200/60 font-medium leading-relaxed">
+                                <p class="text-xs text-[#5F564F] line-clamp-2 leading-relaxed">
                                     {{ product.description|truncatechars:70|default:"No description available." }}
                                 </p>
                             </div>
                         </div>
                     </a>
 
-                    <div class="p-5 pt-0 border-t border-amber-900/0">
-                        <div class="flex items-center justify-between pt-3 border-t border-amber-900/30">
-                            <div class="flex flex-col">
-                                <span class="text-[9px] uppercase font-bold tracking-wider text-amber-200/50">Price</span>
-                                <span class="text-base font-mono font-black text-amber-100">Rs. {{ product.price|floatformat:2 }}</span>
+                    <div class="p-5 pt-0 mt-auto">
+                        <div class="pt-3 border-t border-[#DDD2C5]/70 flex items-center justify-between">
+                            <div>
+                                <span class="block text-[10px] font-bold uppercase text-[#5F564F] tracking-wider">Price</span>
+                                <span class="text-lg font-extrabold text-[#7A1F2B]">Rs. {{ product.price|floatformat:2 }}</span>
                             </div>
 
                             {% if user.is_authenticated and not user.is_staff %}
-                                <a href="/cart/add/{{ product.id }}/" class="bg-[#1c0f0a] hover:bg-[#800020] text-amber-200 hover:text-white w-9 h-9 rounded-xl transition-all border border-amber-900/50 hover:border-amber-500/50 flex items-center justify-center shadow-lg z-10">
+                                <a href="/cart/add/{{ product.id }}/" class="bg-[#7A1F2B] hover:bg-[#5E1721] text-[#FAF7F2] px-3.5 py-2.5 rounded-xl font-bold text-xs transition-colors shadow-sm flex items-center gap-1.5 z-10" title="Add to Cart">
                                     <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                                    <span>Add to Cart</span>
                                 </a>
                             {% elif user.is_staff %}
-                                <a href="/dashboard/admin/?section=product-management" class="bg-[#1c0f0a] hover:bg-[#800020] text-amber-200 hover:text-white w-9 h-9 rounded-xl transition-all border border-amber-900/50 hover:border-amber-500/50 flex items-center justify-center shadow-lg z-10">
+                                <a href="/dashboard/admin/?section=product-management" class="bg-[#6B4A2B] hover:bg-[#2D1F18] text-[#FAF7F2] px-3.5 py-2.5 rounded-xl font-bold text-xs transition-colors shadow-sm flex items-center gap-1.5 z-10" title="Manage Item">
                                     <i data-lucide="settings" class="w-4 h-4"></i>
+                                    <span>Manage</span>
                                 </a>
                             {% else %}
-                                <a href="/login/" class="bg-[#1c0f0a] hover:bg-[#800020] text-amber-200 hover:text-white w-9 h-9 rounded-xl transition-all border border-amber-900/50 hover:border-amber-500/50 flex items-center justify-center shadow-lg z-10">
+                                <a href="/login/" class="bg-[#FAF7F2] hover:bg-[#7A1F2B] text-[#2D1F18] hover:text-[#FAF7F2] border border-[#DDD2C5] px-3.5 py-2.5 rounded-xl font-bold text-xs transition-all shadow-sm flex items-center gap-1.5 z-10" title="Sign In to Shop">
                                     <i data-lucide="log-in" class="w-4 h-4"></i>
+                                    <span>Sign In</span>
                                 </a>
                             {% endif %}
                         </div>
                     </div>
+
                 </div>
                 {% empty %}
-                <div class="col-span-full flex flex-col items-center justify-center text-center py-20 border border-dashed border-amber-900/40 rounded-3xl bg-[#2b1810]">
-                    <div class="w-16 h-16 bg-[#1c0f0a] rounded-2xl flex items-center justify-center border border-amber-900/50 mb-4">
-                        <i data-lucide="package-open" class="w-8 h-8 text-amber-400"></i>
+                <div class="col-span-full bg-[#FFFFFF] border border-dashed border-[#DDD2C5] rounded-3xl p-12 text-center space-y-4">
+                    <div class="w-16 h-16 rounded-2xl bg-[#FAF7F2] border border-[#DDD2C5] flex items-center justify-center mx-auto text-[#6B4A2B]">
+                        <i data-lucide="package-open" class="w-8 h-8"></i>
                     </div>
-                    <h3 class="text-amber-100 font-bold text-base tracking-tight">No Products Found</h3>
-                    <p class="text-xs text-amber-200/60 mt-1 max-w-xs leading-relaxed">We couldn't find any instruments matching the current criteria. Check back later.</p>
+                    <div class="max-w-sm mx-auto space-y-1">
+                        <h3 class="font-bold text-lg text-[#2D1F18]">No Products Available</h3>
+                        <p class="text-xs text-[#5F564F]">We are currently updating our instrument inventory. Please check back soon!</p>
+                    </div>
                 </div>
                 {% endfor %}
+            </div>
+        </section>
+
+        <section class="bg-[#6B4A2B] text-[#FAF7F2] py-16 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-6">
+                <span class="px-3.5 py-1 rounded-full bg-[#C89B3C]/20 border border-[#C89B3C]/40 text-[#C89B3C] text-xs font-bold uppercase tracking-wider">
+                    Music Store Guarantee
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-black text-[#FAF7F2]">Ready to Start Playing?</h2>
+                <p class="text-sm sm:text-base text-[#FAF7F2]/85 max-w-xl mx-auto leading-relaxed">
+                    Whether you are purchasing your very first acoustic guitar or setting up a complete studio, our team is here to assist you every step of the way.
+                </p>
+                <div class="pt-2 flex justify-center gap-4">
+                    <a href="/products/" class="bg-[#C89B3C] hover:bg-[#FAF7F2] text-[#2D1F18] font-bold px-8 py-3.5 rounded-xl transition-all shadow-md text-sm">
+                        Browse All Products
+                    </a>
+                </div>
             </div>
         </section>
 
