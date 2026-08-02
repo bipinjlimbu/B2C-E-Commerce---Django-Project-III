@@ -4,7 +4,6 @@ from django.contrib import messages
 from django.db.models import Q
 from ..models import Brand, Product, Review, Wishlist
 
-@login_required
 def products_view(request):
     products = Product.objects.all().order_by('-created_at')
     brands = Brand.objects.all().order_by('name')
@@ -223,7 +222,6 @@ def delete_product_view(request, product_id):
     messages.success(request, 'Product deleted successfully.')
     return redirect('/dashboard/admin/?section=product-management')
 
-@login_required
 def single_product_view(request, product_id):
     product = Product.objects.get(id=product_id)
     review = Review.objects.filter(product=product).order_by('-created_at')
@@ -232,9 +230,10 @@ def single_product_view(request, product_id):
         messages.error(request, "Product not found.")
         return redirect('/products/')
     
-    if Wishlist.objects.filter(customer=request.user, product=product).exists():
-        product.in_wishlist = True
-    else:
-        product.in_wishlist = False
+    if request.user.is_authenticated:
+        if Wishlist.objects.filter(customer=request.user, product=product).exists():
+            product.in_wishlist = True
+        else:
+            product.in_wishlist = False
     
     return render(request, 'main/single_product_page.html', {'product': product, 'reviews': review})
