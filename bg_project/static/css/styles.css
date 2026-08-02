@@ -3597,6 +3597,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(180 71 58 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-\[\#DDD2C5\]\/50:hover {
+  background-color: rgb(221 210 197 / 0.5);
+}
+
 .hover\:text-\[\#800020\]:hover {
   --tw-text-opacity: 1;
   color: rgb(128 0 32 / var(--tw-text-opacity));
