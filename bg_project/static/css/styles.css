@@ -416,7 +416,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: none;
 }
 
-.translate-x-\[120\%\], .translate-x-1, .-translate-y-1, .rotate-180, .transform, .hover\:rotate-0, .hover\:scale-110, .hover\:scale-105, .active\:scale-95, .group-hover\:translate-x-1, .group-hover\:translate-x-0\.5, .group-hover\:translate-x-0, .group-hover\:scale-110, .group-hover\:scale-105, .peer-checked\:after\:translate-x-full::after, .lg\:rotate-1 {
+.translate-x-\[120\%\], .translate-x-1, .-translate-y-1, .-translate-y-1\/2, .rotate-180, .transform, .hover\:rotate-0, .hover\:scale-110, .hover\:scale-105, .active\:scale-95, .group-hover\:translate-x-1, .group-hover\:translate-x-0\.5, .group-hover\:translate-x-0, .group-hover\:scale-110, .group-hover\:scale-105, .peer-checked\:after\:translate-x-full::after, .lg\:rotate-1 {
   --tw-translate-x: 0;
   --tw-translate-y: 0;
   --tw-rotate: 0;
@@ -436,7 +436,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(229 231 235 / var(--tw-border-opacity));
 }
 
-.shadow-sm, .shadow-2xl, .shadow-md, .shadow-lg, .shadow-xl, .shadow-inner, .shadow-none, .hover\:shadow-md, .hover\:shadow-xl, .hover\:shadow-lg, .hover\:shadow-sm {
+.shadow-sm, .shadow-2xl, .shadow-md, .shadow-lg, .shadow-xl, .shadow-inner, .shadow-none, .hover\:shadow-md, .hover\:shadow-xl, .hover\:shadow-lg, .hover\:shadow-sm, .hover\:shadow-2xl {
   --tw-ring-offset-shadow: 0 0 #0000;
   --tw-ring-shadow: 0 0 #0000;
   --tw-shadow: 0 0 #0000;
@@ -454,7 +454,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-shadow-colored: 0 0 #0000;
 }
 
-.blur-3xl, .filter {
+.blur-3xl, .blur-2xl, .filter {
   --tw-blur: var(--tw-empty,/*!*/ /*!*/);
   --tw-brightness: var(--tw-empty,/*!*/ /*!*/);
   --tw-contrast: var(--tw-empty,/*!*/ /*!*/);
@@ -467,7 +467,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
-.backdrop-blur-md, .backdrop-blur-lg, .backdrop-blur-sm {
+.backdrop-blur-md, .backdrop-blur-lg, .backdrop-blur-sm, .backdrop-blur-xl {
   --tw-backdrop-blur: var(--tw-empty,/*!*/ /*!*/);
   --tw-backdrop-brightness: var(--tw-empty,/*!*/ /*!*/);
   --tw-backdrop-contrast: var(--tw-empty,/*!*/ /*!*/);
@@ -623,6 +623,26 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .right-1\.5 {
   right: 0.375rem;
+}
+
+.-right-20 {
+  right: -5rem;
+}
+
+.top-1\/2 {
+  top: 50%;
+}
+
+.-left-20 {
+  left: -5rem;
+}
+
+.-right-12 {
+  right: -3rem;
+}
+
+.-top-12 {
+  top: -3rem;
 }
 
 .z-\[100\] {
@@ -904,6 +924,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   height: 24rem;
 }
 
+.h-80 {
+  height: 20rem;
+}
+
+.h-40 {
+  height: 10rem;
+}
+
 .max-h-full {
   max-height: 100%;
 }
@@ -1036,6 +1064,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 24rem;
 }
 
+.w-40 {
+  width: 10rem;
+}
+
 .min-w-\[320px\] {
   min-width: 320px;
 }
@@ -1132,6 +1164,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .-translate-y-1 {
   --tw-translate-y: -0.25rem;
+  transform: var(--tw-transform);
+}
+
+.-translate-y-1\/2 {
+  --tw-translate-y: -50%;
   transform: var(--tw-transform);
 }
 
@@ -1651,6 +1688,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(221 210 197 / 0.7);
 }
 
+.border-\[\#FAF7F2\]\/10 {
+  border-color: rgb(250 247 242 / 0.1);
+}
+
 .border-t-transparent {
   border-top-color: transparent;
 }
@@ -1913,6 +1954,22 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(180 71 58 / 0.1);
 }
 
+.bg-\[\#5E1721\]\/60 {
+  background-color: rgb(94 23 33 / 0.6);
+}
+
+.bg-\[\#2D1F18\]\/70 {
+  background-color: rgb(45 31 24 / 0.7);
+}
+
+.bg-\[\#FAF7F2\]\/5 {
+  background-color: rgb(250 247 242 / 0.05);
+}
+
+.bg-\[\#7A1F2B\]\/10 {
+  background-color: rgb(122 31 43 / 0.1);
+}
+
 .bg-gradient-to-b {
   background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
 }
@@ -1953,6 +2010,21 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(45 31 24 / 0));
 }
 
+.from-\[\#5E1721\] {
+  --tw-gradient-from: #5E1721;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(94 23 33 / 0));
+}
+
+.from-\[\#C89B3C\] {
+  --tw-gradient-from: #C89B3C;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(200 155 60 / 0));
+}
+
+.from-\[\#FAF7F2\]\/10 {
+  --tw-gradient-from: rgb(250 247 242 / 0.1);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgb(250 247 242 / 0));
+}
+
 .via-\[\#3a1d14\] {
   --tw-gradient-stops: var(--tw-gradient-from), #3a1d14, var(--tw-gradient-to, rgb(58 29 20 / 0));
 }
@@ -1963,6 +2035,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .via-\[\#6B4A2B\] {
   --tw-gradient-stops: var(--tw-gradient-from), #6B4A2B, var(--tw-gradient-to, rgb(107 74 43 / 0));
+}
+
+.via-\[\#7A1F2B\] {
+  --tw-gradient-stops: var(--tw-gradient-from), #7A1F2B, var(--tw-gradient-to, rgb(122 31 43 / 0));
+}
+
+.via-\[\#E2C07B\] {
+  --tw-gradient-stops: var(--tw-gradient-from), #E2C07B, var(--tw-gradient-to, rgb(226 192 123 / 0));
 }
 
 .to-\[\#2b1810\] {
@@ -1983,6 +2063,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .to-\[\#7A1F2B\] {
   --tw-gradient-to: #7A1F2B;
+}
+
+.to-\[\#2D1F18\] {
+  --tw-gradient-to: #2D1F18;
+}
+
+.to-\[\#C89B3C\] {
+  --tw-gradient-to: #C89B3C;
+}
+
+.to-\[\#FAF7F2\]\/5 {
+  --tw-gradient-to: rgb(250 247 242 / 0.05);
 }
 
 .bg-clip-text {
@@ -2448,6 +2540,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   line-height: 1.15;
 }
 
+.leading-\[1\.12\] {
+  line-height: 1.12;
+}
+
 .tracking-tight {
   letter-spacing: -0.025em;
 }
@@ -2794,6 +2890,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(180 71 58 / var(--tw-text-opacity));
 }
 
+.text-\[\#FAF7F2\]\/60 {
+  color: rgb(250 247 242 / 0.6);
+}
+
 .underline {
   text-decoration: underline;
 }
@@ -2932,6 +3032,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   filter: var(--tw-filter);
 }
 
+.blur-2xl {
+  --tw-blur: blur(40px);
+  filter: var(--tw-filter);
+}
+
 .filter {
   filter: var(--tw-filter);
 }
@@ -2948,6 +3053,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .backdrop-blur-sm {
   --tw-backdrop-blur: blur(4px);
+  backdrop-filter: var(--tw-backdrop-filter);
+}
+
+.backdrop-blur-xl {
+  --tw-backdrop-blur: blur(24px);
   backdrop-filter: var(--tw-backdrop-filter);
 }
 
@@ -3439,6 +3549,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+.hover\:shadow-2xl:hover {
+  --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 .hover\:shadow-\[\#800020\]\/40:hover {
   --tw-shadow-color: rgb(128 0 32 / 0.4);
   --tw-shadow: var(--tw-shadow-colored);
@@ -3643,6 +3759,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .sm\:block {
     display: block;
+  }
+
+  .sm\:inline {
+    display: inline;
   }
 
   .sm\:flex {
@@ -3864,6 +3984,11 @@ Ensure the default browser behavior of the `hidden` attribute.
     grid-column: span 7 / span 7;
   }
 
+  .lg\:mx-0 {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
   .lg\:block {
     display: block;
   }
@@ -3915,6 +4040,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .lg\:items-center {
     align-items: center;
+  }
+
+  .lg\:justify-start {
+    justify-content: flex-start;
   }
 
   .lg\:justify-end {
@@ -3995,6 +4124,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .lg\:pr-8 {
     padding-right: 2rem;
+  }
+
+  .lg\:text-left {
+    text-align: left;
   }
 
   .lg\:text-right {
