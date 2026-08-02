@@ -8,47 +8,54 @@
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
 </head>
 
-<body class="bg-amber-50/30 text-stone-900 font-sans flex flex-col min-h-screen">
+<body class="bg-[#FAF7F2] text-[#5F564F] font-sans flex flex-col min-h-screen selection:bg-[#7A1F2B] selection:text-white">
     {% include 'components/_navbar.html' %}
 
     {% include 'components/_messages.html' %}
 
-    <main class="flex-grow flex items-center justify-center py-12 px-4">
-        <div class="success-wrapper bg-[#2b1810] rounded-[2rem] shadow-2xl max-w-md w-full p-10 text-center border border-amber-900/40 border-b-[10px] border-b-emerald-600">
+    <main class="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full bg-white border border-[#DDD2C5] rounded-3xl p-8 sm:p-10 shadow-sm text-center relative overflow-hidden">
             
-            <div class="status-img flex justify-center mb-6">
-                <div class="bg-[#1c0f0a] p-5 rounded-full shadow-inner border border-amber-900/50 relative group">
-                    <i data-lucide="music" class="w-16 h-16 text-amber-400 stroke-[2.2px] animate-pulse"></i>
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <i data-lucide="check" class="w-7 h-7 text-emerald-400 stroke-[3px]"></i>
-                    </div>
+            <div class="absolute -top-12 -right-12 w-32 h-32 bg-[#5B8A5A]/10 rounded-full blur-2xl pointer-events-none"></div>
+            <div class="absolute -bottom-12 -left-12 w-32 h-32 bg-[#C89B3C]/10 rounded-full blur-2xl pointer-events-none"></div>
+
+            <div class="w-20 h-20 bg-[#5B8A5A]/10 border border-[#5B8A5A]/20 rounded-2xl mx-auto mb-6 flex items-center justify-center text-[#5B8A5A] shadow-inner relative">
+                <i data-lucide="check-circle-2" class="w-10 h-10"></i>
+            </div>
+
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-[#2D1F18] tracking-tight mb-2">
+                Order Confirmed
+            </h1>
+            <p class="text-xs text-[#5F564F] leading-relaxed mb-6">
+                Thank you for your purchase! Your musical instrument order has been successfully placed.
+            </p>
+
+            <div class="bg-[#FAF7F2] border border-[#DDD2C5] rounded-2xl p-5 mb-8 text-left space-y-3.5 divide-y divide-[#DDD2C5]">
+                <div class="flex justify-between items-center pt-0">
+                    <span class="text-[11px] font-bold text-[#6B4A2B] uppercase tracking-wider">Order ID</span>
+                    <span class="text-sm font-extrabold text-[#2D1F18] font-mono">#{{ order.id }}</span>
+                </div>
+                <div class="flex justify-between items-center pt-3">
+                    <span class="text-[11px] font-bold text-[#6B4A2B] uppercase tracking-wider">Transaction Reference</span>
+                    <span class="text-xs font-semibold text-[#5F564F] font-mono truncate max-w-[180px] sm:max-w-[200px] text-right">{{ order.transaction_id }}</span>
+                </div>
+                <div class="flex justify-between items-center pt-3">
+                    <span class="text-[11px] font-bold text-[#6B4A2B] uppercase tracking-wider">Total Amount Paid</span>
+                    <span class="text-lg font-black text-[#7A1F2B]">Rs. {{ order.total_amount }}</span>
                 </div>
             </div>
 
-            <h2 class="text-3xl font-black text-amber-100 tracking-tight uppercase mb-1">
-                Order <span class="text-emerald-400">Confirmed</span>
-            </h2>
-            <p class="text-amber-200/60 mb-8 text-sm font-medium">Your instrument purchase has been successfully processed.</p>
-
-            <div class="order-info bg-[#1c0f0a] rounded-2xl p-6 mb-8 text-left border border-amber-900/50 divide-y divide-amber-900/30">
-                <p class="flex justify-between items-center py-3">
-                    <strong class="text-amber-200/50 uppercase text-[10px] tracking-[0.15em] font-bold">Order ID</strong> 
-                    <span class="text-amber-100 font-extrabold font-mono">#{{ order.id }}</span>
-                </p>
-                <p class="flex justify-between items-center py-3">
-                    <strong class="text-amber-200/50 uppercase text-[10px] tracking-[0.15em] font-bold">Transaction Ref</strong> 
-                    <span class="text-amber-200/80 font-mono text-xs font-medium truncate ml-4">{{ order.transaction_id }}</span>
-                </p>
-                <p class="flex justify-between items-baseline py-3 pt-4">
-                    <strong class="text-amber-200/50 uppercase text-[10px] tracking-[0.15em] font-bold">Total Settled</strong> 
-                    <span class="text-emerald-400 font-black text-xl font-mono">Rs. {{ order.total_amount }}</span>
-                </p>
+            <div class="space-y-3">
+                <a href="/" class="w-full bg-[#7A1F2B] hover:bg-[#5E1721] text-white font-bold py-3.5 px-6 rounded-xl text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md hover:shadow-lg">
+                    <span>Return to Shop</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4 text-[#C89B3C]"></i>
+                </a>
             </div>
 
-            <a href="/" class="btn-main group flex items-center justify-center w-full bg-[#800020] hover:bg-[#500014] text-amber-50 py-4 rounded-2xl font-bold uppercase text-xs tracking-widest transition-all active:scale-95 shadow-lg hover:shadow-[#800020]/40 border border-amber-500/20">
-                Return to Shop
-                <i data-lucide="arrow-right" class="ml-2 w-4 h-4 text-amber-400 group-hover:translate-x-1 transition-transform"></i>
-            </a>
+            <div class="mt-8 pt-6 border-t border-[#DDD2C5] flex items-center justify-center gap-2 text-[11px] text-[#5F564F]">
+                <i data-lucide="truck" class="w-4 h-4 text-[#C89B3C]"></i>
+                <span>We are preparing your items for safe delivery.</span>
+            </div>
         </div>
     </main>
 
