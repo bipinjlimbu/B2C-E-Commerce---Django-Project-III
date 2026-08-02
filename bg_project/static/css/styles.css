@@ -1531,6 +1531,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(120 53 15 / 0.1);
 }
 
+.divide-\[\#DDD2C5\] > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-opacity: 1;
+  border-color: rgb(221 210 197 / var(--tw-divide-opacity));
+}
+
 .overflow-hidden {
   overflow: hidden;
 }
@@ -1790,6 +1795,15 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .border-\[\#DDD2C5\]\/30 {
   border-color: rgb(221 210 197 / 0.3);
+}
+
+.border-\[\#7A1F2B\]\/20 {
+  border-color: rgb(122 31 43 / 0.2);
+}
+
+.border-\[\#B4473A\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(180 71 58 / var(--tw-border-opacity));
 }
 
 .border-t-transparent {
@@ -3332,6 +3346,46 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-size: 16px 16px;
 }
 
+.selection\:bg-\[\#7A1F2B\] *::-moz-selection {
+  --tw-bg-opacity: 1;
+  background-color: rgb(122 31 43 / var(--tw-bg-opacity));
+}
+
+.selection\:bg-\[\#7A1F2B\] *::selection {
+  --tw-bg-opacity: 1;
+  background-color: rgb(122 31 43 / var(--tw-bg-opacity));
+}
+
+.selection\:text-white *::-moz-selection {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.selection\:text-white *::selection {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.selection\:bg-\[\#7A1F2B\]::-moz-selection {
+  --tw-bg-opacity: 1;
+  background-color: rgb(122 31 43 / var(--tw-bg-opacity));
+}
+
+.selection\:bg-\[\#7A1F2B\]::selection {
+  --tw-bg-opacity: 1;
+  background-color: rgb(122 31 43 / var(--tw-bg-opacity));
+}
+
+.selection\:text-white::-moz-selection {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.selection\:text-white::selection {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
 .file\:mr-3::file-selector-button {
   margin-right: 0.75rem;
 }
@@ -3487,6 +3541,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(245 158 11 / var(--tw-border-opacity));
 }
 
+.focus-within\:border-\[\#7A1F2B\]:focus-within {
+  --tw-border-opacity: 1;
+  border-color: rgb(122 31 43 / var(--tw-border-opacity));
+}
+
 .focus-within\:bg-white:focus-within {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -3583,6 +3642,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .hover\:border-\[\#B4473A\]:hover {
   --tw-border-opacity: 1;
   border-color: rgb(180 71 58 / var(--tw-border-opacity));
+}
+
+.hover\:border-\[\#B4473A\]\/30:hover {
+  border-color: rgb(180 71 58 / 0.3);
 }
 
 .hover\:bg-\[\#5c0017\]:hover {
@@ -3708,6 +3771,15 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .hover\:bg-\[\#B4473A\]\/10:hover {
   background-color: rgb(180 71 58 / 0.1);
+}
+
+.hover\:bg-white:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-\[\#DDD2C5\]\/30:hover {
+  background-color: rgb(221 210 197 / 0.3);
 }
 
 .hover\:text-\[\#800020\]:hover {
@@ -4426,6 +4498,11 @@ Ensure the default browser behavior of the `hidden` attribute.
     padding-bottom: 3rem;
   }
 
+  .lg\:py-14 {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
   .lg\:pt-0 {
     padding-top: 0px;
   }
@@ -4464,6 +4541,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 @media (min-width: 1280px) {
+  .xl\:col-span-8 {
+    grid-column: span 8 / span 8;
+  }
+
+  .xl\:col-span-4 {
+    grid-column: span 4 / span 4;
+  }
+
   .xl\:w-auto {
     width: auto;
   }
