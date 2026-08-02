@@ -669,6 +669,14 @@ Ensure the default browser behavior of the `hidden` attribute.
   bottom: -1.5rem;
 }
 
+.-right-8 {
+  right: -2rem;
+}
+
+.-bottom-8 {
+  bottom: -2rem;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -975,6 +983,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   min-height: 200px;
 }
 
+.min-h-\[240px\] {
+  min-height: 240px;
+}
+
 .w-full {
   width: 100%;
 }
@@ -1117,6 +1129,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .min-w-\[800px\] {
   min-width: 800px;
+}
+
+.min-w-\[130px\] {
+  min-width: 130px;
+}
+
+.min-w-0 {
+  min-width: 0px;
 }
 
 .max-w-4xl {
@@ -1697,6 +1717,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .border-\[\#5B8A5A\]\/20 {
   border-color: rgb(91 138 90 / 0.2);
+}
+
+.border-\[\#7A1F2B\]\/30 {
+  border-color: rgb(122 31 43 / 0.3);
+}
+
+.border-\[\#5B8A5A\]\/30 {
+  border-color: rgb(91 138 90 / 0.3);
+}
+
+.border-\[\#B4473A\]\/30 {
+  border-color: rgb(180 71 58 / 0.3);
 }
 
 .border-t-transparent {
