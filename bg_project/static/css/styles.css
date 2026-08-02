@@ -811,6 +811,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: block;
 }
 
+.inline-block {
+  display: inline-block;
+}
+
 .inline {
   display: inline;
 }
@@ -3074,6 +3078,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(252 211 77 / var(--tw-border-opacity));
 }
 
+.after\:border-gray-300::after {
+  content: var(--tw-content);
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity));
+}
+
 .after\:bg-\[\#7A1F2B\]::after {
   content: var(--tw-content);
   --tw-bg-opacity: 1;
@@ -3514,6 +3524,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .peer:checked ~ .peer-checked\:bg-\[\#800020\] {
   --tw-bg-opacity: 1;
   background-color: rgb(128 0 32 / var(--tw-bg-opacity));
+}
+
+.peer:checked ~ .peer-checked\:bg-\[\#7A1F2B\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(122 31 43 / var(--tw-bg-opacity));
 }
 
 .peer:checked ~ .peer-checked\:after\:translate-x-full::after {
