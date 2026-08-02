@@ -1,79 +1,105 @@
-<nav class="bg-amber-50 border-b border-amber-200/80 sticky top-0 z-50 font-sans text-amber-950 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16 items-center">
-            
-            <div class="flex items-center gap-8">
-                <a href="/" class="flex items-center gap-2 text-xl font-black tracking-tight shrink-0">
-                    <i data-lucide="music" class="w-6 h-6 text-[#800020] stroke-[2.5]"></i>
-                    <span class="text-amber-950">BAJA<span class="text-[#800020]">GAJA</span></span>
-                </a>
-                
-                <div class="hidden md:flex items-center gap-6 text-sm font-semibold text-amber-900/80">
-                    <a href="/products/" class="hover:text-[#800020] transition-colors">Shop All</a>
-                    <a href="/products/?category=guitars" class="hover:text-[#800020] transition-colors">Guitars</a>
-                    <a href="/products/?category=keyboards" class="hover:text-[#800020] transition-colors">Keyboards</a>
-                    <a href="/products/?category=traditional" class="hover:text-[#800020] transition-colors">Traditional</a>
-                    <a href="/products/?category=drums" class="hover:text-[#800020] transition-colors">Drums</a>
+<header class="sticky top-0 z-50 bg-[#FAF7F2]/95 backdrop-blur-md border-b border-[#DDD2C5] font-sans">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20 gap-4 lg:gap-8">
+      
+      <div class="flex items-center gap-8">
+        <a href="/" class="flex items-center gap-3 group shrink-0">
+          <div class="w-10 h-10 rounded-xl bg-[#7A1F2B] text-[#FFFFFF] flex items-center justify-center shadow-md group-hover:bg-[#5E1721] transition-all">
+            <i data-lucide="music" class="w-5 h-5 text-[#C89B3C]"></i>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-xl font-black tracking-wider text-[#2D1F18] leading-none">BAJA<span class="text-[#7A1F2B]">GAJA</span></span>
+            <span class="text-[10px] font-bold text-[#6B4A2B] tracking-widest uppercase mt-0.5">Music & Sound</span>
+          </div>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-[#5F564F]">
+          <a href="/products/" class="hover:text-[#7A1F2B] transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#7A1F2B] hover:after:w-full after:transition-all">Shop All</a>
+          <a href="/products/?category=guitars" class="hover:text-[#7A1F2B] transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#7A1F2B] hover:after:w-full after:transition-all">Guitars</a>
+          <a href="/products/?category=keyboards" class="hover:text-[#7A1F2B] transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#7A1F2B] hover:after:w-full after:transition-all">Keyboards</a>
+          <a href="/products/?category=traditional" class="hover:text-[#7A1F2B] transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#7A1F2B] hover:after:w-full after:transition-all">Traditional</a>
+          <a href="/products/?category=drums" class="hover:text-[#7A1F2B] transition-colors py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-[#7A1F2B] hover:after:w-full after:transition-all">Drums</a>
+        </nav>
+      </div>
+
+      <div class="flex-1 max-w-md hidden sm:block">
+        <form action="/products/" method="GET" class="relative group">
+          <input type="text" name="search" value="{{ request.GET.search }}" placeholder="Search instruments, gear..." 
+            class="w-full bg-[#FFFFFF] border border-[#DDD2C5] rounded-full pl-11 pr-20 py-2 text-sm text-[#2D1F18] placeholder-[#5F564F]/60 focus:outline-none focus:border-[#7A1F2B] focus:ring-1 focus:ring-[#7A1F2B] shadow-sm transition-all">
+          <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#5F564F]/70 group-focus-within:text-[#7A1F2B]">
+            <i data-lucide="search" class="w-4 h-4"></i>
+          </div>
+          <button type="submit" class="absolute inset-y-1 right-1 px-4 bg-[#7A1F2B] hover:bg-[#5E1721] text-[#FFFFFF] text-xs font-semibold rounded-full flex items-center justify-center transition-colors">
+            Search
+          </button>
+        </form>
+      </div>
+
+      <div class="flex items-center gap-3 sm:gap-4">
+        {% if user.is_authenticated and not user.is_staff %}
+          <a href="/wishlist/" class="p-2.5 text-[#5F564F] hover:text-[#7A1F2B] hover:bg-[#FFFFFF] rounded-full border border-transparent hover:border-[#DDD2C5] transition-all relative" title="Wishlist">
+            <i data-lucide="heart" class="w-5 h-5"></i>
+          </a>
+
+          <a href="/cart/" class="p-2.5 text-[#5F564F] hover:text-[#7A1F2B] hover:bg-[#FFFFFF] rounded-full border border-transparent hover:border-[#DDD2C5] transition-all relative" title="Shopping Cart">
+            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+            {% if user.is_authenticated and user.cart.items.exists %}
+              <span class="absolute top-0 right-0 w-5 h-5 bg-[#7A1F2B] text-[#FFFFFF] text-[11px] font-bold rounded-full flex items-center justify-center border-2 border-[#FAF7F2] shadow-sm">
+                {{ user.cart.items.count }}
+              </span>
+            {% endif %}
+          </a>
+        {% endif %}
+
+        <div class="h-6 w-px bg-[#DDD2C5]"></div>
+
+        {% if user.is_authenticated %}
+          <div class="flex items-center gap-2">
+            <a href="/profile/" class="flex items-center gap-2.5 group p-1 pr-3 rounded-full hover:bg-[#FFFFFF] transition-all border border-transparent hover:border-[#DDD2C5]">
+              {% if user.profile_picture %}
+                <img src="{{ user.profile_picture.url }}" alt="Profile" class="w-8 h-8 rounded-full object-cover border-2 border-[#C89B3C]">
+              {% else %}
+                <div class="w-8 h-8 rounded-full bg-[#FAF7F2] border-2 border-[#C89B3C] flex items-center justify-center text-[#7A1F2B]">
+                  <i data-lucide="user" class="w-4 h-4"></i>
                 </div>
-            </div>
+              {% endif %}
+              <span class="text-sm font-semibold hidden lg:block text-[#2D1F18] group-hover:text-[#7A1F2B] transition-colors">{{ user.username }}</span>
+            </a>
+            
+            <form action="/logout/" method="POST" class="inline">
+              {% csrf_token %}
+              <button type="submit" class="p-2 text-[#5F564F] hover:text-[#B4473A] hover:bg-[#FFFFFF] rounded-full border border-transparent hover:border-[#DDD2C5] transition-colors" title="Log Out">
+                <i data-lucide="log-out" class="w-4 h-4"></i>
+              </button>
+            </form>
+          </div>
+        {% else %}
+          <div class="flex items-center gap-2 text-sm font-semibold">
+            <a href="/login/" class="text-[#2D1F18] hover:text-[#7A1F2B] px-3 py-2 rounded-lg hover:bg-[#FFFFFF] transition-all">Sign In</a>
+            <a href="/register/" class="bg-[#7A1F2B] hover:bg-[#5E1721] text-[#FFFFFF] px-4 py-2 rounded-xl transition-all shadow-sm font-semibold">Register</a>
+          </div>
+        {% endif %}
+      </div>
 
-            <div class="flex-1 max-w-md mx-6 hidden sm:block">
-                <form action="/products/" method="GET" class="relative">
-                    <input type="text" name="search" value="{{ request.GET.search }}" placeholder="Search instruments, gear..." 
-                        class="w-full bg-white border border-amber-200 rounded-xl pl-4 pr-9 py-1.5 text-sm text-amber-950 placeholder-amber-900/40 focus:outline-none focus:ring-2 focus:ring-[#800020] focus:border-[#800020] transition-all">
-                    <button type="submit" class="absolute inset-y-0 right-0 flex items-center pr-3 text-amber-800/60 hover:text-[#800020]">
-                        <i data-lucide="search" class="w-4 h-4"></i>
-                    </button>
-                </form>
-            </div>
-
-            <div class="flex items-center gap-4">
-
-                {% if user.is_authenticated and not user.is_staff %}
-                    <a href="/wishlist/" class="p-1.5 text-amber-900/70 hover:text-[#800020] transition-colors relative">
-                        <i data-lucide="heart" class="w-5 h-5"></i>
-                    </a>
-
-                    <a href="/cart/" class="p-1.5 text-amber-900/70 hover:text-[#800020] transition-colors relative">
-                        <i data-lucide="shopping-bag" class="w-5 h-5"></i>
-                        {% if user.is_authenticated and user.cart.items.exists %}
-                            <span class="absolute top-0 right-0 w-4 h-4 bg-[#800020] text-white text-[10px] font-black rounded-full flex items-center justify-center transform translate-x-1 -translate-y-1">
-                                {{ user.cart.items.count }}
-                            </span>
-                        {% endif %}
-                    </a>
-                {% endif %}
-
-                <div class="h-6 w-[1px] bg-amber-200"></div>
-
-                {% if user.is_authenticated %}
-                    <div class="flex items-center gap-3">
-                        <a href="/profile/" class="flex items-center gap-2 group">
-                            {% if user.profile_picture %}
-                                <img src="{{ user.profile_picture.url }}" alt="Profile" class="w-8 h-8 rounded-full object-cover border border-amber-300 group-hover:border-[#800020] transition-colors">
-                            {% else %}
-                                <div class="w-8 h-8 rounded-full bg-amber-100 border border-amber-200 flex items-center justify-center text-amber-800 group-hover:border-[#800020] transition-colors">
-                                    <i data-lucide="user" class="w-4 h-4"></i>
-                                </div>
-                            {% endif %}
-                            <span class="text-sm font-semibold hidden lg:block text-amber-950 group-hover:text-[#800020] transition-colors">{{ user.username }}</span>
-                        </a>
-                        
-                        <form action="/logout/" method="POST" class="inline">
-                            {% csrf_token %}
-                            <button type="submit" class="p-1.5 text-amber-800/60 hover:text-[#800020] transition-colors" title="Log Out">
-                                <i data-lucide="log-out" class="w-4 h-4"></i>
-                            </button>
-                        </form>
-                    </div>
-                {% else %}
-                    <div class="flex items-center gap-3 text-sm font-bold">
-                        <a href="/login/" class="text-amber-900/80 hover:text-[#800020] transition-colors px-2 py-1.5">Sign In</a>
-                        <a href="/register/" class="bg-[#800020] text-amber-50 px-4 py-2 rounded-xl hover:bg-[#600018] transition-all shadow-sm font-bold">Register</a>
-                    </div>
-                {% endif %}
-            </div>
-
-        </div>
     </div>
-</nav>
+
+    <div class="sm:hidden pb-3">
+      <form action="/products/" method="GET" class="relative">
+        <input type="text" name="search" value="{{ request.GET.search }}" placeholder="Search instruments, gear..." 
+          class="w-full bg-[#FFFFFF] border border-[#DDD2C5] rounded-full pl-10 pr-4 py-2 text-sm text-[#2D1F18] placeholder-[#5F564F]/60 focus:outline-none focus:border-[#7A1F2B]">
+        <button type="submit" class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-[#5F564F]">
+          <i data-lucide="search" class="w-4 h-4"></i>
+        </button>
+      </form>
+    </div>
+
+    <div class="md:hidden flex items-center gap-5 overflow-x-auto py-2.5 border-t border-[#DDD2C5]/60 text-xs font-semibold text-[#5F564F]">
+      <a href="/products/" class="whitespace-nowrap hover:text-[#7A1F2B]">Shop All</a>
+      <a href="/products/?category=guitars" class="whitespace-nowrap hover:text-[#7A1F2B]">Guitars</a>
+      <a href="/products/?category=keyboards" class="whitespace-nowrap hover:text-[#7A1F2B]">Keyboards</a>
+      <a href="/products/?category=traditional" class="whitespace-nowrap hover:text-[#7A1F2B]">Traditional</a>
+      <a href="/products/?category=drums" class="whitespace-nowrap hover:text-[#7A1F2B]">Drums</a>
+    </div>
+
+  </div>
+</header>
