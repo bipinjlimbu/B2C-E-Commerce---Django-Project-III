@@ -1659,6 +1659,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(122 31 43 / var(--tw-border-opacity));
 }
 
+.border-\[\#B4473A\]\/20 {
+  border-color: rgb(180 71 58 / 0.2);
+}
+
 .border-t-transparent {
   border-top-color: transparent;
 }
@@ -1910,6 +1914,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .bg-\[\#5B8A5A\] {
   --tw-bg-opacity: 1;
   background-color: rgb(91 138 90 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#B4473A\]\/10 {
+  background-color: rgb(180 71 58 / 0.1);
 }
 
 .bg-gradient-to-r {
