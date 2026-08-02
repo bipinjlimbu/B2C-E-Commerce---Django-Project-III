@@ -3361,6 +3361,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(250 247 242 / 0.8);
 }
 
+.hover\:bg-\[\#FAF7F2\]\/60:hover {
+  background-color: rgb(250 247 242 / 0.6);
+}
+
 .hover\:text-\[\#5E1721\]:hover {
   --tw-text-opacity: 1;
   color: rgb(94 23 33 / var(--tw-text-opacity));
