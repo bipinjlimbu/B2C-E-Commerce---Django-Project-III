@@ -1189,6 +1189,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   max-width: 72rem;
 }
 
+.max-w-3xl {
+  max-width: 48rem;
+}
+
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -3592,6 +3596,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   .sm\:text-base {
     font-size: 1rem;
     line-height: 1.5rem;
+  }
+
+  .sm\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
 }
 
