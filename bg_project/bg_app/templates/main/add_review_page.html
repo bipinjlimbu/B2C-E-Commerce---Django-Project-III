@@ -7,70 +7,113 @@
     {% load static %}
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
 </head>
-<body class="bg-amber-50/30 text-stone-900 font-sans min-h-screen flex flex-col">
+<body class="bg-[#FAF7F2] font-sans min-h-screen flex flex-col text-[#5F564F] antialiased selection:bg-[#7A1F2B] selection:text-white">
 
     {% include 'components/_navbar.html' %}
 
     {% include 'components/_messages.html' %}
 
-    <main class="flex-grow flex items-center justify-center p-4 sm:p-6 lg:p-8">
-        <form method="POST" class="w-full max-w-2xl bg-white border border-amber-900/15 rounded-3xl overflow-hidden shadow-xl p-8 lg:p-12 space-y-8">
-            {% csrf_token %}
+    <main class="flex-grow flex items-center justify-center p-4 sm:p-6 lg:p-10 my-6">
+        <div class="w-full max-w-2xl bg-white border border-[#DDD2C5] rounded-3xl shadow-lg overflow-hidden relative">
             
-            <div>
-                <h2 class="text-xs font-bold uppercase tracking-widest text-[#800020] mb-1">Product Feedback</h2>
-                <p class="text-2xl font-black text-stone-900 tracking-tight">Write a Review</p>
-                <p class="text-xs text-stone-600 mt-1 font-medium">Share your experience regarding <span class="text-[#800020] font-bold">{{ product.name }}</span></p>
+            <div class="bg-gradient-to-r from-[#2D1F18] via-[#6B4A2B] to-[#7A1F2B] p-6 sm:p-8 text-white relative overflow-hidden">
+                <div class="absolute -right-6 -bottom-6 w-32 h-32 rounded-full bg-[#C89B3C]/10 blur-2xl pointer-events-none"></div>
+                
+                <div class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#C89B3C] mb-2">
+                    <i data-lucide="message-square-plus" class="w-4 h-4"></i>
+                    Share Your Feedback
+                </div>
+                
+                <h1 class="text-2xl sm:text-3xl font-extrabold text-[#FAF7F2] tracking-tight">Write a Review</h1>
+                
+                <div class="mt-4 pt-4 border-t border-white/10 flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center text-[#C89B3C] shrink-0 border border-white/10">
+                        <i data-lucide="music" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <span class="text-[11px] uppercase tracking-wider text-white/60 font-semibold block">Music Gear</span>
+                        <p class="text-sm sm:text-base font-bold text-white leading-tight line-clamp-1">{{ product.name }}</p>
+                    </div>
+                </div>
             </div>
 
-            <div class="space-y-6">
-                <div class="bg-amber-50/50 border border-amber-900/10 p-5 rounded-2xl">
-                    <label class="text-[10px] font-extrabold uppercase tracking-widest text-stone-500 block mb-3">Select Rating</label>
-                    <div class="flex items-center gap-3 bg-white border border-amber-900/15 p-3 rounded-xl inline-flex shadow-sm">
+            <form method="POST" class="p-6 sm:p-8 space-y-8">
+                {% csrf_token %}
+
+                <div class="space-y-6">
+                    
+                    <div class="bg-[#FAF7F2] border border-[#DDD2C5] rounded-2xl p-5 sm:p-6 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <label class="text-xs font-bold uppercase tracking-wider text-[#2D1F18] flex items-center gap-1.5">
+                                <i data-lucide="star" class="w-4 h-4 text-[#C89B3C]"></i>
+                                Your Rating
+                            </label>
+                            <span id="rating_display" class="text-xs font-extrabold px-3 py-1 rounded-full bg-white border border-[#DDD2C5] text-[#2D1F18] shadow-sm">
+                                5 / 5
+                            </span>
+                        </div>
+
                         <input type="hidden" name="rating" id="id_rating" value="5">
-                        <div class="flex items-center gap-1">
-                            <button type="button" data-star="1" class="star-btn text-amber-500 hover:scale-110 transition-transform focus:outline-none">
-                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+
+                        <div class="flex items-center gap-2 bg-white border border-[#DDD2C5] p-3.5 rounded-xl justify-center sm:justify-start">
+                            <button type="button" data-star="1" class="star-btn text-[#C89B3C] hover:scale-110 transition-transform focus:outline-none p-1">
+                                <i data-lucide="star" class="w-7 h-7 fill-[#C89B3C]"></i>
                             </button>
-                            <button type="button" data-star="2" class="star-btn text-amber-500 hover:scale-110 transition-transform focus:outline-none">
-                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <button type="button" data-star="2" class="star-btn text-[#C89B3C] hover:scale-110 transition-transform focus:outline-none p-1">
+                                <i data-lucide="star" class="w-7 h-7 fill-[#C89B3C]"></i>
                             </button>
-                            <button type="button" data-star="3" class="star-btn text-amber-500 hover:scale-110 transition-transform focus:outline-none">
-                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <button type="button" data-star="3" class="star-btn text-[#C89B3C] hover:scale-110 transition-transform focus:outline-none p-1">
+                                <i data-lucide="star" class="w-7 h-7 fill-[#C89B3C]"></i>
                             </button>
-                            <button type="button" data-star="4" class="star-btn text-amber-500 hover:scale-110 transition-transform focus:outline-none">
-                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <button type="button" data-star="4" class="star-btn text-[#C89B3C] hover:scale-110 transition-transform focus:outline-none p-1">
+                                <i data-lucide="star" class="w-7 h-7 fill-[#C89B3C]"></i>
                             </button>
-                            <button type="button" data-star="5" class="star-btn text-amber-500 hover:scale-110 transition-transform focus:outline-none">
-                                <i data-lucide="star" class="w-5 h-5 fill-current"></i>
+                            <button type="button" data-star="5" class="star-btn text-[#C89B3C] hover:scale-110 transition-transform focus:outline-none p-1">
+                                <i data-lucide="star" class="w-7 h-7 fill-[#C89B3C]"></i>
                             </button>
                         </div>
-                        <span id="rating_display" class="text-xs font-mono font-bold text-stone-700 ml-2">5 / 5</span>
+
+                        {% if errors.rating %}
+                            <p class="text-[#B4473A] text-xs font-semibold flex items-center gap-1.5 bg-[#B4473A]/10 p-2.5 rounded-xl border border-[#B4473A]/20">
+                                <i data-lucide="alert-circle" class="w-4 h-4 shrink-0"></i>
+                                {{ errors.rating }}
+                            </p>
+                        {% endif %}
                     </div>
-                    {% if errors.rating %}
-                        <p class="text-red-600 text-xs mt-2 font-semibold">{{ errors.rating }}</p>
-                    {% endif %}
+
+                    <div class="space-y-2">
+                        <label for="id_comment" class="text-xs font-bold uppercase tracking-wider text-[#2D1F18] flex items-center gap-1.5">
+                            <i data-lucide="message-square" class="w-4 h-4 text-[#C89B3C]"></i>
+                            Your Written Review
+                        </label>
+                        
+                        <div class="relative">
+                            <textarea id="id_comment" name="comment" rows="6" placeholder="What did you like or dislike about this product? Your experience helps other musicians..." class="w-full bg-[#FAF7F2] border border-[#DDD2C5] rounded-2xl p-4 text-sm text-[#2D1F18] font-medium placeholder-[#5F564F]/50 focus:outline-none focus:border-[#7A1F2B] focus:ring-2 focus:ring-[#7A1F2B]/20 transition-all leading-relaxed resize-y">{{ data.comment|default:'' }}</textarea>
+                        </div>
+
+                        {% if errors.comment %}
+                            <p class="text-[#B4473A] text-xs font-semibold flex items-center gap-1.5 bg-[#B4473A]/10 p-2.5 rounded-xl border border-[#B4473A]/20">
+                                <i data-lucide="alert-circle" class="w-4 h-4 shrink-0"></i>
+                                {{ errors.comment }}
+                            </p>
+                        {% endif %}
+                    </div>
+
                 </div>
 
-                <div class="bg-amber-50/50 border border-amber-900/10 p-5 rounded-2xl focus-within:border-[#800020] focus-within:bg-white transition-all">
-                    <label class="text-[10px] font-extrabold uppercase tracking-widest text-stone-500 block mb-2">Your Review</label>
-                    <textarea id="id_comment" name="comment" rows="5" placeholder="What did you like or dislike about this product? Your experience helps other buyers." class="w-full bg-transparent text-sm font-medium text-stone-800 focus:outline-none placeholder-stone-400 resize-none leading-relaxed">{{ data.comment|default:'' }}</textarea>
-                    {% if errors.comment %}
-                        <p class="text-red-600 text-xs mt-2 font-semibold">{{ errors.comment }}</p>
-                    {% endif %}
+                <div class="flex flex-col sm:flex-row items-center gap-3 pt-4 border-t border-[#DDD2C5]">
+                    <button type="submit" class="w-full sm:w-auto flex-1 bg-[#7A1F2B] hover:bg-[#5E1721] text-white font-bold py-3.5 px-6 rounded-2xl transition-all flex items-center justify-center gap-2 text-sm shadow-md hover:shadow-lg active:scale-[0.98]">
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                        Submit Review
+                    </button>
+                    
+                    <a href="javascript:history.back()" class="w-full sm:w-auto flex-1 bg-[#FAF7F2] hover:bg-[#DDD2C5]/40 text-[#2D1F18] font-bold py-3.5 px-6 rounded-2xl transition-all flex items-center justify-center gap-2 text-sm border border-[#DDD2C5]">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                        Cancel
+                    </a>
                 </div>
-            </div>
-
-            <div class="flex items-center gap-3 pt-4 border-t border-amber-900/10">
-                <button type="submit" class="flex-grow sm:flex-none bg-[#800020] hover:bg-[#600018] text-amber-50 font-bold py-3.5 px-6 rounded-xl transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-wider shadow-md shadow-[#800020]/20">
-                    <i data-lucide="send" class="w-4 h-4"></i>
-                    Submit Review
-                </button>
-                <a href="javascript:history.back()" class="flex-grow sm:flex-none bg-stone-100 hover:bg-stone-200 text-stone-700 font-bold py-3.5 px-6 rounded-xl transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-wider border border-stone-200">
-                    Cancel
-                </a>
-            </div>
-        </form>
+            </form>
+        </div>
     </main>
 
     {% include 'components/_footer.html' %}
@@ -89,11 +132,11 @@
                     const btnStarValue = parseInt(btn.getAttribute('data-star'));
                     const icon = btn.querySelector('[data-lucide="star"]');
                     if (btnStarValue <= selectedRating) {
-                        icon.classList.add('fill-current', 'text-amber-500');
-                        icon.classList.remove('text-stone-300');
+                        icon.classList.add('fill-[#C89B3C]', 'text-[#C89B3C]');
+                        icon.classList.remove('text-[#DDD2C5]');
                     } else {
-                        icon.classList.remove('fill-current', 'text-amber-500');
-                        icon.classList.add('text-stone-300');
+                        icon.classList.remove('fill-[#C89B3C]', 'text-[#C89B3C]');
+                        icon.classList.add('text-[#DDD2C5]');
                     }
                 });
             });
