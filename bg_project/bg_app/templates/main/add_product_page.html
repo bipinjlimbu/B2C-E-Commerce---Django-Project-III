@@ -3,157 +3,232 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deploy Product | BajaGaja</title>
+    <title>Add New Music Gear | BajaGaja</title>
     {% load static %}
     <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
 </head>
-<body class="bg-amber-50/30 font-sans min-h-screen flex flex-col text-amber-950">
+<body class="bg-[#FAF7F2] font-sans min-h-screen flex flex-col text-[#5F564F]">
 
     {% include 'components/_navbar.html' %}
 
     {% include 'components/_messages.html' %}
 
-    <main class="flex-grow flex items-center justify-center p-4 sm:p-6 lg:p-8">
-        <form method="POST" enctype="multipart/form-data" class="w-full max-w-4xl bg-white border border-amber-200/80 rounded-2xl overflow-hidden shadow-sm p-8 lg:p-12 space-y-8">
-            {% csrf_token %}
+    <main class="flex-grow py-8 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto space-y-6">
             
-            <div>
-                <h2 class="text-xs font-bold uppercase tracking-widest text-amber-900/60 mb-1">Catalog Architecture</h2>
-                <h1 class="text-2xl font-black text-amber-950 tracking-tight">Deploy New Hardware</h1>
+            <div class="bg-white border border-[#DDD2C5] rounded-2xl p-6 sm:p-8 shadow-xs relative overflow-hidden">
+                <div class="absolute -right-6 -bottom-6 text-[#C89B3C]/10 pointer-events-none">
+                    <i data-lucide="music" class="w-40 h-40"></i>
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative z-10">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-[#7A1F2B] text-[#C89B3C] flex items-center justify-center shrink-0 shadow-xs">
+                            <i data-lucide="plus-circle" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <span class="text-[11px] font-bold text-[#6B4A2B] uppercase tracking-wider block">Store Inventory</span>
+                            <h1 class="text-2xl font-black text-[#2D1F18] tracking-tight">Add New Music Gear</h1>
+                        </div>
+                    </div>
+
+                    <a href="/dashboard/admin/?section=product-management" class="inline-flex items-center gap-2 text-xs font-bold text-[#6B4A2B] bg-[#FAF7F2] hover:bg-[#DDD2C5]/50 border border-[#DDD2C5] px-4 py-2.5 rounded-xl transition-all w-fit">
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                        <span>Back to Products</span>
+                    </a>
+                </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                
-                <div class="space-y-6 md:col-span-2">
-                    <div class="bg-amber-50/50 border border-amber-200/80 p-4 rounded-xl focus-within:border-[#800020] transition-colors">
-                        <label for="id_name" class="text-[10px] font-bold uppercase tracking-widest text-amber-900/60 block mb-1">Product Title</label>
-                        <input type="text" id="id_name" name="name" value="{{ data.name|default:'' }}" maxlength="255" placeholder="e.g. Handmade Himalayan Sarangi" class="w-full bg-transparent text-sm font-semibold text-amber-950 focus:outline-none placeholder-amber-900/40">
-                        {% if errors.name %}
-                            <p class="text-red-600 text-xs mt-1 font-semibold">{{ errors.name }}</p>
-                        {% endif %}
-                    </div>
-                </div>
+            <form method="POST" enctype="multipart/form-data" class="bg-white border border-[#DDD2C5] rounded-2xl p-6 sm:p-8 shadow-xs space-y-8">
+                {% csrf_token %}
 
-                <div class="bg-amber-50/50 border border-amber-200/80 p-4 rounded-xl focus-within:border-[#800020] transition-colors">
-                    <label for="id_brand" class="text-[10px] font-bold uppercase tracking-widest text-amber-900/60 block mb-1">Brand Anchor</label>
-                    <select id="id_brand" name="brand" class="w-full bg-transparent text-sm font-semibold text-amber-950 focus:outline-none cursor-pointer">
-                        <option value="" disabled selected class="bg-white text-amber-900/50">Select Associated Brand</option>
-                        {% for brand in brands %}
-                            <option value="{{ brand.id }}" {% if data.brand == brand.id|stringformat:"s" %}selected{% endif %} class="bg-white text-amber-950">{{ brand.name }}</option>
-                        {% endfor %}
-                    </select>
-                    {% if errors.brand %}
-                        <p class="text-red-600 text-xs mt-1 font-semibold">{{ errors.brand }}</p>
-                    {% endif %}
-                </div>
+                <div>
+                    <h2 class="text-base font-bold text-[#2D1F18] flex items-center gap-2 mb-4 border-b border-[#DDD2C5] pb-3">
+                        <i data-lucide="disc" class="w-5 h-5 text-[#7A1F2B]"></i>
+                        Basic Product Information
+                    </h2>
 
-                <div class="bg-amber-50/50 border border-amber-200/80 p-4 rounded-xl focus-within:border-[#800020] transition-colors">
-                    <label for="id_sku" class="text-[10px] font-bold uppercase tracking-widest text-amber-900/60 block mb-1">Stock Keeping Unit (SKU)</label>
-                    <input type="text" id="id_sku" name="sku" value="{{ data.sku|default:'' }}" maxlength="100" placeholder="e.g. BG-SRG-001" class="w-full bg-transparent text-sm font-semibold text-amber-950 focus:outline-none placeholder-amber-900/40">
-                    {% if errors.sku %}
-                        <p class="text-red-600 text-xs mt-1 font-semibold">{{ errors.sku }}</p>
-                    {% endif %}
-                </div>
-
-                <div class="bg-amber-50/50 border border-amber-200/80 p-4 rounded-xl focus-within:border-[#800020] transition-colors">
-                    <label for="id_category" class="text-[10px] font-bold uppercase tracking-widest text-amber-900/60 block mb-1">System Category</label>
-                    <select id="id_category" name="category" class="w-full bg-transparent text-sm font-semibold text-amber-950 focus:outline-none cursor-pointer">
-                        <option value="" disabled selected class="bg-white text-amber-900/50">Select Allocation Segment</option>
-                        <option value="guitars" {% if data.category == 'guitars' %}selected{% endif %} class="bg-white text-amber-950">Guitars &amp; Basses</option>
-                        <option value="keyboards" {% if data.category == 'keyboards' %}selected{% endif %} class="bg-white text-amber-950">Keyboards &amp; Synthesizers</option>
-                        <option value="drums" {% if data.category == 'drums' %}selected{% endif %} class="bg-white text-amber-950">Drums &amp; Percussion</option>
-                        <option value="traditional" {% if data.category == 'traditional' %}selected{% endif %} class="bg-white text-amber-950">Traditional &amp; Folk</option>
-                        <option value="wind" {% if data.category == 'wind' %}selected{% endif %} class="bg-white text-amber-950">Wind &amp; Brass</option>
-                        <option value="studio" {% if data.category == 'studio' %}selected{% endif %} class="bg-white text-amber-950">Studio &amp; Recording</option>
-                        <option value="amps_effects" {% if data.category == 'amps_effects' %}selected{% endif %} class="bg-white text-amber-950">Amps &amp; Effect Pedals</option>
-                        <option value="accessories" {% if data.category == 'accessories' %}selected{% endif %} class="bg-white text-amber-950">Accessories &amp; Cables</option>
-                    </select>
-                    {% if errors.category %}
-                        <p class="text-red-600 text-xs mt-1 font-semibold">{{ errors.category }}</p>
-                    {% endif %}
-                </div>
-
-                <div class="bg-amber-50/50 border border-amber-200/80 p-4 rounded-xl focus-within:border-[#800020] transition-colors">
-                    <label for="id_condition" class="text-[10px] font-bold uppercase tracking-widest text-amber-900/60 block mb-1">Hardware Condition</label>
-                    <select id="id_condition" name="condition" class="w-full bg-transparent text-sm font-semibold text-amber-950 focus:outline-none cursor-pointer">
-                        <option value="new" {% if data.condition == 'new' or not data.condition %}selected{% endif %} class="bg-white text-amber-950">Brand New (Sealed)</option>
-                        <option value="refurbished" {% if data.condition == 'refurbished' %}selected{% endif %} class="bg-white text-amber-950">Factory Refurbished</option>
-                        <option value="used" {% if data.condition == 'used' %}selected{% endif %} class="bg-white text-amber-950">Pre-Owned / Good</option>
-                    </select>
-                    {% if errors.condition %}
-                        <p class="text-red-600 text-xs mt-1 font-semibold">{{ errors.condition }}</p>
-                    {% endif %}
-                </div>
-
-                <div class="bg-amber-50/50 border border-amber-200/80 p-4 rounded-xl focus-within:border-[#800020] transition-colors">
-                    <label for="id_price" class="text-[10px] font-bold uppercase tracking-widest text-amber-900/60 block mb-1">Valuation Price (Rs.)</label>
-                    <input type="number" id="id_price" name="price" step="0.01" min="0" value="{{ data.price|default:'' }}" placeholder="0.00" class="w-full bg-transparent text-sm font-semibold text-amber-950 focus:outline-none placeholder-amber-900/40 font-mono">
-                    {% if errors.price %}
-                        <p class="text-red-600 text-xs mt-1 font-semibold">{{ errors.price }}</p>
-                    {% endif %}
-                </div>
-
-                <div class="bg-amber-50/50 border border-amber-200/80 p-4 rounded-xl focus-within:border-[#800020] transition-colors">
-                    <label for="id_stock" class="text-[10px] font-bold uppercase tracking-widest text-amber-900/60 block mb-1">Stock Metric Quantity</label>
-                    <input type="number" id="id_stock" name="stock" min="0" value="{{ data.stock|default:'0' }}" placeholder="0" class="w-full bg-transparent text-sm font-semibold text-amber-950 focus:outline-none placeholder-amber-900/40 font-mono">
-                    {% if errors.stock %}
-                        <p class="text-red-600 text-xs mt-1 font-semibold">{{ errors.stock }}</p>
-                    {% endif %}
-                </div>
-
-                <div class="space-y-6 md:col-span-2">
-                    <div class="bg-amber-50/50 border border-amber-200/80 p-4 rounded-xl focus-within:border-[#800020] transition-colors">
-                        <label for="id_description" class="text-[10px] font-bold uppercase tracking-widest text-amber-900/60 block mb-1">Technical Specs &amp; Description</label>
-                        <textarea id="id_description" name="description" rows="5" placeholder="Enter full specifications structural logs..." class="w-full bg-transparent text-sm font-semibold text-amber-950 focus:outline-none placeholder-amber-900/40 resize-none">{{ data.description|default:'' }}</textarea>
-                        {% if errors.description %}
-                            <p class="text-red-600 text-xs mt-1 font-semibold">{{ errors.description }}</p>
-                        {% endif %}
-                    </div>
-                </div>
-
-                <div class="space-y-6 md:col-span-2">
-                    <div class="bg-amber-50/50 border border-amber-200/80 p-6 rounded-xl flex flex-col items-center justify-center text-center group transition-colors relative">
-                        <div class="space-y-2">
-                            <div class="w-12 h-12 rounded-xl bg-white border border-amber-200/80 flex items-center justify-center text-amber-800/60 mx-auto group-hover:border-[#800020] transition-colors shadow-sm">
-                                <i data-lucide="camera" class="w-5 h-5 text-amber-800/60"></i>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="md:col-span-2 space-y-1.5">
+                            <label for="id_name" class="text-xs font-bold text-[#2D1F18] block">Product Name <span class="text-[#B4473A]">*</span></label>
+                            <div class="relative">
+                                <input type="text" id="id_name" name="name" value="{{ data.name|default:'' }}" maxlength="255" placeholder="e.g. Acoustic Guitar or Studio Microphone" class="w-full bg-[#FAF7F2] border border-[#DDD2C5] rounded-xl px-4 py-3 text-xs font-semibold text-[#2D1F18] placeholder-[#5F564F]/50 focus:outline-none focus:border-[#7A1F2B] focus:bg-white transition-all">
                             </div>
-                            <div class="flex text-xs text-amber-900/80 justify-center">
-                                <label for="id_product_image" class="relative cursor-pointer rounded-md font-bold text-[#800020] hover:text-[#5c0017] focus-within:outline-none">
-                                    <span>Upload asset imagery</span>
-                                    <input id="id_product_image" name="product_image" type="file" accept="image/*" class="sr-only">
-                                </label>
-                            </div>
-                            <p class="text-[10px] text-amber-900/60 uppercase tracking-wider font-semibold">Image files up to 10MB</p>
+                            {% if errors.name %}
+                                <p class="text-[#B4473A] text-xs font-semibold flex items-center gap-1 mt-1">
+                                    <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i>
+                                    {{ errors.name }}
+                                </p>
+                            {% endif %}
                         </div>
-                        {% if errors.product_image %}
-                            <p class="text-red-600 text-xs mt-2 font-semibold">{{ errors.product_image }}</p>
-                        {% endif %}
+
+                        <div class="space-y-1.5">
+                            <label for="id_brand" class="text-xs font-bold text-[#2D1F18] block">Brand <span class="text-[#B4473A]">*</span></label>
+                            <select id="id_brand" name="brand" class="w-full bg-[#FAF7F2] border border-[#DDD2C5] rounded-xl px-4 py-3 text-xs font-semibold text-[#2D1F18] focus:outline-none focus:border-[#7A1F2B] focus:bg-white transition-all cursor-pointer">
+                                <option value="" disabled selected class="text-[#5F564F]/50">Select Brand</option>
+                                {% for brand in brands %}
+                                    <option value="{{ brand.id }}" {% if data.brand == brand.id|stringformat:"s" %}selected{% endif %}>{{ brand.name }}</option>
+                                {% endfor %}
+                            </select>
+                            {% if errors.brand %}
+                                <p class="text-[#B4473A] text-xs font-semibold flex items-center gap-1 mt-1">
+                                    <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i>
+                                    {{ errors.brand }}
+                                </p>
+                            {% endif %}
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label for="id_category" class="text-xs font-bold text-[#2D1F18] block">Category <span class="text-[#B4473A]">*</span></label>
+                            <select id="id_category" name="category" class="w-full bg-[#FAF7F2] border border-[#DDD2C5] rounded-xl px-4 py-3 text-xs font-semibold text-[#2D1F18] focus:outline-none focus:border-[#7A1F2B] focus:bg-white transition-all cursor-pointer">
+                                <option value="" disabled selected class="text-[#5F564F]/50">Select Category</option>
+                                <option value="guitars" {% if data.category == 'guitars' %}selected{% endif %}>Guitars &amp; Basses</option>
+                                <option value="keyboards" {% if data.category == 'keyboards' %}selected{% endif %}>Keyboards &amp; Synthesizers</option>
+                                <option value="drums" {% if data.category == 'drums' %}selected{% endif %}>Drums &amp; Percussion</option>
+                                <option value="traditional" {% if data.category == 'traditional' %}selected{% endif %}>Traditional &amp; Folk</option>
+                                <option value="wind" {% if data.category == 'wind' %}selected{% endif %}>Wind &amp; Brass</option>
+                                <option value="studio" {% if data.category == 'studio' %}selected{% endif %}>Studio &amp; Recording</option>
+                                <option value="amps_effects" {% if data.category == 'amps_effects' %}selected{% endif %}>Amps &amp; Effect Pedals</option>
+                                <option value="accessories" {% if data.category == 'accessories' %}selected{% endif %}>Accessories &amp; Cables</option>
+                            </select>
+                            {% if errors.category %}
+                                <p class="text-[#B4473A] text-xs font-semibold flex items-center gap-1 mt-1">
+                                    <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i>
+                                    {{ errors.category }}
+                                </p>
+                            {% endif %}
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label for="id_sku" class="text-xs font-bold text-[#2D1F18] block">Product SKU / Code</label>
+                            <input type="text" id="id_sku" name="sku" value="{{ data.sku|default:'' }}" maxlength="100" placeholder="e.g. BG-GTR-001" class="w-full bg-[#FAF7F2] border border-[#DDD2C5] rounded-xl px-4 py-3 text-xs font-semibold text-[#2D1F18] placeholder-[#5F564F]/50 focus:outline-none focus:border-[#7A1F2B] focus:bg-white transition-all">
+                            {% if errors.sku %}
+                                <p class="text-[#B4473A] text-xs font-semibold flex items-center gap-1 mt-1">
+                                    <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i>
+                                    {{ errors.sku }}
+                                </p>
+                            {% endif %}
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label for="id_condition" class="text-xs font-bold text-[#2D1F18] block">Condition</label>
+                            <select id="id_condition" name="condition" class="w-full bg-[#FAF7F2] border border-[#DDD2C5] rounded-xl px-4 py-3 text-xs font-semibold text-[#2D1F18] focus:outline-none focus:border-[#7A1F2B] focus:bg-white transition-all cursor-pointer">
+                                <option value="new" {% if data.condition == 'new' or not data.condition %}selected{% endif %}>Brand New</option>
+                                <option value="refurbished" {% if data.condition == 'refurbished' %}selected{% endif %}>Refurbished</option>
+                                <option value="used" {% if data.condition == 'used' %}selected{% endif %}>Pre-Owned</option>
+                            </select>
+                            {% if errors.condition %}
+                                <p class="text-[#B4473A] text-xs font-semibold flex items-center gap-1 mt-1">
+                                    <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i>
+                                    {{ errors.condition }}
+                                </p>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
 
-                <div class="md:col-span-2 bg-amber-50/50 border border-amber-200/80 p-4 rounded-xl flex items-center justify-between">
+                <div>
+                    <h2 class="text-base font-bold text-[#2D1F18] flex items-center gap-2 mb-4 border-b border-[#DDD2C5] pb-3">
+                        <i data-lucide="tag" class="w-5 h-5 text-[#7A1F2B]"></i>
+                        Pricing &amp; Inventory
+                    </h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-1.5">
+                            <label for="id_price" class="text-xs font-bold text-[#2D1F18] block">Price (Rs.) <span class="text-[#B4473A]">*</span></label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-xs font-bold text-[#6B4A2B]">Rs.</span>
+                                <input type="number" id="id_price" name="price" step="0.01" min="0" value="{{ data.price|default:'' }}" placeholder="0.00" class="w-full bg-[#FAF7F2] border border-[#DDD2C5] rounded-xl pl-12 pr-4 py-3 text-xs font-semibold text-[#2D1F18] placeholder-[#5F564F]/50 focus:outline-none focus:border-[#7A1F2B] focus:bg-white transition-all">
+                            </div>
+                            {% if errors.price %}
+                                <p class="text-[#B4473A] text-xs font-semibold flex items-center gap-1 mt-1">
+                                    <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i>
+                                    {{ errors.price }}
+                                </p>
+                            {% endif %}
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label for="id_stock" class="text-xs font-bold text-[#2D1F18] block">Available Stock <span class="text-[#B4473A]">*</span></label>
+                            <input type="number" id="id_stock" name="stock" min="0" value="{{ data.stock|default:'0' }}" placeholder="0" class="w-full bg-[#FAF7F2] border border-[#DDD2C5] rounded-xl px-4 py-3 text-xs font-semibold text-[#2D1F18] placeholder-[#5F564F]/50 focus:outline-none focus:border-[#7A1F2B] focus:bg-white transition-all">
+                            {% if errors.stock %}
+                                <p class="text-[#B4473A] text-xs font-semibold flex items-center gap-1 mt-1">
+                                    <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i>
+                                    {{ errors.stock }}
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 class="text-base font-bold text-[#2D1F18] flex items-center gap-2 mb-4 border-b border-[#DDD2C5] pb-3">
+                        <i data-lucide="file-text" class="w-5 h-5 text-[#7A1F2B]"></i>
+                        Description &amp; Media
+                    </h2>
+
+                    <div class="space-y-6">
+                        <div class="space-y-1.5">
+                            <label for="id_description" class="text-xs font-bold text-[#2D1F18] block">Product Description &amp; Details</label>
+                            <textarea id="id_description" name="description" rows="5" placeholder="Enter product features, specifications, wood type, inclusions..." class="w-full bg-[#FAF7F2] border border-[#DDD2C5] rounded-xl p-4 text-xs font-medium text-[#2D1F18] placeholder-[#5F564F]/50 focus:outline-none focus:border-[#7A1F2B] focus:bg-white transition-all resize-none">{{ data.description|default:'' }}</textarea>
+                            {% if errors.description %}
+                                <p class="text-[#B4473A] text-xs font-semibold flex items-center gap-1 mt-1">
+                                    <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i>
+                                    {{ errors.description }}
+                                </p>
+                            {% endif %}
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-bold text-[#2D1F18] block">Product Image</label>
+                            <div class="bg-[#FAF7F2] border-2 border-dashed border-[#DDD2C5] hover:border-[#7A1F2B] rounded-2xl p-6 text-center transition-all group">
+                                <div class="w-12 h-12 rounded-2xl bg-white border border-[#DDD2C5] flex items-center justify-center text-[#7A1F2B] mx-auto mb-3 shadow-xs group-hover:scale-105 transition-transform">
+                                    <i data-lucide="image" class="w-6 h-6"></i>
+                                </div>
+                                <div class="space-y-1">
+                                    <div class="flex text-xs text-[#5F564F] justify-center items-center gap-1">
+                                        <label for="id_product_image" class="cursor-pointer font-bold text-[#7A1F2B] hover:text-[#5E1721] underline underline-offset-2">
+                                            <span>Upload product image</span>
+                                            <input id="id_product_image" name="product_image" type="file" accept="image/*" class="sr-only">
+                                        </label>
+                                        <span>or drag and drop</span>
+                                    </div>
+                                    <p class="text-[11px] text-[#5F564F]/70">PNG, JPG or WEBP up to 10MB</p>
+                                </div>
+                            </div>
+                            {% if errors.product_image %}
+                                <p class="text-[#B4473A] text-xs font-semibold flex items-center gap-1 mt-1">
+                                    <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i>
+                                    {{ errors.product_image }}
+                                </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-[#FAF7F2] border border-[#DDD2C5] p-4 rounded-xl flex items-center justify-between">
                     <div>
-                        <label for="id_is_active" class="text-xs font-bold uppercase tracking-widest text-amber-950 block">Visibility Status</label>
-                        <p class="text-[10px] text-amber-900/60 uppercase tracking-wider font-semibold">Toggle asset distribution inside active live storefront matrix</p>
+                        <label for="id_is_active" class="text-xs font-bold text-[#2D1F18] block">Show on Storefront</label>
+                        <p class="text-[11px] text-[#5F564F]">Make this product visible to customers immediately after saving</p>
                     </div>
                     <label class="relative inline-flex items-center cursor-pointer select-none">
                         <input type="checkbox" id="id_is_active" name="is_active" value="true" checked class="sr-only peer">
-                        <div class="w-11 h-6 bg-amber-200/80 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-amber-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#800020]"></div>
+                        <div class="w-11 h-6 bg-[#DDD2C5] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-[#DDD2C5] after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#7A1F2B]"></div>
                     </label>
                 </div>
 
-            </div>
+                <div class="flex flex-col sm:flex-row items-center justify-end gap-3 pt-4 border-t border-[#DDD2C5]">
+                    <a href="/dashboard/admin/?section=product-management" class="w-full sm:w-auto bg-[#FAF7F2] hover:bg-[#DDD2C5]/50 text-[#5F564F] font-bold py-3 px-6 rounded-xl transition-all flex items-center justify-center gap-2 text-xs border border-[#DDD2C5]">
+                        Cancel
+                    </a>
+                    <button type="submit" class="w-full sm:w-auto bg-[#7A1F2B] hover:bg-[#5E1721] text-white font-bold py-3 px-8 rounded-xl transition-all flex items-center justify-center gap-2 text-xs shadow-xs">
+                        <i data-lucide="check-circle" class="w-4 h-4 text-[#C89B3C]"></i>
+                        <span>Save Product</span>
+                    </button>
+                </div>
 
-            <div class="flex items-center gap-3 pt-4 border-t border-amber-200/80">
-                <button type="submit" class="flex-grow sm:flex-none bg-[#800020] hover:bg-[#5c0017] text-white font-bold py-3 px-6 rounded-xl transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-wider shadow-sm active:scale-95">
-                    <i data-lucide="plus" class="w-4 h-4"></i>
-                    Publish Hardware
-                </button>
-                <a href="/dashboard/admin/?section=product-management" class="flex-grow sm:flex-none bg-amber-100/60 hover:bg-amber-100 text-amber-950 font-bold py-3 px-6 rounded-xl transition-all flex items-center justify-center gap-2 text-xs uppercase tracking-wider border border-amber-200/80 active:scale-95">
-                    Cancel
-                </a>
-            </div>
-        </form>
+            </form>
+        </div>
     </main>
 
     {% include 'components/_footer.html' %}
@@ -165,10 +240,10 @@
         document.getElementById('id_product_image').addEventListener('change', function(e) {
             const fileName = e.target.files[0]?.name;
             if (fileName) {
-                const labelContainer = e.target.closest('.space-y-2');
+                const labelContainer = e.target.closest('.space-y-1');
                 const textElement = labelContainer.querySelector('span');
                 textElement.textContent = fileName;
-                textElement.className = "text-emerald-700 font-mono text-xs font-bold";
+                textElement.className = "text-[#5B8A5A] font-bold text-xs";
             }
         });
     </script>

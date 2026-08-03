@@ -416,7 +416,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: none;
 }
 
-.translate-x-\[120\%\], .rotate-180, .hover\:scale-105, .hover\:scale-110, .active\:scale-95, .group-hover\:translate-x-1, .group-hover\:scale-105, .group-hover\:scale-110, .peer-checked\:after\:translate-x-full::after {
+.translate-x-\[120\%\], .-translate-y-1\/2, .rotate-180, .hover\:scale-105, .hover\:scale-110, .active\:scale-95, .group-hover\:translate-x-1, .group-hover\:scale-105, .group-hover\:scale-110, .peer-checked\:after\:translate-x-full::after {
   --tw-translate-x: 0;
   --tw-translate-y: 0;
   --tw-rotate: 0;
@@ -498,6 +498,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .pointer-events-auto {
   pointer-events: auto;
+}
+
+.visible {
+  visibility: visible;
 }
 
 .static {
@@ -668,6 +672,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .-bottom-8 {
   bottom: -2rem;
+}
+
+.top-1\/2 {
+  top: 50%;
 }
 
 .z-10 {
@@ -1187,6 +1195,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .translate-x-\[120\%\] {
   --tw-translate-x: 120%;
+  transform: var(--tw-transform);
+}
+
+.-translate-y-1\/2 {
+  --tw-translate-y: -50%;
   transform: var(--tw-transform);
 }
 
@@ -2226,6 +2239,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-top: 0.25rem;
 }
 
+.pl-12 {
+  padding-left: 3rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -2634,6 +2651,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   text-underline-offset: 4px;
 }
 
+.underline-offset-2 {
+  text-underline-offset: 2px;
+}
+
 .antialiased {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -2934,6 +2955,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
 }
 
+.after\:border-\[\#DDD2C5\]::after {
+  content: var(--tw-content);
+  --tw-border-opacity: 1;
+  border-color: rgb(221 210 197 / var(--tw-border-opacity));
+}
+
 .after\:bg-\[\#7A1F2B\]::after {
   content: var(--tw-content);
   --tw-bg-opacity: 1;
@@ -3219,6 +3246,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 
 .focus\:bg-\[\#FFFFFF\]:focus {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.focus\:bg-white:focus {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
