@@ -1084,6 +1084,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 1.75rem;
 }
 
+.w-fit {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
 .min-w-\[320px\] {
   min-width: 320px;
 }
@@ -1110,6 +1115,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .min-w-\[120px\] {
   min-width: 120px;
+}
+
+.min-w-\[240px\] {
+  min-width: 240px;
 }
 
 .max-w-4xl {
