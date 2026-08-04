@@ -82,11 +82,12 @@
                                        class="p-2 bg-[#FAF7F2] hover:bg-[#7A1F2B] text-[#5F564F] hover:text-white rounded-xl border border-[#DDD2C5] hover:border-[#7A1F2B] transition-all shadow-xs">
                                         <i data-lucide="edit-3" class="w-4 h-4"></i>
                                     </a>
-                                    <a href="/brands/delete/{{ brand.id }}/" 
-                                       title="Delete Brand"
-                                       class="p-2 bg-[#FAF7F2] hover:bg-[#B4473A] text-[#5F564F] hover:text-white rounded-xl border border-[#DDD2C5] hover:border-[#B4473A] transition-all shadow-xs">
+                                    <button type="button" 
+                                            onclick="openDeleteBrandModal('/brands/delete/{{ brand.id }}/')" 
+                                            title="Delete Brand"
+                                            class="p-2 bg-[#FAF7F2] hover:bg-[#B4473A] text-[#5F564F] hover:text-white rounded-xl border border-[#DDD2C5] hover:border-[#B4473A] transition-all shadow-xs">
                                         <i data-lucide="trash-2" class="w-4 h-4"></i>
-                                    </a>
+                                    </button>
                                 </div>
                             </td>
                         </tr>
@@ -115,3 +116,65 @@
     </div>
 
 </div>
+
+<div id="deleteBrandModal" class="fixed inset-0 bg-[#2D1F18]/60 backdrop-blur-sm flex items-center justify-center p-4 z-50 opacity-0 pointer-events-none transition-opacity duration-300">
+    <div id="deleteBrandModalCard" class="bg-[#FFFFFF] border border-[#DDD2C5] rounded-3xl max-w-sm w-full p-6 space-y-6 shadow-2xl transform scale-95 transition-transform duration-300">
+        <div class="flex items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-[#B4473A]/10 border border-[#B4473A]/20 flex items-center justify-center text-[#B4473A] shrink-0">
+                <i data-lucide="alert-triangle" class="w-6 h-6"></i>
+            </div>
+            <div class="space-y-1 pt-0.5">
+                <h3 class="text-base font-extrabold text-[#2D1F18]">Delete Brand</h3>
+                <p class="text-xs text-[#5F564F] leading-relaxed">
+                    Are you sure you want to remove this brand? Products linked to this brand will remain intact.
+                </p>
+            </div>
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-2 border-t border-[#DDD2C5]/60">
+            <button type="button" onclick="closeDeleteBrandModal()" class="px-4 py-2.5 bg-[#FAF7F2] hover:bg-[#DDD2C5]/40 border border-[#DDD2C5] text-[#5F564F] hover:text-[#2D1F18] font-bold text-xs rounded-xl transition-all">
+                Cancel
+            </button>
+            <a id="confirmDeleteBrandBtn" href="#" class="px-5 py-2.5 bg-[#B4473A] hover:bg-[#8F352B] text-[#FAF7F2] font-bold text-xs rounded-xl transition-all shadow-md flex items-center gap-1.5">
+                <i data-lucide="trash-2" class="w-4 h-4"></i>
+                <span>Delete</span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    const deleteBrandModal = document.getElementById('deleteBrandModal');
+    const deleteBrandModalCard = document.getElementById('deleteBrandModalCard');
+    const confirmDeleteBrandBtn = document.getElementById('confirmDeleteBrandBtn');
+
+    function openDeleteBrandModal(deleteUrl) {
+        confirmDeleteBrandBtn.setAttribute('href', deleteUrl);
+        document.body.style.overflow = 'hidden';
+        
+        deleteBrandModal.classList.remove('opacity-0', 'pointer-events-none');
+        deleteBrandModalCard.classList.remove('scale-95');
+        deleteBrandModalCard.classList.add('scale-100');
+    }
+
+    function closeDeleteBrandModal() {
+        deleteBrandModal.classList.add('opacity-0', 'pointer-events-none');
+        deleteBrandModalCard.classList.remove('scale-100');
+        deleteBrandModalCard.classList.add('scale-95');
+        document.body.style.overflow = '';
+    }
+
+    if (deleteBrandModal) {
+        deleteBrandModal.addEventListener('click', function(e) {
+            if (e.target === deleteBrandModal) {
+                closeDeleteBrandModal();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && !deleteBrandModal.classList.contains('pointer-events-none')) {
+                closeDeleteBrandModal();
+            }
+        });
+    }
+</script>
